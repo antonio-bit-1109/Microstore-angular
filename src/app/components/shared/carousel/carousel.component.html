@@ -1,0 +1,15 @@
+<ngb-carousel>
+  <ng-template ngbSlide *ngFor="let image of getImages()">
+    <div class="picsum-img-wrapper">
+      <img
+        [src]="getPercorso(image.subject)"
+        [alt]="getDesc(image)"
+        class="w-100 altezza"
+      />
+    </div>
+    <div class="carousel-caption">
+      <h3 class="fs-1 fw-bolder">{{ getSubject(image) }}</h3>
+      <p class="fs-2">{{ getDesc(image) }}</p>
+    </div>
+  </ng-template>
+</ngb-carousel>

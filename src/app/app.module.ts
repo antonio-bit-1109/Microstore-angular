@@ -10,23 +10,27 @@ import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
+import { CarouselComponent } from './components/shared/carousel/carousel.component';
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule ,
-    BrowserAnimationsModule , 
-    DividerModule ,
-    ButtonModule
+    NgbModule,
+    BrowserAnimationsModule,
+    DividerModule,
+    ButtonModule,
+    CarouselModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
