@@ -1,0 +1,21 @@
+<div class="card m-2">
+  <img
+    class="img-style"
+    [src]="prodotto.image_url"
+    [alt]="prodotto.description"
+  />
+  <div class="card-header">
+    <h5 class="card-title fs-3">{{ UpperFirstLetter(prodotto.name) }}</h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+      {{ prodotto.description }}
+    </p>
+    <p class="fs-3">$ {{ prodotto.prezzo }}</p>
+    <p>disponibilità magazzino: {{ prodotto.stock }} unità</p>
+    <div class="d-flex gap-1">
+      <a class="btn Myprimary Mywhite">Vedi dettagli</a>
+      <a class="btn btn-success">Aggiungi al carrello </a>
+    </div>
+  </div>
+</div>

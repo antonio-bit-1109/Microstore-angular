@@ -15,10 +15,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item pointer">
+          <li class="nav-item pointer" routerLink="/home">
             <a class="nav-link active" aria-current="page">Home</a>
           </li>
-          <li class="nav-item pointer" routerLink="/prodotti">
+          <li class="nav-item pointer" routerLink="prodotti">
             <a class="nav-link">Prodotti</a>
           </li>
           <li class="nav-item pointer">
@@ -28,6 +28,12 @@
             <a class="nav-link">Ordini Effettuati</a>
           </li>
         </ul>
+      </div>
+      <div
+        class="pointer text-white d-flex align-items-center"
+        routerLink="login"
+      >
+        Logout <i class="pi pi-sign-out ms-1" style="font-size: 1.3rem"></i>
       </div>
     </div>
   </nav>

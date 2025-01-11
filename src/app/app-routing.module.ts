@@ -7,7 +7,14 @@ import { ProdottiComponent } from './components/prodotti/prodotti.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
+  // { path: 'home', component: HomeComponent },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./components/home/home-routing.module').then(
+        (module) => module.HomeRoutingModule
+      ),
+  },
   { path: 'prodotti', component: ProdottiComponent },
   { path: '**', redirectTo: 'login' },
 ];

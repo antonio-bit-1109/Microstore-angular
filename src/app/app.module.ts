@@ -14,6 +14,7 @@ import { CarouselComponent } from './components/shared/carousel/carousel.compone
 import { CarouselModule } from 'primeng/carousel';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { ProdottiComponent } from './components/prodotti/prodotti.component';
+import { CardComponent } from './components/shared/card/card.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ProdottiComponent } from './components/prodotti/prodotti.component';
     CarouselComponent,
     FooterComponent,
     ProdottiComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
