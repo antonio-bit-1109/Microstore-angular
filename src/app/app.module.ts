@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CarouselComponent } from './components/shared/carousel/carousel.component';
 import { CarouselModule } from 'primeng/carousel';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { ProdottiComponent } from './components/prodotti/prodotti.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     HomeComponent,
     CarouselComponent,
     FooterComponent,
+    ProdottiComponent,
   ],
   imports: [
     BrowserModule,
