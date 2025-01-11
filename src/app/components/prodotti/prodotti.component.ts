@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { IProduct } from '../../models/product.model';
+import { IProduct, IProductResponse } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProdottiComponent implements OnInit {
   private AllProdottiMock: IProduct[] | undefined;
-
+  private AllProdottiDB: IProductResponse | undefined;
   // INIETTARE IL SERVIZIO NELLA CLASSE
   // 1- costruttore utilizzato solo per iniettare dipendenze
   // 2- oppure utilizzando il metodo inject
@@ -21,10 +21,23 @@ export class ProdottiComponent implements OnInit {
   // utilizzo i cicli di vita del componente per logiche più complesse come
   //
   ngOnInit(): void {
+    // carica nella prop i prodotti mockati
     this.productService.getAllProducts_mock().subscribe({
       next: (prodotti: IProduct[]) => {
         this.AllProdottiMock = prodotti;
         console.log('prodotti Mock caricati', this.AllProdottiMock);
+      },
+
+      error: (err) => {
+        console.error(err);
+      },
+    });
+
+    // carica nella prop i prodotti provenienti dall API
+    this.productService.getAllProducts().subscribe({
+      next: (prodotti: IProductResponse) => {
+        this.AllProdottiDB = prodotti;
+        console.log('prodotti DAL DB caricati', this.AllProdottiDB);
       },
 
       error: (err) => {
@@ -36,5 +49,9 @@ export class ProdottiComponent implements OnInit {
   //metodi
   public getAllProdotti_Mock() {
     return this.AllProdottiMock;
+  }
+
+  public getAllProdottiDB() {
+    return this.AllProdottiDB.listaProdotti;
   }
 }

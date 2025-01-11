@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { ProdottiComponent } from '../prodotti/prodotti.component';
 import { CarouselComponent } from '../shared/carousel/carousel.component';
+import { GestioneOrdiniComponent } from '../gestione-ordini/gestione-ordini.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -10,6 +12,7 @@ const routes: Routes = [
     children: [
       { path: '', component: CarouselComponent },
       { path: 'prodotti', component: ProdottiComponent }, // Aggiungi la nuova rotta
+      { path: 'gestioneOrdini', component: GestioneOrdiniComponent },
     ],
   },
 ];

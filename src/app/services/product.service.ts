@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PRODOTTI } from '../mocks/products.mock';
-import { IProduct } from '../models/product.model';
+import { IProduct, IProductResponse } from '../models/product.model';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +9,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ProductService {
-  constructor() {}
+  private BASEURL = 'http://localhost:8081/product/get-all';
+
+  constructor(private http: HttpClient) {}
 
   //metodi di chiamata API REST
 
@@ -27,7 +29,9 @@ export class ProductService {
 
   // reali all API REST
   // tutti prodotti
-  getAllProducts() {}
+  getAllProducts(): Observable<IProductResponse> {
+    return this.http.get<IProductResponse>(`${this.BASEURL}`);
+  }
 
   // singolo prodotto
   getProduct() {}

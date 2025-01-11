@@ -8,3 +8,8 @@ export interface IProduct {
   is_active: string;
   image_url: string;
 }
+
+export interface IProductResponse {
+  msg: string;
+  listaProdotti: IProduct[];
+}

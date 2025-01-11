@@ -16,6 +16,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { ProdottiComponent } from './components/prodotti/prodotti.component';
 import { CardComponent } from './components/shared/card/card.component';
 import { DettaglioProdottoComponent } from './components/prodotti/dettaglio-prodotto/dettaglio-prodotto.component';
+import { GestioneOrdiniComponent } from './components/gestione-ordini/gestione-ordini.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { DettaglioProdottoComponent } from './components/prodotti/dettaglio-prod
     ProdottiComponent,
     CardComponent,
     DettaglioProdottoComponent,
+    GestioneOrdiniComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { DettaglioProdottoComponent } from './components/prodotti/dettaglio-prod
     DividerModule,
     ButtonModule,
     CarouselModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
