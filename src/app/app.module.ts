@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarousel, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
@@ -15,7 +15,6 @@ import { CarouselModule } from 'primeng/carousel';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { ProdottiComponent } from './components/prodotti/prodotti.component';
 import { CardComponent } from './components/shared/card/card.component';
-import { DettaglioProdottoComponent } from './components/prodotti/dettaglio-prodotto/dettaglio-prodotto.component';
 import { GestioneOrdiniComponent } from './components/gestione-ordini/gestione-ordini.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -29,7 +28,6 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     ProdottiComponent,
     CardComponent,
-    DettaglioProdottoComponent,
     GestioneOrdiniComponent,
   ],
   imports: [
