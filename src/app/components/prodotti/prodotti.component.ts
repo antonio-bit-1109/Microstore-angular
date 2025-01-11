@@ -52,6 +52,9 @@ export class ProdottiComponent implements OnInit {
   }
 
   public getAllProdottiDB() {
-    return this.AllProdottiDB.listaProdotti;
+    if (this.AllProdottiDB) {
+      return this.AllProdottiDB.listaProdotti;
+    }
+    return null;
   }
 }
