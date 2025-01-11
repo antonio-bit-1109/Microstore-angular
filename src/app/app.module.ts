@@ -12,6 +12,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { CarouselComponent } from './components/shared/carousel/carousel.component';
 import { CarouselModule } from 'primeng/carousel';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CarouselModule } from 'primeng/carousel';
     NavbarComponent,
     HomeComponent,
     CarouselComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
