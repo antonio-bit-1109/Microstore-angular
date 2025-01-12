@@ -11,7 +11,7 @@ import { IRandomQuoteJSON } from '../../models/randomQuote.model';
 })
 export class HomeContainerComponent implements OnInit {
   public Quote1: IRandomQuoteJSON | undefined;
-  public IsFetchCompleted: boolean = false;
+
   // inietto product service nella classe
   constructor(private randomQuoteService: RandomQuotesService) {}
 
@@ -19,7 +19,7 @@ export class HomeContainerComponent implements OnInit {
     this.randomQuoteService.getRandomQuote().subscribe({
       next: (data: IRandomQuoteJSON) => {
         this.Quote1 = data;
-        this.IsFetchCompleted = true;
+
         console.log('quotes random fetchate con successo', this.Quote1);
       },
       error: (err) => {

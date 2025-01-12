@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { IRandomQuoteJSON } from '../../../models/randomQuote.model';
 
 @Component({
@@ -8,26 +8,19 @@ import { IRandomQuoteJSON } from '../../../models/randomQuote.model';
   templateUrl: './info.component.html',
   styleUrl: './info.component.scss',
 })
-export class InfoComponent {
+export class InfoComponent implements OnChanges {
   @Input() Content1: IRandomQuoteJSON | undefined;
-  @Input() isDataQuotesAvailable: boolean | undefined;
-  public getQuote(QuoteObj: IRandomQuoteJSON) {
-    if (this.Content1) {
-      return QuoteObj.quote;
-    }
-    return null;
-  }
 
-  public getCategory(QuoteObj: IRandomQuoteJSON) {
-    if (this.Content1) {
-      return QuoteObj.category;
+  public quote: string | null = null;
+  public author: string | null = null;
+  public category: string | null = null;
+  constructor() {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['Content1'] && this.Content1) {
+      this.quote = this.Content1.quote;
+      this.author = this.Content1.author;
+      this.category = this.Content1.category;
     }
-    return null;
-  }
-  public getAuthor(QuoteObj: IRandomQuoteJSON) {
-    if (this.Content1) {
-      return QuoteObj.author;
-    }
-    return null;
   }
 }
