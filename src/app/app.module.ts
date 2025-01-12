@@ -17,6 +17,8 @@ import { ProdottiComponent } from './components/prodotti/prodotti.component';
 import { CardComponent } from './components/shared/card/card.component';
 import { GestioneOrdiniComponent } from './components/gestione-ordini/gestione-ordini.component';
 import { HttpClientModule } from '@angular/common/http';
+import { InfoComponent } from './components/shared/info/info.component';
+import { HomeContainerComponent } from './components/home-container/home-container.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProdottiComponent,
     CardComponent,
     GestioneOrdiniComponent,
+    InfoComponent,
+    HomeContainerComponent,
   ],
   imports: [
     BrowserModule,

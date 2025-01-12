@@ -4,13 +4,14 @@ import { HomeComponent } from './home.component';
 import { ProdottiComponent } from '../prodotti/prodotti.component';
 import { CarouselComponent } from '../shared/carousel/carousel.component';
 import { GestioneOrdiniComponent } from '../gestione-ordini/gestione-ordini.component';
+import { HomeContainerComponent } from '../home-container/home-container.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     children: [
-      { path: '', component: CarouselComponent },
+      { path: '', component: HomeContainerComponent },
       { path: 'prodotti', component: ProdottiComponent }, // Aggiungi la nuova rotta
       { path: 'gestioneOrdini', component: GestioneOrdiniComponent },
     ],
