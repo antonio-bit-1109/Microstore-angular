@@ -2,33 +2,31 @@
   <div class="row">
     <div class="col-12 col-md-12 col-lg-6">
       <div class="m-4 border border-2 rounded-4 text-center">
-        <ng-template #loading>
-          <p class="text-center">Loading...</p>
-        </ng-template>
-
-        <ng-container *ngIf="Content1; else loading">
-          <h4>{{ quote }}</h4>
-          <h5>{{ author }}</h5>
-          <h6>{{ category }}</h6>
+        <ng-container *ngIf="!Content1">
+          <p class="text-center">Caricamento...</p>
         </ng-container>
+
+        <div class="p-3" *ngIf="Content1">
+          <h4 class="fs-4 d-flex justify-content-center">{{ quote }}</h4>
+          <h5 class="fs-5 d-flex me-auto">{{ author }}</h5>
+          <h6 class="fs-6 d-flex me-auto">{{ category }}</h6>
+        </div>
       </div>
     </div>
     <div class="col-12 col-md-12 col-lg-6">
       <div class="m-4 border border-2 rounded-4">
-        <!-- <p class="p-3 m-0">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-          soluta ab aliquid sapiente sit ea ipsa ipsum consectetur nam
-          repudiandae aliquam, voluptas ducimus. Fuga quisquam dignissimos id
-          aspernatur rem vel est totam, laborum accusamus numquam asperiores?
-          Temporibus voluptatibus modi totam quaerat et voluptate accusantium
-          doloremque. Ipsum, modi iusto tempore consequatur officiis impedit. Ea
-          sint ratione repellendus delectus. Quasi nulla repellendus vitae
-          dolorum pariatur incidunt delectus praesentium! Eligendi temporibus
-          fugiat delectus eos, facilis similique natus aut, commodi architecto
-          molestias asperiores cum! Minima totam deserunt harum. Quos aut
-          voluptas atque facilis deleniti minima commodi officiis vero
-          necessitatibus dolor, impedit dicta accusantium consequuntur.
-        </p> -->
+        <div class="d-flex flex-column">
+          <label class="m-3" for="food">
+            Inserisci il cibo di cui vuoi sapere i valori nutrizionali</label
+          >
+          <input
+            class="w-50 mb-3 ms-3"
+            type="text"
+            name="food"
+            id="food"
+            placeholder="Inserisci una quantità di cibo"
+          />
+        </div>
       </div>
     </div>
   </div>

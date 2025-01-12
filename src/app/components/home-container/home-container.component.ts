@@ -10,14 +10,14 @@ import { IRandomQuoteJSON } from '../../models/randomQuote.model';
   styleUrl: './home-container.component.scss',
 })
 export class HomeContainerComponent implements OnInit {
-  public Quote1: IRandomQuoteJSON | undefined;
+  public Quote1: IRandomQuoteJSON[] | undefined;
 
   // inietto product service nella classe
   constructor(private randomQuoteService: RandomQuotesService) {}
 
   ngOnInit(): void {
     this.randomQuoteService.getRandomQuote().subscribe({
-      next: (data: IRandomQuoteJSON) => {
+      next: (data: IRandomQuoteJSON[]) => {
         this.Quote1 = data;
 
         console.log('quotes random fetchate con successo', this.Quote1);

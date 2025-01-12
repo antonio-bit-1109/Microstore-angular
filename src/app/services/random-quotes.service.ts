@@ -8,33 +8,32 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class RandomQuotesService {
-  private URLRandomQuotes = 'https://api.api-ninjas.com/v1/quotes';
+  // private URLRandomQuotes = 'https://api.api-ninjas.com/v1/quotes';
 
   private http: HttpClient = inject(HttpClient);
-  private APIKEY: string | undefined;
-  constructor() {
-    this.APIKEY = environment.apiRandomQuoteKey;
-    if (!this.APIKEY) {
-      console.error('API KEY non reperita correttamente.');
-    }
-  }
+
+  constructor() {}
 
   // metodo per fetchare una random quote
-  public getRandomQuote(): Observable<IRandomQuoteJSON> {
+  public getRandomQuote(): Observable<IRandomQuoteJSON[]> {
     const headers = new HttpHeaders({
-      'X-Api-Key': this.APIKEY,
+      'X-Api-Key': environment.NinjasApiKey,
     });
     return this.http
-      .get<IRandomQuoteJSON>(this.URLRandomQuotes, { headers })
+      .get<IRandomQuoteJSON[]>(environment.NinjasRandomQuotesURL, {
+        headers,
+      })
       .pipe(catchError(() => of(this.getDefaultQuote())));
   }
 
   // valore di default qualora la fetch ritorni un errore
-  private getDefaultQuote(): IRandomQuoteJSON {
-    return {
-      quote: ' default Quote',
-      author: 'Default author',
-      category: 'Default cathegory',
-    };
+  private getDefaultQuote(): IRandomQuoteJSON[] {
+    return [
+      {
+        quote: ' default Quote',
+        author: 'Default author',
+        category: 'Default cathegory',
+      },
+    ];
   }
 }
