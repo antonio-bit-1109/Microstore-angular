@@ -19,6 +19,7 @@ import { GestioneOrdiniComponent } from './components/gestione-ordini/gestione-o
 import { HttpClientModule } from '@angular/common/http';
 import { InfoComponent } from './components/shared/info/info.component';
 import { HomeContainerComponent } from './components/home-container/home-container.component';
+import { DettaglioProdottoComponent } from './components/prodotti/dettaglio-prodotto/dettaglio-prodotto.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HomeContainerComponent } from './components/home-container/home-contain
     GestioneOrdiniComponent,
     InfoComponent,
     HomeContainerComponent,
+    DettaglioProdottoComponent,
   ],
   imports: [
     BrowserModule,

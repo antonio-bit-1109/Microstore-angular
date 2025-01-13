@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="mt-3">
+        <i
+          class="pi pi-arrow-left arrow-color pointer"
+          routerLink="/home/prodotti"
+        ></i>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class="card my-3" *ngIf="prodotto">
+        <img
+          class="card-img-top"
+          [src]="prodotto.image_url"
+          [alt]="prodotto.description"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ prodotto.name }}</h5>
+          <p class="card-text">
+            {{ prodotto.description }}
+          </p>
+          <p>${{ prodotto.prezzo }}</p>
+          <p>quantità rimasta: {{ prodotto.stock }}</p>
+          <p>Attualmente Disponibile: {{ prodotto.is_active }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

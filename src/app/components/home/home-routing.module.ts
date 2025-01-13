@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { ProdottiComponent } from '../prodotti/prodotti.component';
-import { CarouselComponent } from '../shared/carousel/carousel.component';
 import { GestioneOrdiniComponent } from '../gestione-ordini/gestione-ordini.component';
 import { HomeContainerComponent } from '../home-container/home-container.component';
+import { DettaglioProdottoComponent } from '../prodotti/dettaglio-prodotto/dettaglio-prodotto.component';
 
 const routes: Routes = [
   {
@@ -13,7 +13,9 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeContainerComponent },
       { path: 'prodotti', component: ProdottiComponent }, // Aggiungi la nuova rotta
+      { path: 'dettaglioProdotto/:id', component: DettaglioProdottoComponent },
       { path: 'gestioneOrdini', component: GestioneOrdiniComponent },
+      { path: '**', redirectTo: '' },
     ],
   },
 ];

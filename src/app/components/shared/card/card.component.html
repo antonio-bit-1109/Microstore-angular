@@ -14,8 +14,13 @@
     <p class="fs-3">$ {{ prodotto.prezzo }}</p>
     <p>disponibilità magazzino: {{ prodotto.stock }} unità</p>
     <div class="d-flex gap-1">
-      <a class="btn Myprimary Mywhite">Vedi dettagli</a>
-      <a class="btn btn-success">Aggiungi al carrello </a>
+      <button
+        routerLink="/home/dettaglioProdotto/{{ prodotto.id }}"
+        class="btn Myprimary Mywhite"
+      >
+        Vedi dettagli
+      </button>
+      <button class="btn btn-success">Aggiungi al carrello</button>
     </div>
   </div>
 </div>

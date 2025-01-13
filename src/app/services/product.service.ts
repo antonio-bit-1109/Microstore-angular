@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { PRODOTTI } from '../mocks/products.mock';
-import { IProduct, IProductResponse } from '../models/product.model';
+import {
+  IProduct,
+  IProductResponse,
+  ISingleProduct,
+} from '../models/product.model';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -9,8 +13,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ProductService {
-  private BASEURL = 'http://localhost:8081/product/get-all';
-
+  private GETALL = 'http://localhost:8081/product/get-all';
+  private GET = 'http://localhost:8081/product/get';
   constructor(private http: HttpClient) {}
 
   //metodi di chiamata API REST
@@ -30,9 +34,11 @@ export class ProductService {
   // reali all API REST
   // tutti prodotti
   getAllProducts(): Observable<IProductResponse> {
-    return this.http.get<IProductResponse>(`${this.BASEURL}`);
+    return this.http.get<IProductResponse>(`${this.GETALL}`);
   }
 
   // singolo prodotto
-  getProduct() {}
+  getSingleProductDB(id: string): Observable<ISingleProduct> {
+    return this.http.get<ISingleProduct>(`${this.GET}/${id}`);
+  }
 }
