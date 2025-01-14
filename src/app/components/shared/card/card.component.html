@@ -7,7 +7,7 @@
   <div class="card-header">
     <h5 class="card-title fs-3">{{ UpperFirstLetter(prodotto.name) }}</h5>
   </div>
-  <div class="card-body">
+  <div class="card-body position-relative">
     <p class="card-text">
       {{ troncaDescrizione(prodotto.description, 100) }}
     </p>
@@ -24,6 +24,15 @@
     </div>
     <div
       [ngStyle]="{
+        border: '2px solid ' + isAvailable(prodotto.is_active)[2],
+        'background-color': isAvailable(prodotto.is_active)[2]
+      }"
+      class="tondino"
+    >
+      <!-- Contenuto della card -->
+    </div>
+    <!-- <div
+      [ngStyle]="{
         border: '0.125em solid ' + isAvailable(prodotto.is_active)[2]
       }"
       class="text-center d-block my-3 ms-5"
@@ -36,6 +45,6 @@
       >
         {{ isAvailable(prodotto.is_active)[0] }}
       </p>
-    </div>
+    </div> -->
   </div>
 </div>
