@@ -9,3 +9,11 @@
 .arrow-color:hover {
   color: $primary-color-1;
 }
+.img {
+  width: 100%;
+}
+
+.maxheigth {
+  max-height: 600px;
+  object-fit: cover;
+}
