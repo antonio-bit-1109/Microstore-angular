@@ -31,17 +31,18 @@ export class CardComponent {
   }
 
   public isAvailable(isAvalaible: string) {
-    let avail: boolean;
+    let boolVal: boolean | undefined;
 
     if (isAvalaible === 'true') {
-      avail = true;
+      boolVal = true;
+    } else {
+      boolVal = false;
     }
-    avail = false;
 
     let disponibile = '';
     let colorFrame = '';
 
-    if (avail) {
+    if (boolVal) {
       disponibile = 'Disponibile';
       colorFrame = 'green';
     } else {
@@ -49,7 +50,7 @@ export class CardComponent {
       colorFrame = 'red';
     }
 
-    return [disponibile, avail, colorFrame];
+    return [disponibile, boolVal, colorFrame];
   }
 
   public giveDefaultImageIfNotPresent(imageURL: string) {

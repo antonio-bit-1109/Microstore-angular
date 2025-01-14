@@ -9,7 +9,7 @@
   </div>
   <div class="card-body">
     <p class="card-text">
-      {{ prodotto.description }}
+      {{ troncaDescrizione(prodotto.description, 100) }}
     </p>
     <p class="fs-3">$ {{ prodotto.prezzo }}</p>
     <p>disponibilità magazzino: {{ prodotto.stock }} unità</p>
