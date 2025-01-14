@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { InfoComponent } from './components/shared/info/info.component';
 import { HomeContainerComponent } from './components/home-container/home-container.component';
 import { DettaglioProdottoComponent } from './components/prodotti/dettaglio-prodotto/dettaglio-prodotto.component';
+import { RegistrazioneComponent } from './components/registrazione/registrazione.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { DettaglioProdottoComponent } from './components/prodotti/dettaglio-prod
     InfoComponent,
     HomeContainerComponent,
     DettaglioProdottoComponent,
+    RegistrazioneComponent,
   ],
   imports: [
     BrowserModule,
