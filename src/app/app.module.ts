@@ -21,7 +21,7 @@ import { InfoComponent } from './components/shared/info/info.component';
 import { HomeContainerComponent } from './components/home-container/home-container.component';
 import { DettaglioProdottoComponent } from './components/prodotti/dettaglio-prodotto/dettaglio-prodotto.component';
 import { RegistrazioneComponent } from './components/registrazione/registrazione.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +47,8 @@ import { RegistrazioneComponent } from './components/registrazione/registrazione
     ButtonModule,
     CarouselModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
