@@ -57,4 +57,27 @@ export class DettaglioProdottoComponent implements OnInit {
       });
     }
   }
+
+  public isAvailable(isAvalaible: string) {
+    let boolVal: boolean | undefined;
+
+    if (isAvalaible === 'true') {
+      boolVal = true;
+    } else {
+      boolVal = false;
+    }
+
+    let disponibile = '';
+    let colorFrame = '';
+
+    if (boolVal) {
+      disponibile = 'Disponibile';
+      colorFrame = 'green';
+    } else {
+      disponibile = 'Non Disponibile';
+      colorFrame = 'red';
+    }
+
+    return [disponibile, boolVal, colorFrame];
+  }
 }
