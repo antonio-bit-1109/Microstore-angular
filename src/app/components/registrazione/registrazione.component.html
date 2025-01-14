@@ -200,6 +200,11 @@
                         data-mdb-ripple-init
                         class="btn btn-primary btn-lg"
                         [disabled]="!CanButtonBeClickable(form)"
+                        [ngClass]="{
+                          pointer: CanButtonBeClickable(form)
+                            ? 'cursor'
+                            : 'none'
+                        }"
                       >
                         Register
                       </button>

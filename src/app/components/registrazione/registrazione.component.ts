@@ -26,7 +26,7 @@ export class RegistrazioneComponent {
   });
 
   public onSubmit() {
-    console.log(this.form);
+    console.log(this.form.value);
   }
 
   public CanButtonBeClickable(form: FormGroup) {
