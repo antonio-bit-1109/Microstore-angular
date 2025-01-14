@@ -23,6 +23,7 @@ export class DettaglioProdottoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDetailProdotto_Mock();
+    // this.getDetailProdottoDB();
   }
 
   private getDetailProdotto_Mock() {

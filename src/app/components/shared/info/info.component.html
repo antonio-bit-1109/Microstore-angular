@@ -6,8 +6,11 @@
           <p class="text-center">Caricamento...</p>
         </ng-container>
 
-        <div class="p-3" *ngIf="Content1">
-          <h4 class="fs-4 d-flex justify-content-center">{{ quote }}</h4>
+        <div
+          class="p-3 d-flex justify-content-start flex-column"
+          *ngIf="Content1"
+        >
+          <h4 class="fs-4 d-flex">{{ quote }}</h4>
           <h5 class="fs-5 d-flex me-auto">{{ author }}</h5>
           <h6 class="fs-6 d-flex me-auto">{{ category }}</h6>
         </div>

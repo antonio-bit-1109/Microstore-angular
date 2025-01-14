@@ -16,6 +16,7 @@ export class InfoComponent implements OnChanges {
   public author: string | null = null;
   public category: string | null = null;
 
+  // changes oggetto che contiene valori attuali, precedenti della prop
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['Content1'] && changes['Content1'].currentValue) {
       console.log('Content1 cambiato:', changes['Content1'].currentValue);

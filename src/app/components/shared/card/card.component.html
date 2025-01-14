@@ -1,7 +1,7 @@
-<div class="card m-2">
+<div class="card m-3 focused-style">
   <img
     class="img-style"
-    [src]="prodotto.image_url"
+    [src]="giveDefaultImageIfNotPresent(prodotto.image_url)"
     [alt]="prodotto.description"
   />
   <div class="card-header">
@@ -21,6 +21,21 @@
         Vedi dettagli
       </button>
       <button class="btn btn-success">Aggiungi al carrello</button>
+    </div>
+    <div
+      [ngStyle]="{
+        border: '0.125em solid ' + isAvailable(prodotto.is_active)[2]
+      }"
+      class="text-center d-block my-3 ms-5"
+    >
+      <p
+        [ngStyle]="{
+                  color: isAvailable(prodotto.is_active)[1] ? 'green' : 'red',
+                }"
+        class="txt m-0"
+      >
+        {{ isAvailable(prodotto.is_active)[0] }}
+      </p>
     </div>
   </div>
 </div>
