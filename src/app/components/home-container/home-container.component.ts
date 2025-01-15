@@ -67,10 +67,14 @@ export class HomeContainerComponent implements OnInit, AfterViewInit {
         role: 'alertdialog',
       })
       .result.then((res) => {
-        // chiamato quando il modale viene chiuso con successo.
+        // chiamato quando il modale viene chiuso con successo. (ovverro alla chiamata di modal.close())
+        console.log('modale chiuso con successo' + res);
+        this.userService.DataRegistrazioneUtente.next(null);
       })
       .catch((err) => {
-        // chiamato in caso di errori durante la chiusura del modale.
+        // chiamato in caso il modale venga chiuso chiamato modal.dismiss()
+        console.error('errore durante la chiusura del modale.' + err);
+        this.userService.DataRegistrazioneUtente.next(null);
       });
   }
 }

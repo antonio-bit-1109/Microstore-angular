@@ -22,6 +22,8 @@ import { HomeContainerComponent } from './components/home-container/home-contain
 import { DettaglioProdottoComponent } from './components/prodotti/dettaglio-prodotto/dettaglio-prodotto.component';
 import { RegistrazioneComponent } from './components/registrazione/registrazione.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PasswordModule } from 'primeng/password';
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +51,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    PasswordModule,
+    DropdownModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

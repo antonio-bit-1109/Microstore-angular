@@ -5,12 +5,12 @@
 <!-- MODALE DA APRIRE UNA VOLTA CHE LA REGISTRAZIONE è ANDATA A BUON FINE  -->
 <ng-template #registrationModal let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Registrazione Effettuata con successo</h4>
+    <h4 class="modal-title">Registrato con successo</h4>
     <button
       type="button"
       class="btn-close"
       aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
+      (click)="modal.dismiss('modale chiuso dalla x in alto.')"
     ></button>
   </div>
   <div class="modal-body">
@@ -28,7 +28,7 @@
     <button
       type="button"
       class="btn btn-secondary"
-      (click)="modal.close('Close click')"
+      (click)="modal.close('modale chiuso dal bottone')"
     >
       Close
     </button>
