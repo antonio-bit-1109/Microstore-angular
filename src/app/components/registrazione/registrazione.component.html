@@ -1,0 +1,245 @@
+<section class="my-4">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black bg-white" style="border-radius: 25px">
+          <div>
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                <div class="p-2">
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                    Registrati
+                  </p>
+
+                  <form
+                    [formGroup]="form"
+                    (ngSubmit)="onSubmit()"
+                    class="mx-1 mx-md-4"
+                  >
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div
+                        data-mdb-input-init
+                        class="form-outline flex-fill mb-0"
+                      >
+                        <label class="form-label" for="name">Nome Utente</label>
+                        <input
+                          type="text"
+                          id="name"
+                          class="form-control hoverinput"
+                          name="name"
+                          formControlName="name"
+                        />
+                        <p
+                          *ngIf="
+                            form.controls.name.hasError('required') &&
+                            form.controls.name.touched
+                          "
+                          class="danger-color"
+                        >
+                          Nome utente obbligatorio.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div
+                        data-mdb-input-init
+                        class="form-outline flex-fill mb-0"
+                      >
+                        <label class="form-label" for="email">Your Email</label>
+                        <input
+                          type="email"
+                          id="email"
+                          class="form-control hoverinput"
+                          name="email"
+                          formControlName="email"
+                        />
+                        <p
+                          *ngIf="
+                            form.controls.email.hasError('required') &&
+                            form.controls.email.touched
+                          "
+                          class="danger-color"
+                        >
+                          Email obbligatoria.
+                        </p>
+                        <p
+                          *ngIf="
+                            form.controls.email.hasError('email') &&
+                            form.controls.email.touched
+                          "
+                          class="danger-color"
+                        >
+                          Inserisci una mail nel formato corretto.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div
+                        data-mdb-input-init
+                        class="form-outline flex-fill mb-0 d-flex flex-column"
+                      >
+                        <label class="form-label" for="password"
+                          >Password</label
+                        >
+                        <!-- <input
+                          type="password"
+                          id="password"
+                          class="form-control"
+                          name="password"
+                          formControlName="password"
+                        /> -->
+                        <p-password
+                          type="password"
+                          id="password"
+                          name="password"
+                          formControlName="password"
+                          [inputStyle]="{
+                            'width': '100%',
+                            heigth: '38px',
+                            padding: '6px',
+                            'border-radius': '5px',
+                          }"
+                          [style]="{ width: '100%' }"
+                          [toggleMask]="true"
+                          strongRegex="^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$"
+                        />
+                        <p
+                          *ngIf="
+                            form.controls.password.hasError('required') &&
+                            form.controls.password.touched
+                          "
+                          class="danger-color"
+                        >
+                          Password obbligatoria.
+                        </p>
+                        <p
+                          *ngIf="
+                            form.controls.password.hasError('pattern') &&
+                            form.controls.password.touched
+                          "
+                          class="danger-color"
+                        >
+                          La password deve essere lunga almeno 6 caratteri, con
+                          almeno una lettera maiuscola, almeno una lettera
+                          minuscola e un numero. Senza spazi.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                      <div
+                        data-mdb-input-init
+                        class="form-outline flex-fill mb-0 d-flex flex-column"
+                      >
+                        <label class="form-label" for="confermaPassword"
+                          >Conferma Password</label
+                        >
+                        <input
+                          type="password"
+                          id="confermaPassword"
+                          class="form-control hoverinput"
+                          name="confermaPassword"
+                          formControlName="confermaPassword"
+                          (ngModelChange)="isConfermaPswUgualePsw()"
+                        />
+                        <p
+                          *ngIf="
+                            form.controls.confermaPassword.hasError(
+                              'required'
+                            ) && form.controls.confermaPassword.touched
+                          "
+                          class="danger-color"
+                        >
+                          Inserisci di nuovo la password.
+                        </p>
+                        <p
+                          *ngIf="
+                            isConfermaPswUgualePsw() === false &&
+                            form.controls.confermaPassword.touched
+                          "
+                          class="danger-color m-0"
+                        >
+                          Le due password non corrispondono.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                      <div
+                        data-mdb-input-init
+                        class="form-outline flex-fill mb-0"
+                      >
+                        <label class="form-label" for="phone">Cellulare</label>
+                        <input
+                          type="text"
+                          id="phone"
+                          class="form-control hoverinput"
+                          name="phone"
+                          formControlName="phone"
+                        />
+                        <p
+                          *ngIf="
+                            form.controls.phone.hasError('required') &&
+                            form.controls.phone.touched
+                          "
+                          class="danger-color m-0"
+                        >
+                          Cellulare obbligatorio.
+                        </p>
+                        <p
+                          *ngIf="
+                            form.controls.phone.touched &&
+                            form.controls.phone.hasError('pattern')
+                          "
+                          class="danger-color m-0"
+                        >
+                          Lunghezza numero cellulare errata. Deve essere lungo
+                          10 caratteri numerici.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div
+                      class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
+                    >
+                      <button
+                        type="submit"
+                        data-mdb-button-init
+                        data-mdb-ripple-init
+                        class="btn btn-primary btn-lg"
+                        [disabled]="!CanButtonBeClickable(form)"
+                        [ngClass]="{
+                          pointer: CanButtonBeClickable(form)
+                            ? 'cursor'
+                            : 'none'
+                        }"
+                      >
+                        Register
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div
+                class="col-md-12 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
+              >
+                <img
+                  src="assets/images/cibofoto.webp"
+                  class="rounded rounded-end-4 imgStyle"
+                  alt="Sample image"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

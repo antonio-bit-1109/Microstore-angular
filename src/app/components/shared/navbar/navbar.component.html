@@ -1,4 +1,4 @@
-<header>
+<header class="fixed-top">
   <nav class="navbar navbar-expand-lg navbar-dark me-2">
     <div class="container-fluid">
       <a class="navbar-brand" routerLink="/home">{{ titolo }}</a>
@@ -27,13 +27,16 @@
           <li class="nav-item pointer">
             <a class="nav-link"> Gestione Carrelli</a>
           </li>
+          <li class="nav-item pointer" routerLink="registrazione">
+            <a class="nav-link"> Registrazione </a>
+          </li>
         </ul>
       </div>
       <div
         class="pointer text-white d-flex align-items-center"
-        routerLink="login"
+        routerLink="/login"
       >
-        Logout <i class="pi pi-sign-out ms-1" style="font-size: 1.3rem"></i>
+        <i class="pi pi-sign-out ms-1" style="font-size: 1.3rem"></i>
       </div>
     </div>
   </nav>

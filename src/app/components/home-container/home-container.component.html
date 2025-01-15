@@ -1,0 +1,36 @@
+<app-info [Content1]="Quote1"></app-info>
+<app-carousel></app-carousel>
+<!-- <app-info [Content1]="" [Content2]=""></app-info> -->
+
+<!-- MODALE DA APRIRE UNA VOLTA CHE LA REGISTRAZIONE è ANDATA A BUON FINE  -->
+<ng-template #registrationModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Registrato con successo</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('modale chiuso dalla x in alto.')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <h4>
+      Complimenti {{ dataRegistrazioneUser.name }} , ti sei correttamente
+      registrato. Eccoun repilogo dei tuoi dati:
+    </h4>
+    <ul>
+      <li>Nome:{{ dataRegistrazioneUser.name }}</li>
+      <li>Email:{{ dataRegistrazioneUser.email }}</li>
+      <li>Telefono:{{ dataRegistrazioneUser.phone }}</li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="modal.close('modale chiuso dal bottone')"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>

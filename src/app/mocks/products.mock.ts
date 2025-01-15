@@ -7,7 +7,7 @@ export const PRODOTTI: IProduct[] = [
     description: 'ciao sono un prodotto',
     prezzo: '12.34',
     category: 'general',
-    stock: '56',
+    stock: '0',
     is_active: 'false',
     image_url:
       'https://www.europeanaffairs.it/wp-content/uploads/2020/01/farmaco-generico-vs-farmaco-di-marca.jpg',
@@ -29,8 +29,8 @@ export const PRODOTTI: IProduct[] = [
     description: 'prodotto puzzolente',
     prezzo: '24.5',
     category: 'general',
-    stock: '44',
-    is_active: 'true',
+    stock: '0',
+    is_active: 'false',
     image_url:
       'https://curren.it/cdn/shop/files/5_adb42755-c70b-41c9-acc3-b9df0a6ee24b.jpg?v=1724527774&width=900',
   },

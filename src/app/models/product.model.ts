@@ -13,3 +13,8 @@ export interface IProductResponse {
   msg: string;
   listaProdotti: IProduct[];
 }
+
+export interface ISingleProduct {
+  msg: string;
+  prodotto: IProduct;
+}

@@ -14,7 +14,6 @@ const routes: Routes = [
         (module) => module.HomeRoutingModule
       ),
   },
-  { path: 'prodotti', component: ProdottiComponent },
   { path: '**', redirectTo: 'login' },
 ];
 

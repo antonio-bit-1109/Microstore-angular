@@ -1,0 +1,58 @@
+@import "../../../styles/color.scss";
+
+.arrow-color {
+  color: $primary-color-1;
+  font-size: 5rem;
+  margin-block-start: 2rem;
+}
+
+.arrow-color:hover {
+  color: $primary-color-1;
+}
+.img {
+  width: 100%;
+}
+
+.maxheigth {
+  max-height: 600px;
+  object-fit: cover;
+}
+
+.tondino {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  // top: 0;
+  // left: 25%;
+  // top: 10%;
+  box-shadow: 4px 2px rgb(153, 152, 152);
+}
+
+.unAvailable {
+  font-size: 5rem;
+  rotate: -20deg;
+  color: red;
+  border: 20px solid red;
+  font-weight: 800;
+  padding: 0;
+}
+
+.slide-in {
+  animation: slide-in-bck-center 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slide-in-bck-center {
+  0% {
+    transform: translateZ(600px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+.absolute {
+  position: absolute;
+  top: 300px;
+}

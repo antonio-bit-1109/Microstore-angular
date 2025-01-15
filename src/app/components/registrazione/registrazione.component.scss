@@ -1,0 +1,27 @@
+.imgStyle {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.danger-color {
+  color: rgb(171, 15, 15);
+}
+// .inputStyle {
+//   width: 100% !important;
+//   border: 1px solid rgb(218, 212, 212);
+//   border-radius: 5px;
+//   height: 38px;
+// }
+
+// .nohoverEvent:hover {
+//   border-color: grey;
+// }
+
+.hoverinput {
+  transition: border-color 0.2s ease-in-out; /* Aggiungi una transizione per un effetto più morbido */
+}
+
+.hoverinput:hover {
+  border-color: rgb(124, 124, 210);
+}

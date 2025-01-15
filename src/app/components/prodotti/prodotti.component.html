@@ -1,11 +1,12 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div
       class="col-sm-12 col-md-6 col-lg-4"
-      *ngFor="let prodotto of getAllProdottiDB()"
+      *ngFor="let prodotto of getAllProdotti_Mock()"
     >
       <!-- contenuto card dei prodotti -->
       <app-card [prodotto]="prodotto"></app-card>
+      <!-- <router-outlet></router-outlet> -->
     </div>
   </div>
 </div>
