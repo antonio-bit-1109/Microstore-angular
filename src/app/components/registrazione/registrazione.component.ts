@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-registrazione',
   standalone: false,
@@ -25,8 +26,23 @@ export class RegistrazioneComponent {
     ]),
   });
 
+  constructor(private userService: UserService, private router: Router) {}
+
   public onSubmit() {
-    console.log(this.form.value);
+    if (this.form.valid) {
+      const dataRegistrationToShow = {
+        name: this.form.controls.name.value,
+        email: this.form.controls.email.value,
+        phone: this.form.controls.phone.value,
+      };
+
+      // inserisco i dati presi dal form dentro al replySUbject presente nel servizio.
+      this.userService.DataRegistrazioneUtente.next(dataRegistrationToShow);
+      // tramite routing faccio unredirect verso il componente home.
+      this.router.navigateByUrl('home');
+    } else {
+      console.error('i dati del form non sono tutti validi.');
+    }
   }
 
   public CanButtonBeClickable(form: FormGroup) {
