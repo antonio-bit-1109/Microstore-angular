@@ -14,7 +14,7 @@
 }
 
 .maxheigth {
-  max-height: 600px;
+  max-height: 400px;
   object-fit: cover;
 }
 
@@ -55,4 +55,10 @@
 .absolute {
   position: absolute;
   top: 300px;
+}
+
+.greyLike {
+  filter: grayscale(100%);
+  opacity: 0.5;
+  pointer-events: none; /* Disabilita l'interazione con l'elemento */
 }

@@ -18,6 +18,7 @@ export class DettaglioProdottoComponent implements OnInit {
   private ProductService = inject(ProductService);
   private activatedRoute = inject(ActivatedRoute);
   private Router = inject(Router);
+  // public alertInvisible: boolean = false;
 
   public prodotto: IProduct | undefined;
 
@@ -25,6 +26,10 @@ export class DettaglioProdottoComponent implements OnInit {
     this.getDetailProdotto_Mock();
     // this.getDetailProdottoDB();
   }
+
+  // ngAfterViewInit(): void {
+  //   this.makeAlertDisappear();
+  // }
 
   private getDetailProdotto_Mock() {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
@@ -80,4 +85,10 @@ export class DettaglioProdottoComponent implements OnInit {
 
     return [disponibile, boolVal, colorFrame];
   }
+
+  // public makeAlertDisappear() {
+  //   setTimeout(() => {
+  //     this.alertInvisible = true;
+  //   }, 3000);
+  // }
 }
