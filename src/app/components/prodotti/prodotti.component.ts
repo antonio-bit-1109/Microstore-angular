@@ -12,6 +12,10 @@ import { ProductService } from '../../services/product.service';
 export class ProdottiComponent implements OnInit {
   private AllProdottiMock: IProduct[] | undefined;
   private AllProdottiDB: IProductResponse | undefined;
+
+  public primo: number = 0; //Indice del primo elemento della pagina corrente.
+  public size: number = 6; //Numero di elementi per pagina.
+
   // INIETTARE IL SERVIZIO NELLA CLASSE
   // 1- costruttore utilizzato solo per iniettare dipendenze
   // 2- oppure utilizzando il metodo inject
@@ -56,5 +60,11 @@ export class ProdottiComponent implements OnInit {
       return this.AllProdottiDB.listaProdotti;
     }
     return null;
+  }
+
+  onPageChange(event) {
+    console.log(event, 'evento al cambio pagina del navigator');
+    this.primo = event.first;
+    this.size = event.rows;
   }
 }

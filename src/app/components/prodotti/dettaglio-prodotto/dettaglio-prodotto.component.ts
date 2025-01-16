@@ -7,6 +7,13 @@ import {
   ISingleProduct,
 } from '../../../models/product.model';
 
+interface PageEvent {
+  first: number;
+  rows: number;
+  page: number;
+  pageCount: number;
+}
+
 @Component({
   selector: 'app-dettaglio-prodotto',
   standalone: false,
@@ -26,10 +33,6 @@ export class DettaglioProdottoComponent implements OnInit {
     this.getDetailProdotto_Mock();
     // this.getDetailProdottoDB();
   }
-
-  // ngAfterViewInit(): void {
-  //   this.makeAlertDisappear();
-  // }
 
   private getDetailProdotto_Mock() {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
@@ -85,10 +88,4 @@ export class DettaglioProdottoComponent implements OnInit {
 
     return [disponibile, boolVal, colorFrame];
   }
-
-  // public makeAlertDisappear() {
-  //   setTimeout(() => {
-  //     this.alertInvisible = true;
-  //   }, 3000);
-  // }
 }
