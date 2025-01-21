@@ -13,8 +13,11 @@ export class ProdottiComponent implements OnInit {
   private AllProdottiMock: IProduct[] | undefined;
   private AllProdottiDB: IProductResponse | undefined;
 
-  public primo: number = 0; //Indice del primo elemento della pagina corrente.
-  public size: number = 6; //Numero di elementi per pagina.
+  first: number = 0;
+
+  rows: number = 10;
+  page = 1;
+  size = 4;
 
   // INIETTARE IL SERVIZIO NELLA CLASSE
   // 1- costruttore utilizzato solo per iniettare dipendenze
@@ -62,9 +65,9 @@ export class ProdottiComponent implements OnInit {
     return null;
   }
 
-  onPageChange(event) {
-    console.log(event, 'evento al cambio pagina del navigator');
-    this.primo = event.first;
+  onPageChange(event: any) {
+    this.page = event.page + 1;
     this.size = event.rows;
+    console.log('Rows per page:', this.size);
   }
 }

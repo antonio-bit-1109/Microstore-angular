@@ -13,8 +13,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ProductService {
-  private GETALL = 'http://localhost:8081/product/get-all';
-  private GET = 'http://localhost:8081/product/get';
+  private GET = 'http://localhost:8081/product';
   constructor(private http: HttpClient) {}
 
   //metodi di chiamata API REST
@@ -34,11 +33,11 @@ export class ProductService {
   // reali all API REST
   // tutti prodotti
   getAllProducts(): Observable<IProductResponse> {
-    return this.http.get<IProductResponse>(`${this.GETALL}`);
+    return this.http.get<IProductResponse>(`${this.GET}/get-all`);
   }
 
   // singolo prodotto
   getSingleProductDB(id: string): Observable<ISingleProduct> {
-    return this.http.get<ISingleProduct>(`${this.GET}/${id}`);
+    return this.http.get<ISingleProduct>(`${this.GET}/get/${id}`);
   }
 }

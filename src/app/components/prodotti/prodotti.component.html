@@ -1,15 +1,15 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-4"
-      *ngFor="let prodotto of getAllProdotti_Mock()| slice: (primo - 1) * size : primo * size">
+      *ngFor="let prodotto of getAllProdotti_Mock() | slice: (page - 1) * size : page * size">
       <!-- contenuto card dei prodotti -->
       <app-card [prodotto]="prodotto"></app-card>
-      <!-- <router-outlet></router-outlet> -->
+
     </div>
     <!-- row contenente il paginator per fare slice dei prodotti da front end  -->
     <div class="row">
       <div class="card flex justify-content-center">
-        <p-paginator (onPageChange)="onPageChange($event)" [first]="primo" [rows]="size"
+        <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="size"
           [totalRecords]="getAllProdotti_Mock().length" [rowsPerPageOptions]="[3,6,9]" />
       </div>
     </div>
