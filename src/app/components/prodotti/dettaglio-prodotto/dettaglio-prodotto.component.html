@@ -58,31 +58,31 @@
     <div class="row greyLike">
       <div class="col-md-8">
         <div class="card shadow-sm">
-          <img class="maxheigth" [src]="prodotto.image_url" [alt]="prodotto.description" />
+          <img class="maxheigth" [src]="prodotto?.image_url" [alt]="prodotto?.description" />
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="card p-3 shadow-sm">
           <div class="card-body">
-            <h5 class="card-title">{{ prodotto.name }}</h5>
-            <p class="card-text">{{ prodotto.description }}</p>
+            <h5 class="card-title">{{ prodotto?.name }}</h5>
+            <p class="card-text">{{ prodotto?.description }}</p>
             <p class="card-text">
-              <strong>Prezzo:</strong> ${{ prodotto.prezzo }}
+              <strong>Prezzo:</strong> ${{ prodotto?.prezzo }}
             </p>
             <p class="card-text">
-              <strong>Quantità rimasta:</strong> {{ prodotto.stock }}
+              <strong>Quantità rimasta:</strong> {{ prodotto?.stock }}
             </p>
 
             <div class="d-flex">
               <strong>Disponibilità:</strong>
               <div [ngStyle]="{
-                  border: '2px solid ' + isAvailable(prodotto.is_active)[2],
-                  'background-color': isAvailable(prodotto.is_active)[2]
+                  border: '2px solid ' + isAvailable(prodotto?.is_active)[2],
+                  'background-color': isAvailable(prodotto?.is_active)[2]
                 }" class="tondino ms-2"></div>
             </div>
 
-            <button [disabled]="!isAvailable(prodotto.is_active)[1]" class="btn btn-primary btn-block mt-3">
+            <button [disabled]="!isAvailable(prodotto?.is_active)[1]" class="btn btn-primary btn-block mt-3">
               Aggiungi al carrello
             </button>
           </div>
