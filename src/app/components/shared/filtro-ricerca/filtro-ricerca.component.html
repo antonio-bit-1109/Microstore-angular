@@ -2,8 +2,10 @@
     <div class="col-8">
         <div class="d-flex justify-content-center ">
             <label for="filtro" class="m-2">Filtra Prodotti per:</label>
-            <select class="form-select w-75 above" id="filtro" name="filtro">
-                <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+            <select [(ngModel)]="valoreFiltro" (change)="controllaFiltroSceltoEdEmetti(valoreFiltro)"
+                class="form-select w-75 above" id="filtro" name="filtro">
+                <option *ngFor="let option of options;" [value]="getValue(option)">{{ getKey(option) }}
+                </option>
             </select>
         </div>
     </div>

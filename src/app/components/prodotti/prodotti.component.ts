@@ -1,6 +1,15 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  DoCheck,
+  Input,
+} from '@angular/core';
 import { IProduct, IProductResponse } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-prodotti',
@@ -9,14 +18,16 @@ import { ProductService } from '../../services/product.service';
   templateUrl: './prodotti.component.html',
   styleUrl: './prodotti.component.scss',
 })
-export class ProdottiComponent implements OnInit {
+export class ProdottiComponent implements OnInit, DoCheck {
   private AllProdottiMock: IProduct[] | undefined;
-  private AllProdottiDB: IProductResponse | undefined;
+  private AllProdottiDB: IProductResponse | undefined | IProduct[];
 
   first: number = 0;
   rows: number = 10;
   page = 1;
   size = 4;
+  @Input() valFiltro: string = '';
+  previusValFiltro = '';
 
   // INIETTARE IL SERVIZIO NELLA CLASSE
   // 1- costruttore utilizzato solo per iniettare dipendenze
@@ -52,14 +63,94 @@ export class ProdottiComponent implements OnInit {
     });
   }
 
+  // ho un valore di default all interno del componente.
+  // quando utente cambia valore filtro ed arriva qui se il valoe di default è diverso dal valore del filtro faccio una fetch che mi ritorna i prodotti filtrati in un certo modo.
+  // per far si che non ci sia un loop infinito poi imposto il valore del filtro al valore della variabile di default
+  ngDoCheck(): void {
+    if (this.previusValFiltro !== this.valFiltro) {
+      console.log('sono nel docheck');
+      // switch (this.valFiltro) {
+      //   case null:
+      //     null;
+      //     break;
+      //   case 'd':
+      //   case 'nd':
+      //   case 'cheap':
+      //     this.reDoFetchProdottiCheap();
+      //     break;
+      //   case 'exp':
+      //   case 'AZ':
+      //   case 'ZA':
+      //   default:
+      //     null;
+      // }
+      this.reDoFetchProdottiCheap(this.valFiltro);
+      this.previusValFiltro = this.valFiltro;
+    }
+  }
+
+  private reDoFetchProdottiCheap(valFiltro: string) {
+    this.productService
+      .getAllProducts()
+      .pipe(
+        map((resp: IProductResponse) => {
+          let prodotti = resp.listaProdotti;
+
+          switch (valFiltro) {
+            case 'd':
+              prodotti = prodotti.filter((prod) => prod.is_active === 'true');
+              break;
+
+            case 'nd':
+              prodotti = prodotti.filter((prod) => prod.is_active === 'false');
+              break;
+
+            case 'cheap':
+              prodotti = prodotti.sort(
+                (a, b) => parseInt(a.prezzo) - parseInt(b.prezzo)
+              );
+              break;
+
+            case 'exp':
+              prodotti = prodotti.sort(
+                (a, b) => parseInt(b.prezzo) - parseInt(a.prezzo)
+              );
+              break;
+
+            case 'AZ':
+              prodotti = prodotti.sort((a, b) => a.name.localeCompare(b.name));
+              break;
+
+            case 'ZA':
+              prodotti = prodotti.sort((a, b) => b.name.localeCompare(a.name));
+              break;
+          }
+
+          return { ...resp, listaProdotti: prodotti };
+        })
+      )
+      .subscribe({
+        next: (prodotti: IProductResponse) => {
+          this.AllProdottiDB = prodotti;
+          console.log('prodotti DAL DB caricati', this.AllProdottiDB);
+        },
+
+        error: (err) => {
+          console.error(err);
+        },
+      });
+  }
+
   //metodi
   public getAllProdotti_Mock() {
     return this.AllProdottiMock;
   }
 
-  public getAllProdottiDB() {
-    if (this.AllProdottiDB) {
-      return this.AllProdottiDB.listaProdotti;
+  public getAllProdottiDB(): IProduct[] | null {
+    if (Array.isArray(this.AllProdottiDB)) {
+      return this.AllProdottiDB;
+    } else if (this.AllProdottiDB && 'listaProdotti' in this.AllProdottiDB) {
+      return (this.AllProdottiDB as IProductResponse).listaProdotti;
     }
     return null;
   }
@@ -68,5 +159,10 @@ export class ProdottiComponent implements OnInit {
     this.page = event.page + 1;
     this.size = event.rows;
     console.log('Rows per page:', this.size);
+  }
+
+  prendiValFiltro(event: any) {
+    console.log('sto prendendo val filtro da prodotti', event);
+    this.valFiltro = event;
   }
 }
