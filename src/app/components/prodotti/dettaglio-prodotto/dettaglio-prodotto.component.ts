@@ -30,7 +30,7 @@ export class DettaglioProdottoComponent implements OnInit {
   public prodotto: IProduct | undefined;
 
   ngOnInit(): void {
-    this.getDetailProdotto_Mock();
+    this.getDetailProdottoDB();
     // this.getDetailProdottoDB();
   }
 
@@ -51,12 +51,12 @@ export class DettaglioProdottoComponent implements OnInit {
   }
 
   private getDetailProdottoDB() {
-    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
 
     if (id) {
-      this.ProductService.getSingleProductDB(id.toString()).subscribe({
+      this.ProductService.getSingleProductDB(id).subscribe({
         next: (product: ISingleProduct) => {
-          this.prodotto = product.prodotto;
+          this.prodotto = product.prodDTO;
           console.log(this.prodotto);
         },
         error: (err) => {

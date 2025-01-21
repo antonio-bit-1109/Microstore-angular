@@ -16,5 +16,5 @@ export interface IProductResponse {
 
 export interface ISingleProduct {
   msg: string;
-  prodotto: IProduct;
+  prodDTO: IProduct;
 }

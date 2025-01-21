@@ -59,8 +59,4 @@ export class CardComponent {
     }
     return imageURL;
   }
-
-  // public inviaTitolo(titolo: string) {
-  //   this.msgOutput.emit(titolo);
-  // }
 }

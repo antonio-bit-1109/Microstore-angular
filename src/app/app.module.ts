@@ -27,6 +27,7 @@ import { InfoComponent } from './components/shared/info/info.component';
 import { HomeContainerComponent } from './components/home-container/home-container.component';
 import { DettaglioProdottoComponent } from './components/prodotti/dettaglio-prodotto/dettaglio-prodotto.component';
 import { RegistrazioneComponent } from './components/registrazione/registrazione.component';
+import { FiltroRicercaComponent } from './components/shared/filtro-ricerca/filtro-ricerca.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { RegistrazioneComponent } from './components/registrazione/registrazione
     HomeContainerComponent,
     DettaglioProdottoComponent,
     RegistrazioneComponent,
+    FiltroRicercaComponent,
   ],
   imports: [
     BrowserModule,

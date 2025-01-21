@@ -14,7 +14,6 @@ export class ProdottiComponent implements OnInit {
   private AllProdottiDB: IProductResponse | undefined;
 
   first: number = 0;
-
   rows: number = 10;
   page = 1;
   size = 4;
