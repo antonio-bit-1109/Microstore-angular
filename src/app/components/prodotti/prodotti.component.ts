@@ -68,22 +68,6 @@ export class ProdottiComponent implements OnInit, DoCheck {
   // per far si che non ci sia un loop infinito poi imposto il valore del filtro al valore della variabile di default
   ngDoCheck(): void {
     if (this.previusValFiltro !== this.valFiltro) {
-      console.log('sono nel docheck');
-      // switch (this.valFiltro) {
-      //   case null:
-      //     null;
-      //     break;
-      //   case 'd':
-      //   case 'nd':
-      //   case 'cheap':
-      //     this.reDoFetchProdottiCheap();
-      //     break;
-      //   case 'exp':
-      //   case 'AZ':
-      //   case 'ZA':
-      //   default:
-      //     null;
-      // }
       this.reDoFetchProdottiCheap(this.valFiltro);
       this.previusValFiltro = this.valFiltro;
     }
