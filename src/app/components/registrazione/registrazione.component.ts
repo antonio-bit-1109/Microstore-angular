@@ -66,9 +66,11 @@ export class RegistrazioneComponent {
     this.userService.registerUSer(dataUser).subscribe({
       next: (resp: RESP_REGISTER_POSITIVE) => {
         this.show('success', 'Ok!', resp.message);
+        this.resetForm();
       },
       error: (err: HttpErrorResponse) => {
         const serverErr: ERR_REGISTRATION = err.error;
+
         if (serverErr.message) {
           this.show(
             'error',
@@ -76,6 +78,7 @@ export class RegistrazioneComponent {
             `${serverErr.message.slice(0, 70)} ...`
           );
         }
+        this.resetForm();
       },
     });
   }
@@ -105,5 +108,9 @@ export class RegistrazioneComponent {
       detail: content,
       key: this.keyToast,
     });
+  }
+
+  private resetForm() {
+    this.form.reset();
   }
 }
