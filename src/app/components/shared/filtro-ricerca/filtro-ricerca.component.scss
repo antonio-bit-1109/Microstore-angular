@@ -1,3 +1,13 @@
 .above {
   z-index: 1;
 }
+
+.fixed-position {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 32px;
+  z-index: 999;
+  height: 100px;
+  background-color: white;
+}
