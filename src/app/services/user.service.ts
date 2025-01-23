@@ -1,6 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { Subject, ReplaySubject } from 'rxjs';
-import { IDataRegistrazioneUtente } from '../models/dataRegistrazioneUtente.model';
+import {
+  IDataLogin,
+  IDataRegistrazioneUtente,
+} from '../models/dataUtente.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 @Injectable({
@@ -19,5 +22,12 @@ export class UserService {
   // registrazione utente
   registerUSer(dataUser:IDataRegistrazioneUtente){
    return this.http.post(environment.LOCAL_HOST + environment.URL_REGISTER_USER , dataUser)
+  }
+
+  login(dataLogin: IDataLogin) {
+    return this.http.post(
+      environment.LOCAL_HOST + environment.URL_LOGIN_USER,
+      dataLogin
+    );
   }
 }

@@ -5,4 +5,5 @@ export const environment = {
   NinjaNutritionalInfoURL: 'https://api.api-ninjas.com/v1/nutrition?query=',
   LOCAL_HOST: 'http://localhost:8081',
   URL_REGISTER_USER: '/users/register',
+  URL_LOGIN_USER: '/auth/login',
 };

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
-import { IDataRegistrazioneUtente } from '../../models/dataRegistrazioneUtente.model';
+import { IDataRegistrazioneUtente } from '../../models/dataUtente.model';
 import {
   ERR_REGISTRATION,
   RESP_REGISTER_POSITIVE,

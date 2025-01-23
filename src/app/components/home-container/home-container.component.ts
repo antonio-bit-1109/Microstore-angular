@@ -9,7 +9,7 @@ import {
 import { RandomQuotesService } from '../../services/random-quotes.service';
 import { IRandomQuoteJSON } from '../../models/randomQuote.model';
 import { UserService } from '../../services/user.service';
-import { IDataRegistrazioneUtente } from '../../models/dataRegistrazioneUtente.model';
+import { IDataRegistrazioneUtente } from '../../models/dataUtente.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-home-container',
