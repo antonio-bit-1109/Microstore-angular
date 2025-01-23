@@ -67,6 +67,9 @@ export class RegistrazioneComponent {
       next: (resp: RESP_REGISTER_POSITIVE) => {
         this.show('success', 'Ok!', resp.message);
         this.resetForm();
+        setTimeout(() => {
+          this.router.navigateByUrl('/login');
+        }, 2000);
       },
       error: (err: HttpErrorResponse) => {
         const serverErr: ERR_REGISTRATION = err.error;
@@ -91,9 +94,6 @@ export class RegistrazioneComponent {
     const psw = this.form.get('password').value;
     const confermaPsw = this.form.get('confermaPassword').value;
 
-    console.log(psw, 'password');
-    console.log(confermaPsw, 'conferma password');
-
     if (psw === confermaPsw) {
       return true;
     }
@@ -107,6 +107,7 @@ export class RegistrazioneComponent {
       summary: summary,
       detail: content,
       key: this.keyToast,
+      life: 2000,
     });
   }
 
