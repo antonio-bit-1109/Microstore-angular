@@ -16,7 +16,7 @@ const routes: Routes = [
       { path: 'prodotti', component: ProdottiComponent }, // Aggiungi la nuova rotta
       { path: 'dettaglioProdotto/:id', component: DettaglioProdottoComponent },
       { path: 'gestioneOrdini', component: GestioneOrdiniComponent },
-      { path: 'registrazione', component: RegistrazioneComponent },
+      // { path: 'registrazione', component: RegistrazioneComponent },
       { path: '**', redirectTo: '' },
     ],
   },

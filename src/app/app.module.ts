@@ -28,6 +28,8 @@ import { HomeContainerComponent } from './components/home-container/home-contain
 import { DettaglioProdottoComponent } from './components/prodotti/dettaglio-prodotto/dettaglio-prodotto.component';
 import { RegistrazioneComponent } from './components/registrazione/registrazione.component';
 import { FiltroRicercaComponent } from './components/shared/filtro-ricerca/filtro-ricerca.component';
+import { ToastModule } from 'primeng/toast';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +60,7 @@ import { FiltroRicercaComponent } from './components/shared/filtro-ricerca/filtr
     ReactiveFormsModule,
     PasswordModule,
     DropdownModule,
+    ToastModule,
     PaginatorModule,
   ],
   providers: [],
