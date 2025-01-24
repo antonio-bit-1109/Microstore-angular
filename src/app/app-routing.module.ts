@@ -4,11 +4,13 @@ import { LoginComponent } from './components/login/login.component';
 import { ProdottiComponent } from './components/prodotti/prodotti.component';
 import { RegistrazioneComponent } from './components/registrazione/registrazione.component';
 import { isLoggedInGuard } from './guards/login-guard.guard';
+import { VoleviEhComponent } from './components/shared/volevi-eh/volevi-eh.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'registrazione', component: RegistrazioneComponent },
+  { path: 'voleviEh', component: VoleviEhComponent },
   {
     path: 'home',
     loadChildren: () =>

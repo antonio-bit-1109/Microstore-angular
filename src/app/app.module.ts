@@ -29,6 +29,7 @@ import { DettaglioProdottoComponent } from './components/prodotti/dettaglio-prod
 import { RegistrazioneComponent } from './components/registrazione/registrazione.component';
 import { FiltroRicercaComponent } from './components/shared/filtro-ricerca/filtro-ricerca.component';
 import { ToastModule } from 'primeng/toast';
+import { VoleviEhComponent } from './components/shared/volevi-eh/volevi-eh.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ToastModule } from 'primeng/toast';
     DettaglioProdottoComponent,
     RegistrazioneComponent,
     FiltroRicercaComponent,
+    VoleviEhComponent,
   ],
   imports: [
     BrowserModule,
