@@ -50,21 +50,21 @@ export class DettaglioProdottoComponent implements OnInit {
     }
   }
 
-  private getDetailProdotto_Mock() {
-    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+  // private getDetailProdotto_Mock() {
+  //   const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
 
-    if (id) {
-      this.ProductService.getProduct_mock(id).subscribe({
-        next: (product: IProduct) => {
-          this.prodotto = product;
-          console.log(this.prodotto);
-        },
-        error: (err) => {
-          console.error(err);
-        },
-      });
-    }
-  }
+  //   if (id) {
+  //     this.ProductService.getProduct_mock(id).subscribe({
+  //       next: (product: IProduct) => {
+  //         this.prodotto = product;
+  //         console.log(this.prodotto);
+  //       },
+  //       error: (err) => {
+  //         console.error(err);
+  //       },
+  //     });
+  //   }
+  // }
 
   private getDetailProdottoDB() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -80,6 +80,14 @@ export class DettaglioProdottoComponent implements OnInit {
         },
       });
     }
+  }
+
+  public isProdottoDisponibile() {
+    if (this.prodotto?.is_active === 'true') {
+      return true;
+    }
+
+    return false;
   }
 
   public isAvailable(isAvalaible: string) {

@@ -7,7 +7,11 @@
     </div>
   </div>
 
-  <div class="row-wrapper my-3">
+  <div class="row-wrapper my-3 position-relative">
+    <div [ngClass]="{'d-none' : isProdottoDisponibile()}"
+      class="border border-4 position-absolute w-100 h-100 text-center d-flex align-items-center ">
+      <p class="fw-bold stile_p w-100">Non disponibile</p>
+    </div>
     <div *ngIf="prodotto?.is_active === 'true'; else prodNonDisponibile" class="row">
       <div class="col-md-8">
         <div class="card shadow-sm">
@@ -45,16 +49,6 @@
   </div>
 
   <ng-template #prodNonDisponibile>
-    <div class="row justify-content-end">
-      <div class="col-6">
-        <div class="d-flex justify-content-end ms-auto w-75">
-          <div class="alert alert-danger w-100 d-flex justify-content-center">
-            prodotto non disponibile.
-          </div>
-        </div>
-      </div>
-
-    </div>
     <div class="row greyLike">
       <div class="col-md-8">
         <div class="card shadow-sm">
@@ -62,7 +56,7 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4 ">
         <div class="card p-3 shadow-sm">
           <div class="card-body">
             <h5 class="card-title">{{ prodotto?.name }}</h5>
