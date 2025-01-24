@@ -1,15 +1,12 @@
 <ngb-carousel>
-  <ng-template ngbSlide *ngFor="let image of getImages()">
+  <ng-template ngbSlide *ngFor="let prodotto of prodotti">
     <div class="picsum-img-wrapper">
-      <img
-        [src]="getPercorso(image.subject)"
-        [alt]="getDesc(image)"
-        class="w-100 altezza"
-      />
+      <img (click)="redirectToDetails(prodotto)" [src]="getPercorso(prodotto)" [alt]="getDesc(prodotto)"
+        class="w-100 altezza pointer" />
     </div>
     <div class="carousel-caption">
-      <h3 class="fs-1 fw-bolder">{{ getSubject(image) }}</h3>
-      <p class="fs-2">{{ getDesc(image) }}</p>
+      <h3 class="fs-1 fw-bolder">{{ getTitle(prodotto) }}</h3>
+      <p class="fs-2">{{ getDesc(prodotto) }}</p>
     </div>
   </ng-template>
 </ngb-carousel>

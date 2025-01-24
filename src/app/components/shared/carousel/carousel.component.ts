@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { IImage } from '../../../models/images.model';
+import { ProductService } from '../../../services/product.service';
+import { map, take } from 'rxjs';
+import { IProduct, IProductResponse } from '../../../models/product.model';
+import { Router } from '@angular/router';
+// import { IImage } from '../../../models/images.model';
 
 @Component({
   selector: 'app-carousel',
@@ -9,27 +13,36 @@ import { IImage } from '../../../models/images.model';
   styleUrl: './carousel.component.scss',
 })
 export class CarouselComponent {
-  private percorso = '../../assets/images/';
+  // private percorso = '../../assets/images/';
 
-  private images: IImage[] = [
-    { id: 1, subject: 'cane', desc: 'sono un bel cane' },
-    { id: 2, subject: 'canotto', desc: 'sono un bel canotto pasciuto' },
-    { id: 3, subject: 'biscotto', desc: 'un biscotto fragrante' },
-  ];
+  public prodotti: IProduct[] | undefined;
 
-  public getPercorso(nome: string) {
-    return `${this.percorso}${nome}.jpg`;
+  constructor(private productService: ProductService, private router: Router) {
+    this.productService
+      .getAllProducts()
+      .pipe(map((prod) => prod.listaProdotti.slice(0, 4)))
+      .subscribe({
+        next: (prods: IProduct[]) => {
+          this.prodotti = prods;
+        },
+        // in caso di errore mostra nel carosello i prodotti mockati
+        error: (err) => {},
+      });
   }
 
-  public getImages() {
-    return this.images;
+  public getPercorso(prodotto: IProduct) {
+    return prodotto.image_url;
   }
 
-  public getDesc(image: IImage) {
-    return image.desc;
+  public getDesc(prodotto: IProduct) {
+    return prodotto.description;
   }
 
-  public getSubject(image: IImage) {
-    return image.subject;
+  public getTitle(prodotto: IProduct) {
+    return prodotto.name;
+  }
+
+  public redirectToDetails(prodotto: IProduct) {
+    this.router.navigateByUrl(`/home/dettaglioProdotto/${prodotto.id}`);
   }
 }
