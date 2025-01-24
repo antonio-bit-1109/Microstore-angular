@@ -12,3 +12,19 @@ export interface ERR_REGISTRATION {
   message: string;
   [key: string]: string | null;
 }
+
+export interface TOKEN_STORAGE {
+  token: string;
+}
+
+export interface TOKEN_PAYLOAD {
+  sub: string;
+  role: string;
+  jti: string;
+  iat: number;
+  exp: number;
+}
+
+export interface ERR_LOGIN {
+  [key: string]: string;
+}
