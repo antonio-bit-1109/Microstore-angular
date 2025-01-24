@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
         },
       });
     }
+    this.show('warn', 'inserisci credenziali', 'password o email mancante.');
   }
 
   show(severity: string, summary: string, content: string) {
