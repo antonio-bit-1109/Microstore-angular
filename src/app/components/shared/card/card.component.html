@@ -1,9 +1,5 @@
 <div class="card m-3 focused-style">
-  <img
-    class="img-style"
-    [src]="giveDefaultImageIfNotPresent(prodotto.image_url)"
-    [alt]="prodotto.description"
-  />
+  <img class="img-style" [src]="giveDefaultImageIfNotPresent(prodotto.image_url)" [alt]="prodotto.description" />
   <div class="card-header">
     <h5 class="card-title fs-3">{{ UpperFirstLetter(prodotto.name) }}</h5>
   </div>
@@ -14,20 +10,14 @@
     <p class="fs-3">$ {{ prodotto.prezzo }}</p>
     <p>disponibilità magazzino: {{ prodotto.stock }} unità</p>
     <div class="d-flex gap-1">
-      <button
-        routerLink="/home/dettaglioProdotto/{{ prodotto.id }}"
-        class="btn Myprimary Mywhite"
-      >
+      <button (click)="redirectToDetailCard()" class="btn Myprimary Mywhite">
         Vedi dettagli
       </button>
       <button class="btn btn-success">Aggiungi al carrello</button>
     </div>
-    <div
-      [ngStyle]="{
+    <div [ngStyle]="{
         border: '2px solid ' + isAvailable(prodotto.is_active)[2],
         'background-color': isAvailable(prodotto.is_active)[2]
-      }"
-      class="tondino"
-    ></div>
+      }" class="tondino"></div>
   </div>
 </div>

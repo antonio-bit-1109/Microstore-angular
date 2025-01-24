@@ -3,6 +3,7 @@ import { ProductService } from '../../../services/product.service';
 import { map, take } from 'rxjs';
 import { IProduct, IProductResponse } from '../../../models/product.model';
 import { Router } from '@angular/router';
+import { PreviousRouteService } from '../../../services/previous-route.service';
 // import { IImage } from '../../../models/images.model';
 
 @Component({
@@ -17,7 +18,11 @@ export class CarouselComponent {
 
   public prodotti: IProduct[] | undefined;
 
-  constructor(private productService: ProductService, private router: Router) {
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private previousRouteService: PreviousRouteService
+  ) {
     this.productService
       .getAllProducts()
       .pipe(map((prod) => prod.listaProdotti.slice(0, 4)))
@@ -43,6 +48,7 @@ export class CarouselComponent {
   }
 
   public redirectToDetails(prodotto: IProduct) {
+    this.previousRouteService.setFromHome();
     this.router.navigateByUrl(`/home/dettaglioProdotto/${prodotto.id}`);
   }
 }

@@ -6,6 +6,7 @@ import {
   IProductResponse,
   ISingleProduct,
 } from '../../../models/product.model';
+import { PreviousRouteService } from '../../../services/previous-route.service';
 
 interface PageEvent {
   first: number;
@@ -24,14 +25,29 @@ interface PageEvent {
 export class DettaglioProdottoComponent implements OnInit {
   private ProductService = inject(ProductService);
   private activatedRoute = inject(ActivatedRoute);
-  private Router = inject(Router);
+  // private router = inject(Router);
   // public alertInvisible: boolean = false;
 
   public prodotto: IProduct | undefined;
+  public RouteICameFrom: string | null = null;
+  constructor(
+    private previousRouteService: PreviousRouteService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getDetailProdottoDB();
-    // this.getDetailProdottoDB();
+    this.RouteICameFrom = this.previousRouteService.getWhereICameFrom();
+  }
+
+  public goBack() {
+    if (this.RouteICameFrom === 'home') {
+      this.router.navigateByUrl('home');
+    }
+
+    if (this.RouteICameFrom === 'detailProduct') {
+      this.router.navigateByUrl('/home/prodotti');
+    }
   }
 
   private getDetailProdotto_Mock() {
@@ -87,5 +103,9 @@ export class DettaglioProdottoComponent implements OnInit {
     }
 
     return [disponibile, boolVal, colorFrame];
+  }
+
+  public redirectBack() {
+    // this.router.navigate;
   }
 }
