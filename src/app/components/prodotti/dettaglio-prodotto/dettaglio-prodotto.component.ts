@@ -43,11 +43,15 @@ export class DettaglioProdottoComponent implements OnInit {
   public goBack() {
     if (this.RouteICameFrom === 'home') {
       this.router.navigateByUrl('home');
+      return;
     }
 
     if (this.RouteICameFrom === 'detailProduct') {
       this.router.navigateByUrl('/home/prodotti');
+      return;
     }
+
+    this.router.navigateByUrl('/home/prodotti');
   }
 
   // private getDetailProdotto_Mock() {
@@ -113,7 +117,7 @@ export class DettaglioProdottoComponent implements OnInit {
     return [disponibile, boolVal, colorFrame];
   }
 
-  public redirectBack() {
-    // this.router.navigate;
-  }
+  // public redirectBack() {
+  //   // this.router.navigate;
+  // }
 }
