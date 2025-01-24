@@ -5,7 +5,7 @@ import { Router, NavigationEnd } from '@angular/router';
   providedIn: 'root',
 })
 export class PreviousRouteService {
-  // salva nel local storage che sto andando alla card di dettaglio prodotto dal carosello in home
+  // in questo servizio sfrutto il local storage per salvare da quale punto dell applicazione sto cliccando sulla card
   public setFromHome() {
     localStorage.setItem('fromHome', JSON.stringify({ from: 'home' }));
   }
