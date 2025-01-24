@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -7,6 +7,7 @@ import { MessageService } from 'primeng/api';
 import { AuthService } from '../../services/auth.service';
 import { ERR_LOGIN } from '../../models/ResponsesServer';
 import { Router } from '@angular/router';
+import { SubjectService } from '../../services/subject.service';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +17,26 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss',
   providers: [MessageService],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   private userService = inject(UserService);
   private messageService = inject(MessageService);
   private authService = inject(AuthService);
   private router = inject(Router);
   public keyToast = 'loginToast';
+
+  constructor(private subjectService: SubjectService) {}
+
+  // quando faccio logout salvo in un behavior subject una notifica di avvenuto logout, qui viene catturato quel valore
+  // e mostrato in un toast, se ricarico la pagina il subject ritorna null e non mostro niente.
+  ngOnInit(): void {
+    const message: string | null = this.subjectService.getNotificationLogout();
+    if (message) {
+      setTimeout(() => {
+        this.show('success', 'OK!', message);
+      }, 500);
+    }
+  }
+
   public onSubmit(form: NgForm) {
     if (form.value['email'] !== '' && form.value['password'] !== '') {
       // const {email , password} = form.value
