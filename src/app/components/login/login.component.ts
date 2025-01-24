@@ -6,6 +6,7 @@ import { ILOGIN_SUCC } from '../../models/dataUtente.model';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../services/auth.service';
 import { ERR_LOGIN } from '../../models/ResponsesServer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent {
   private userService = inject(UserService);
   private messageService = inject(MessageService);
   private authService = inject(AuthService);
+  private router = inject(Router);
   public keyToast = 'loginToast';
   public onSubmit(form: NgForm) {
     if (form.value['email'] !== '' && form.value['password'] !== '') {
@@ -28,6 +30,9 @@ export class LoginComponent {
           if (resp.token && resp.message) {
             this.show('success', 'Login', resp.message);
             this.authService.saveInStorage(resp.token);
+            setTimeout(() => {
+              this.router.navigateByUrl('/home');
+            }, 2000);
           }
         },
         error: (err: HttpErrorResponse) => {
