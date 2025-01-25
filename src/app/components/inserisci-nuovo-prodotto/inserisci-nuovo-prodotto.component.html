@@ -6,6 +6,10 @@
                 class="rounded-3 w-100 h-input " />
             <label for="nomeProdotto">Nome Prodotto</label>
         </p-floatLabel>
+        <p class="error-msg m-0 ms-1"
+            *ngIf="form.controls.nomeProdotto.hasError('required') && form.controls.nomeProdotto.touched">
+            Nome obbligatorio
+        </p>
     </div>
 
     <div class="my-4">
@@ -14,15 +18,22 @@
                 class="rounded-3 w-100 h-input " />
             <label for="username">Descrizione Prodotto</label>
         </p-floatLabel>
+        <p class="error-msg m-0 ms-1"
+            *ngIf="form.controls.descrizione.hasError('required') && form.controls.descrizione.touched">
+            Descrizione obbligatoria
+        </p>
     </div>
 
 
     <div class="my-4">
         <p-floatLabel>
-            <input type="text" pInputText formControlName="prezzo" name="prezzo" id="prezzo"
+            <input type="number" pInputText formControlName="prezzo" name="prezzo" id="prezzo"
                 class="rounded-3 w-100 h-input " />
             <label for="prezzo">Prezzo</label>
         </p-floatLabel>
+        <p class="error-msg m-0 ms-1" *ngIf="form.controls.prezzo.hasError('required') && form.controls.prezzo.touched">
+            prezzo obbligatorio
+        </p>
     </div>
 
 
@@ -31,6 +42,9 @@
             <input type="text" pInputText formControlName="url" name="url" id="url" class="rounded-3 w-100 h-input " />
             <label for="url">URL Immagine</label>
         </p-floatLabel>
+        <p class="error-msg m-0 ms-1" *ngIf="form.controls.url.hasError('required') && form.controls.url.touched">
+            URL immagine obbligatorio
+        </p>
     </div>
 
     <div class="d-flex justify-end gap-2">
