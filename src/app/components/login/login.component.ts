@@ -61,11 +61,22 @@ export class LoginComponent implements OnInit {
           console.log(err);
           if (errREsp['message']) {
             this.show('error', 'Login', errREsp['message']);
+            return;
           }
 
           if (errREsp['email']) {
             this.show('error', 'Login', errREsp['email']);
+            return;
           }
+
+          if (err.message.startsWith('Http failure')) {
+            this.show(
+              'error',
+              'Login',
+              'Errore di comunicazione con il server. Riprova più tardi.'
+            );
+          }
+
           this.resetForm(form);
         },
       });
