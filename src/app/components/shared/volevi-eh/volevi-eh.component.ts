@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  inject,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,10 +14,16 @@ import { Router } from '@angular/router';
   templateUrl: './volevi-eh.component.html',
   styleUrl: './volevi-eh.component.scss',
 })
-export class VoleviEhComponent {
-  constructor(private router: Router) {
+export class VoleviEhComponent implements AfterViewInit {
+  private router = inject(Router);
+
+  // prendo il video dal dom tramite viewchild
+  @ViewChild('videoPlayer') video: ElementRef<HTMLVideoElement>;
+
+  ngAfterViewInit(): void {
+    this.video.nativeElement.load();
     setTimeout(() => {
-      router.navigateByUrl('/login');
+      this.router.navigateByUrl('/login');
     }, 9000);
   }
 }

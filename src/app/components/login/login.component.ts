@@ -21,10 +21,16 @@ export class LoginComponent implements OnInit {
   private userService = inject(UserService);
   private messageService = inject(MessageService);
   private authService = inject(AuthService);
+  private subjectService = inject(SubjectService);
   private router = inject(Router);
   public keyToast = 'loginToast';
 
-  constructor(private subjectService: SubjectService) {}
+  constructor() {
+    // se il token gia è presente in local storage allora redirect alla home
+    if (this.authService.isLoggedIn()) {
+      this.router.navigateByUrl('home');
+    }
+  }
 
   // quando faccio logout salvo in un behavior subject una notifica di avvenuto logout, qui viene catturato quel valore
   // e mostrato in un toast, se ricarico la pagina il subject ritorna null e non mostro niente.
