@@ -11,5 +11,12 @@
                 </select>
             </div>
         </div>
+        <div *ngIf="isAdmin()" class="col-4">
+            <div class="d-flex align-items-center justify-content-center">
+                <button class="btn Myprimary Mywhite">
+                    Inserisci Nuovo Prodotto
+                </button>
+            </div>
+        </div>
     </div>
 </div>
