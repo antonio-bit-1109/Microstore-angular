@@ -1,0 +1,40 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="my-4">
+        <p-floatLabel>
+            <input type="text" pInputText formControlName="nomeProdotto" name="nomeProdotto" id="nomeProdotto"
+                class="rounded-3 w-100 h-input " />
+            <label for="nomeProdotto">Nome Prodotto</label>
+        </p-floatLabel>
+    </div>
+
+    <div class="my-4">
+        <p-floatLabel>
+            <input type="text" pInputText formControlName="descrizione" name="descrizione" id="descrizione"
+                class="rounded-3 w-100 h-input " />
+            <label for="username">Descrizione Prodotto</label>
+        </p-floatLabel>
+    </div>
+
+
+    <div class="my-4">
+        <p-floatLabel>
+            <input type="text" pInputText formControlName="prezzo" name="prezzo" id="prezzo"
+                class="rounded-3 w-100 h-input " />
+            <label for="prezzo">Prezzo</label>
+        </p-floatLabel>
+    </div>
+
+
+    <div class="my-4">
+        <p-floatLabel>
+            <input type="text" pInputText formControlName="url" name="url" id="url" class="rounded-3 w-100 h-input " />
+            <label for="url">URL Immagine</label>
+        </p-floatLabel>
+    </div>
+
+    <div class="d-flex justify-end gap-2">
+        <button class="btn Myprimary Mywhite">Crea Prodotto</button>
+        <button class="btn btn-success">Cancella</button>
+    </div>
+</form>

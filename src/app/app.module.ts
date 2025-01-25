@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { DropdownModule } from 'primeng/dropdown';
 import { PaginatorModule } from 'primeng/paginator';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { DialogModule } from 'primeng/dialog';
 
 //componenti
 import { AppComponent } from './app.component';
@@ -30,6 +32,8 @@ import { RegistrazioneComponent } from './components/registrazione/registrazione
 import { FiltroRicercaComponent } from './components/shared/filtro-ricerca/filtro-ricerca.component';
 import { ToastModule } from 'primeng/toast';
 import { VoleviEhComponent } from './components/shared/volevi-eh/volevi-eh.component';
+import { ModaleComponent } from './components/shared/modale/modale.component';
+import { InserisciNuovoProdottoComponent } from './components/inserisci-nuovo-prodotto/inserisci-nuovo-prodotto.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +52,8 @@ import { VoleviEhComponent } from './components/shared/volevi-eh/volevi-eh.compo
     RegistrazioneComponent,
     FiltroRicercaComponent,
     VoleviEhComponent,
+    ModaleComponent,
+    InserisciNuovoProdottoComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +70,8 @@ import { VoleviEhComponent } from './components/shared/volevi-eh/volevi-eh.compo
     DropdownModule,
     ToastModule,
     PaginatorModule,
+    DialogModule,
+    FloatLabelModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

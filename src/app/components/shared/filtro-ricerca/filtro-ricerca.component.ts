@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
+import { SubjectService } from '../../../services/subject.service';
 
 interface IOption {
   [key: string]: string | null;
@@ -26,7 +27,10 @@ export class FiltroRicercaComponent {
   ];
 
   //const
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private subjectService: SubjectService
+  ) {}
 
   public controllaFiltroSceltoEdEmetti(valFiltro: string) {
     this.emitValueFiltro(valFiltro);
@@ -51,5 +55,9 @@ export class FiltroRicercaComponent {
 
   public isAdmin() {
     return this.authService.isLoggedInAndAdmin();
+  }
+
+  public showModale() {
+    this.subjectService.ShowModale();
   }
 }
