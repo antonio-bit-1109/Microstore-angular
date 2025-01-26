@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { IToastContent } from '../models/toastContent.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,8 @@ export class SubjectService {
   public notificationLogout = new BehaviorSubject<string | null>(null);
 
   public showModaleInsertProdotto = new BehaviorSubject<boolean | null>(null);
+
+  public ToastProdottoInserito = new BehaviorSubject<IToastContent>(null);
 
   constructor() {}
 
@@ -38,4 +41,13 @@ export class SubjectService {
   }
 
   // metodi per maneggiare showModaleInsertProdotto -- INIZIO
+
+  public fillToastProdottoInserito(toastdata: IToastContent | null) {
+    this.ToastProdottoInserito.next(toastdata);
+  }
+
+  public getContentToast() {
+    return this.ToastProdottoInserito.asObservable();
+  }
+  // subject per gestire toast di successo e fallimento inserimento nuovo prodotto -- FINE
 }

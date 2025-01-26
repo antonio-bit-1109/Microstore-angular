@@ -6,4 +6,5 @@ export const environment = {
   LOCAL_HOST: 'http://localhost:8081',
   URL_REGISTER_USER: '/users/register',
   URL_LOGIN_USER: '/auth/login',
+  URL_INSERT_PRODUCT: '/product/insert',
 };

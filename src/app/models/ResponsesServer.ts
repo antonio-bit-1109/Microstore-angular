@@ -28,3 +28,11 @@ export interface TOKEN_PAYLOAD {
 export interface ERR_LOGIN {
   [key: string]: string;
 }
+
+export interface GENERAL_ERR {
+  [key: string]: string;
+}
+
+export interface GENERAL_SUCCESS_MESSAGE {
+  message: string;
+}

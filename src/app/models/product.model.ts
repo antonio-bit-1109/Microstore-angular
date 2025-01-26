@@ -18,3 +18,10 @@ export interface ISingleProduct {
   msg: string;
   prodDTO: IProduct;
 }
+
+export interface IPostProduct {
+  name: string;
+  description: string;
+  price: number;
+  image_url: string;
+}
