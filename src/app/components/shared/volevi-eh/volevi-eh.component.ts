@@ -3,6 +3,7 @@ import {
   ElementRef,
   ViewChild,
   AfterViewInit,
+  OnInit,
   inject,
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -14,14 +15,17 @@ import { Router } from '@angular/router';
   templateUrl: './volevi-eh.component.html',
   styleUrl: './volevi-eh.component.scss',
 })
-export class VoleviEhComponent implements AfterViewInit {
+export class VoleviEhComponent implements AfterViewInit, OnInit {
   private router = inject(Router);
 
   // prendo il video dal dom tramite viewchild
   @ViewChild('videoPlayer') video: ElementRef<HTMLVideoElement>;
 
+  ngOnInit(): void {
+    this.video.nativeElement.play();
+  }
+
   ngAfterViewInit(): void {
-    this.video.nativeElement.load();
     setTimeout(() => {
       this.router.navigateByUrl('/login');
     }, 9000);
