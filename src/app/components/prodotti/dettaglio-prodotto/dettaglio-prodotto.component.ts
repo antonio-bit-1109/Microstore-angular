@@ -7,6 +7,7 @@ import {
   ISingleProduct,
 } from '../../../models/product.model';
 import { PreviousRouteService } from '../../../services/previous-route.service';
+import { AuthService } from '../../../services/auth.service';
 
 interface PageEvent {
   first: number;
@@ -32,7 +33,8 @@ export class DettaglioProdottoComponent implements OnInit {
   public RouteICameFrom: string | null = null;
   constructor(
     private previousRouteService: PreviousRouteService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -117,7 +119,7 @@ export class DettaglioProdottoComponent implements OnInit {
     return [disponibile, boolVal, colorFrame];
   }
 
-  // public redirectBack() {
-  //   // this.router.navigate;
-  // }
+  public isAdmin() {
+    return this.authService.isLoggedInAndAdmin();
+  }
 }

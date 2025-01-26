@@ -28,7 +28,9 @@
               <strong>Prezzo:</strong> ${{ prodotto?.prezzo }}
             </p>
             <p class="card-text">
-              <strong>Quantità rimasta:</strong> {{ prodotto?.stock }}
+              <strong>Quantità rimasta:</strong> {{ prodotto?.stock }} <button *ngIf="isAdmin()"
+                class="btn Myprimary Mywhite altezza-button d-inline p-0 px-2 py-1 font-custom align-items-center">Aggiungi
+                scorte</button>
             </p>
 
             <div class="d-flex">

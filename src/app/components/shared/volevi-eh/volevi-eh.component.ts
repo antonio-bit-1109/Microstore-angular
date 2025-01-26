@@ -21,11 +21,12 @@ export class VoleviEhComponent implements AfterViewInit, OnInit {
   // prendo il video dal dom tramite viewchild
   @ViewChild('videoPlayer') video: ElementRef<HTMLVideoElement>;
 
-  ngOnInit(): void {
-    this.video.nativeElement.play();
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
+    // this.video.nativeElement?.play();
+    this.video.nativeElement?.load();
+    this.video.nativeElement.play();
     setTimeout(() => {
       this.router.navigateByUrl('/login');
     }, 9000);
