@@ -6,7 +6,7 @@ import {
   IProductResponse,
   ISingleProduct,
 } from '../../../models/product.model';
-import { PreviousRouteService } from '../../../services/previous-route.service';
+// import { PreviousRouteService } from '../../../services/previous-route.service';
 import { AuthService } from '../../../services/auth.service';
 
 interface PageEvent {
@@ -30,47 +30,34 @@ export class DettaglioProdottoComponent implements OnInit {
   // public alertInvisible: boolean = false;
 
   public prodotto: IProduct | undefined;
-  public RouteICameFrom: string | null = null;
+  public routeFrom: string | null = null;
   constructor(
-    private previousRouteService: PreviousRouteService,
+    // private previousRouteService: PreviousRouteService,
     private router: Router,
     private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.getDetailProdottoDB();
-    this.RouteICameFrom = this.previousRouteService.getWhereICameFrom();
+
+    // prendo dall url la stringa che mi dice da dove sto provenendo per accedere al componente dettaglioProdotto
+    // stringa 'fromHome' o 'fromProduct' nell URL
+
+    const provenienza = this.activatedRoute.snapshot.paramMap.get('from');
+    this.routeFrom = provenienza;
   }
 
   public goBack() {
-    if (this.RouteICameFrom === 'home') {
-      this.router.navigateByUrl('home');
-      return;
-    }
+    switch (this.routeFrom.toLowerCase()) {
+      case 'fromhome':
+        this.router.navigateByUrl('home');
+        break;
 
-    if (this.RouteICameFrom === 'detailProduct') {
-      this.router.navigateByUrl('/home/prodotti');
-      return;
+      case 'fromproduct':
+        this.router.navigateByUrl('/home/prodotti');
+        break;
     }
-
-    this.router.navigateByUrl('/home/prodotti');
   }
-
-  // private getDetailProdotto_Mock() {
-  //   const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-
-  //   if (id) {
-  //     this.ProductService.getProduct_mock(id).subscribe({
-  //       next: (product: IProduct) => {
-  //         this.prodotto = product;
-  //         console.log(this.prodotto);
-  //       },
-  //       error: (err) => {
-  //         console.error(err);
-  //       },
-  //     });
-  //   }
-  // }
 
   private getDetailProdottoDB() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');

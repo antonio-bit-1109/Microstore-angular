@@ -3,7 +3,7 @@ import { ProductService } from '../../../services/product.service';
 import { map, take } from 'rxjs';
 import { IProduct, IProductResponse } from '../../../models/product.model';
 import { Router } from '@angular/router';
-import { PreviousRouteService } from '../../../services/previous-route.service';
+// import { PreviousRouteService } from '../../../services/previous-route.service';
 // import { IImage } from '../../../models/images.model';
 
 @Component({
@@ -20,8 +20,7 @@ export class CarouselComponent {
 
   constructor(
     private productService: ProductService,
-    private router: Router,
-    private previousRouteService: PreviousRouteService
+    private router: Router // private previousRouteService: PreviousRouteService
   ) {
     this.productService
       .getAllProducts()
@@ -52,8 +51,10 @@ export class CarouselComponent {
   }
 
   public redirectToDetails(prodotto: IProduct) {
-    this.previousRouteService.setFromHome();
-    this.router.navigateByUrl(`/home/dettaglioProdotto/${prodotto.id}`);
+    // this.previousRouteService.setFromHome();
+    this.router.navigateByUrl(
+      `/home/dettaglioProdotto/${prodotto.id}/fromHome`
+    );
   }
 
   private getRandomNum() {

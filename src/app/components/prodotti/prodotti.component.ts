@@ -13,6 +13,7 @@ import { map } from 'rxjs';
 import { SubjectService } from '../../services/subject.service';
 import { IToastContent } from '../../models/toastContent.model';
 import { MessageService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-prodotti',

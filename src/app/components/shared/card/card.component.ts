@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IProduct } from '../../../models/product.model';
 import { Router } from '@angular/router';
-import { PreviousRouteService } from '../../../services/previous-route.service';
+// import { PreviousRouteService } from '../../../services/previous-route.service';
 
 @Component({
   selector: 'app-card',
@@ -24,8 +24,7 @@ export class CardComponent {
     'https://media.istockphoto.com/id/1396814518/it/vettoriale/immagine-in-arrivo-nessuna-foto-nessuna-immagine-in-miniatura-disponibile-illustrazione.jpg?s=2048x2048&w=is&k=20&c=JrtawqzdBNu2u9zZvkP10KLBozTxsaXPl0BxjuaUtMY=';
 
   constructor(
-    private router: Router,
-    private previousRouteSerivice: PreviousRouteService
+    private router: Router // private previousRouteSerivice: PreviousRouteService
   ) {}
 
   // metodi utili
@@ -68,7 +67,9 @@ export class CardComponent {
   }
 
   public redirectToDetailCard() {
-    this.previousRouteSerivice.setFromDetailsProduct();
-    this.router.navigateByUrl(`/home/dettaglioProdotto/${this.prodotto.id}`);
+    // this.previousRouteSerivice.setFromDetailsProduct();
+    this.router.navigateByUrl(
+      `/home/dettaglioProdotto/${this.prodotto.id}/fromProduct`
+    );
   }
 }
