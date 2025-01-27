@@ -6,7 +6,7 @@ import { GestioneOrdiniComponent } from '../gestione-ordini/gestione-ordini.comp
 import { HomeContainerComponent } from '../home-container/home-container.component';
 import { DettaglioProdottoComponent } from '../prodotti/dettaglio-prodotto/dettaglio-prodotto.component';
 import { RegistrazioneComponent } from '../registrazione/registrazione.component';
-import { watcherDettaglioProdottoGuard } from '../../guards/watcher-dettaglio-prodotto.guard';
+// import { watcherDettaglioProdottoGuard } from '../../guards/watcher-dettaglio-prodotto.guard';
 
 const routes: Routes = [
   {
@@ -18,7 +18,6 @@ const routes: Routes = [
       {
         path: 'dettaglioProdotto/:id',
         component: DettaglioProdottoComponent,
-        canActivate: [watcherDettaglioProdottoGuard],
       },
       { path: 'gestioneOrdini', component: GestioneOrdiniComponent },
       { path: '**', redirectTo: '' },

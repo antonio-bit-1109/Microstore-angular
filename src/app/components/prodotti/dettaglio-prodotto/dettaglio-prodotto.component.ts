@@ -6,7 +6,7 @@ import {
   IProductResponse,
   ISingleProduct,
 } from '../../../models/product.model';
-import { PreviousRouteService } from '../../../services/previous-route.service';
+// import { PreviousRouteService } from '../../../services/previous-route.service';
 
 interface PageEvent {
   first: number;
@@ -31,13 +31,13 @@ export class DettaglioProdottoComponent implements OnInit {
   public prodotto: IProduct | undefined;
   public RouteICameFrom: string | null = null;
   constructor(
-    private previousRouteService: PreviousRouteService,
+    // private previousRouteService: PreviousRouteService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getDetailProdottoDB();
-    this.RouteICameFrom = this.previousRouteService.getWhereICameFrom();
+    // this.RouteICameFrom = this.previousRouteService.getWhereICameFrom();
   }
 
   public goBack() {
