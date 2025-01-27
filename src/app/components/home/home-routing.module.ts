@@ -6,7 +6,6 @@ import { GestioneOrdiniComponent } from '../gestione-ordini/gestione-ordini.comp
 import { HomeContainerComponent } from '../home-container/home-container.component';
 import { DettaglioProdottoComponent } from '../prodotti/dettaglio-prodotto/dettaglio-prodotto.component';
 import { RegistrazioneComponent } from '../registrazione/registrazione.component';
-// import { watcherDettaglioProdottoGuard } from '../../guards/watcher-dettaglio-prodotto.guard';
 
 const routes: Routes = [
   {
@@ -16,7 +15,7 @@ const routes: Routes = [
       { path: '', component: HomeContainerComponent },
       { path: 'prodotti', component: ProdottiComponent }, // Aggiungi la nuova rotta
       {
-        path: 'dettaglioProdotto/:id',
+        path: 'dettaglioProdotto/:id/:from',
         component: DettaglioProdottoComponent,
       },
       { path: 'gestioneOrdini', component: GestioneOrdiniComponent },

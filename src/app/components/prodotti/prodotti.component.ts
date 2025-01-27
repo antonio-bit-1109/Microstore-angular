@@ -10,6 +10,10 @@ import {
 import { IProduct, IProductResponse } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
 import { map } from 'rxjs';
+import { SubjectService } from '../../services/subject.service';
+import { IToastContent } from '../../models/toastContent.model';
+import { MessageService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-prodotti',
@@ -17,6 +21,7 @@ import { map } from 'rxjs';
 
   templateUrl: './prodotti.component.html',
   styleUrl: './prodotti.component.scss',
+  providers: [MessageService],
 })
 export class ProdottiComponent implements OnInit, DoCheck {
   private AllProdottiMock: IProduct[] | undefined;
@@ -28,12 +33,17 @@ export class ProdottiComponent implements OnInit, DoCheck {
   size = 4;
   @Input() valFiltro: string = '';
   previusValFiltro = '';
+  dataToast: null | IToastContent = null;
 
   // INIETTARE IL SERVIZIO NELLA CLASSE
   // 1- costruttore utilizzato solo per iniettare dipendenze
   // 2- oppure utilizzando il metodo inject
   // private productService = inject(ProductService);
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private subjectService: SubjectService,
+    private messageService: MessageService
+  ) {}
 
   // utilizzo i cicli di vita del componente per logiche più complesse come
   //
@@ -61,6 +71,8 @@ export class ProdottiComponent implements OnInit, DoCheck {
         console.error(err);
       },
     });
+
+    this.subscribeToSubjectService();
   }
 
   // ho un valore di default all interno del componente.
@@ -148,5 +160,27 @@ export class ProdottiComponent implements OnInit, DoCheck {
   prendiValFiltro(event: any) {
     console.log('sto prendendo val filtro da prodotti', event);
     this.valFiltro = event;
+  }
+
+  private subscribeToSubjectService() {
+    this.subjectService.getContentToast().subscribe({
+      next: (val: IToastContent) => {
+        if (val) {
+          this.show(val.severity, val.summary, val.detail);
+        } else {
+          null;
+        }
+      },
+    });
+  }
+
+  show(severity: string, summary: string, content: string) {
+    this.messageService.add({
+      severity: severity,
+      summary: summary,
+      detail: content,
+      key: 'esitoInsertProdotto',
+      life: 2000,
+    });
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { IToastContent } from '../models/toastContent.model';
 
 @Injectable({
   providedIn: 'root',
@@ -8,8 +9,13 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class SubjectService {
   public notificationLogout = new BehaviorSubject<string | null>(null);
 
+  public showModaleInsertProdotto = new BehaviorSubject<boolean | null>(null);
+
+  public ToastProdottoInserito = new BehaviorSubject<IToastContent>(null);
+
   constructor() {}
 
+  // metodi per maneggiare notificationLogout -- INIZIO
   public fillNotificationLogout(message: string) {
     this.notificationLogout.next(message);
   }
@@ -21,4 +27,27 @@ export class SubjectService {
   public emptyNotificationLogout() {
     this.notificationLogout.next(null);
   }
+
+  // metodi per maneggiare notificationLogout -- FINE
+
+  // metodi per maneggiare showModaleInsertProdotto -- INIZIO
+
+  public ShowModale() {
+    this.showModaleInsertProdotto.next(true);
+  }
+
+  public unShowModale() {
+    this.showModaleInsertProdotto.next(false);
+  }
+
+  // metodi per maneggiare showModaleInsertProdotto -- INIZIO
+
+  public fillToastProdottoInserito(toastdata: IToastContent | null) {
+    this.ToastProdottoInserito.next(toastdata);
+  }
+
+  public getContentToast() {
+    return this.ToastProdottoInserito.asObservable();
+  }
+  // subject per gestire toast di successo e fallimento inserimento nuovo prodotto -- FINE
 }

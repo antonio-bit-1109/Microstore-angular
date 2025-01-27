@@ -16,4 +16,8 @@ export class NavbarComponent {
   public logout() {
     this.authService.logout();
   }
+
+  public showUsername() {
+    return this.authService.getUsername();
+  }
 }

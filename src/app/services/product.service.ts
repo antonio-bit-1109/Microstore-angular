@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PRODOTTI } from '../mocks/products.mock';
 import {
+  IPostProduct,
   IProduct,
   IProductResponse,
   ISingleProduct,
@@ -8,12 +9,13 @@ import {
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { GENERAL_SUCCESS_MESSAGE } from '../models/ResponsesServer';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private GET = 'http://localhost:8081/product';
   constructor(private http: HttpClient) {}
 
   //metodi di chiamata API REST
@@ -33,11 +35,23 @@ export class ProductService {
   // reali all API REST
   // tutti prodotti
   getAllProducts(): Observable<IProductResponse> {
-    return this.http.get<IProductResponse>(`${this.GET}/get-all`);
+    return this.http.get<IProductResponse>(
+      `${environment.LOCAL_HOST}/product/get-all`
+    );
   }
 
   // singolo prodotto
   getSingleProductDB(id: string): Observable<ISingleProduct> {
-    return this.http.get<ISingleProduct>(`${this.GET}/get/${id}`);
+    return this.http.get<ISingleProduct>(
+      `${environment.LOCAL_HOST}/product/get/${id}`
+    );
+  }
+
+  // create new product
+  createProduct(prodotto: IPostProduct) {
+    return this.http.post<GENERAL_SUCCESS_MESSAGE>(
+      `${environment.LOCAL_HOST}/product/insert`,
+      prodotto
+    );
   }
 }

@@ -21,10 +21,16 @@ export class LoginComponent implements OnInit {
   private userService = inject(UserService);
   private messageService = inject(MessageService);
   private authService = inject(AuthService);
+  private subjectService = inject(SubjectService);
   private router = inject(Router);
   public keyToast = 'loginToast';
 
-  constructor(private subjectService: SubjectService) {}
+  constructor() {
+    // se il token gia è presente in local storage allora redirect alla home
+    if (this.authService.isLoggedIn()) {
+      this.router.navigateByUrl('home');
+    }
+  }
 
   // quando faccio logout salvo in un behavior subject una notifica di avvenuto logout, qui viene catturato quel valore
   // e mostrato in un toast, se ricarico la pagina il subject ritorna null e non mostro niente.
@@ -55,11 +61,22 @@ export class LoginComponent implements OnInit {
           console.log(err);
           if (errREsp['message']) {
             this.show('error', 'Login', errREsp['message']);
+            return;
           }
 
           if (errREsp['email']) {
             this.show('error', 'Login', errREsp['email']);
+            return;
           }
+
+          if (err.message.startsWith('Http failure')) {
+            this.show(
+              'error',
+              'Login',
+              'Errore di comunicazione con il server. Riprova più tardi.'
+            );
+          }
+
           this.resetForm(form);
         },
       });

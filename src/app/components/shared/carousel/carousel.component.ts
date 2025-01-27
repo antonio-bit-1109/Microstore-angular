@@ -20,12 +20,15 @@ export class CarouselComponent {
 
   constructor(
     private productService: ProductService,
-    private router: Router
-  ) // private previousRouteService: PreviousRouteService
-  {
+    private router: Router // private previousRouteService: PreviousRouteService
+  ) {
     this.productService
       .getAllProducts()
-      .pipe(map((prod) => prod.listaProdotti.slice(0, 4)))
+      .pipe(
+        map((prod) =>
+          prod.listaProdotti.slice(this.getRandomNum(), this.getRandomNum() + 4)
+        )
+      )
       .subscribe({
         next: (prods: IProduct[]) => {
           this.prodotti = prods;
@@ -49,6 +52,12 @@ export class CarouselComponent {
 
   public redirectToDetails(prodotto: IProduct) {
     // this.previousRouteService.setFromHome();
-    this.router.navigateByUrl(`/home/dettaglioProdotto/${prodotto.id}`);
+    this.router.navigateByUrl(
+      `/home/dettaglioProdotto/${prodotto.id}/fromHome`
+    );
+  }
+
+  private getRandomNum() {
+    return Math.floor(Math.random() * 5);
   }
 }

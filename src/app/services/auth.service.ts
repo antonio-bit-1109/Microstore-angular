@@ -44,4 +44,24 @@ export class AuthService {
     const decoded: TOKEN_PAYLOAD = jwtDecode(token);
     return decoded.role === 'ADMIN';
   }
+
+  // decripta token e ritorna un oggetto con i dati decriptati dell'utente
+  public getCredentials(): TOKEN_PAYLOAD | null {
+    if (this.isLoggedIn()) {
+      const token: TOKEN_STORAGE = JSON.parse(localStorage.getItem('token'));
+      const decoded: TOKEN_PAYLOAD = jwtDecode(token.token);
+      return decoded;
+    }
+    return null;
+  }
+
+  // estrapola username dal token
+  public getUsername(): string {
+    return this.getCredentials().sub;
+  }
+
+  // estrapola ruolo dal token
+  public getRole(): string {
+    return this.getCredentials().role;
+  }
 }
