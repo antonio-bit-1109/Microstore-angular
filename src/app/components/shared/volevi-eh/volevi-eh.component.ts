@@ -24,11 +24,14 @@ export class VoleviEhComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    // this.video.nativeElement?.play();
-    this.video.nativeElement?.load();
-    this.video.nativeElement.play();
-    setTimeout(() => {
-      this.router.navigateByUrl('/login');
-    }, 9000);
+    // document.addEventListener('mouseenter', () => {
+    //   this.video.nativeElement?.play();
+    // });
+    // // this.video.nativeElement?.load();
+    // // this.video.nativeElement.play();
+    // setTimeout(() => {
+    //   this.router.navigateByUrl('/login');
+    //   this.video.nativeElement.pause();
+    // }, 9000);
   }
 }
