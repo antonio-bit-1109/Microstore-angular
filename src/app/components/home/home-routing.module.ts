@@ -6,6 +6,7 @@ import { GestioneOrdiniComponent } from '../gestione-ordini/gestione-ordini.comp
 import { HomeContainerComponent } from '../home-container/home-container.component';
 import { DettaglioProdottoComponent } from '../prodotti/dettaglio-prodotto/dettaglio-prodotto.component';
 import { RegistrazioneComponent } from '../registrazione/registrazione.component';
+import { UserComponent } from '../user/user.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
         component: DettaglioProdottoComponent,
       },
       { path: 'gestioneOrdini', component: GestioneOrdiniComponent },
+      { path: 'profilo', component: UserComponent },
       { path: '**', redirectTo: '' },
     ],
   },

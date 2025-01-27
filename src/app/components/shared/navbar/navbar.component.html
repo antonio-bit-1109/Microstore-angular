@@ -17,16 +17,19 @@
           <li class="nav-item pointer" routerLink="gestioneOrdini">
             <a class="nav-link">Gestione Ordini</a>
           </li>
-          <li class="nav-item pointer">
-            <a class="nav-link"> Gestione Carrelli</a>
-          </li>
           <!-- <li class="nav-item pointer" routerLink="registrazione">
             <a class="nav-link"> Registrazione </a>
           </li> -->
         </ul>
+        <div class="nav-item pointer mx-2">
+          <i class="pi pi-shopping-cart nav-link color" style=" font-size: 2rem"></i>
+        </div>
       </div>
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-end">
         <p class="m-0 color">Bentornato, {{showUsername()}}!</p>
+
+        <i (click)="goToProfile()" class="pi pi-user nav-link color mx-2 pointer" style=" font-size: 1.3rem"></i>
+
       </div>
       <button (click)="logout()" class="pointer text-white d-flex align-items-center btn">
         <i class="pi pi-sign-out ms-1" style="font-size: 1.3rem"></i>

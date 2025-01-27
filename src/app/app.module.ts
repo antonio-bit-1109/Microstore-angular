@@ -36,6 +36,7 @@ import { ModaleComponent } from './components/shared/modale/modale.component';
 import { InserisciNuovoProdottoComponent } from './components/inserisci-nuovo-prodotto/inserisci-nuovo-prodotto.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AggiungiScorteProdottoComponent } from './components/shared/modale/innerModaleComponents/aggiungi-scorte-prodotto/aggiungi-scorte-prodotto.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { AggiungiScorteProdottoComponent } from './components/shared/modale/inne
     ModaleComponent,
     InserisciNuovoProdottoComponent,
     AggiungiScorteProdottoComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

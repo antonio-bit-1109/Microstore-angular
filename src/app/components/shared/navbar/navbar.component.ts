@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ import { AuthService } from '../../../services/auth.service';
 export class NavbarComponent {
   titolo = 'MicroStore';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   public logout() {
     this.authService.logout();
@@ -19,5 +20,9 @@ export class NavbarComponent {
 
   public showUsername() {
     return this.authService.getUsername();
+  }
+
+  public goToProfile() {
+    this.router.navigateByUrl('/home/profilo');
   }
 }
