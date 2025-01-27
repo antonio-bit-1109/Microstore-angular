@@ -8,6 +8,8 @@ import {
 } from '../../../models/product.model';
 // import { PreviousRouteService } from '../../../services/previous-route.service';
 import { AuthService } from '../../../services/auth.service';
+import { MessageService } from 'primeng/api';
+import { SubjectService } from '../../../services/subject.service';
 
 interface PageEvent {
   first: number;
@@ -22,20 +24,22 @@ interface PageEvent {
 
   templateUrl: './dettaglio-prodotto.component.html',
   styleUrl: './dettaglio-prodotto.component.scss',
+  providers: [MessageService],
 })
 export class DettaglioProdottoComponent implements OnInit {
   private ProductService = inject(ProductService);
   private activatedRoute = inject(ActivatedRoute);
-  // private router = inject(Router);
-  // public alertInvisible: boolean = false;
 
   public prodotto: IProduct | undefined;
   public routeFrom: string | null = null;
   Modalvisible: boolean = false;
+
   constructor(
     // private previousRouteService: PreviousRouteService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService: MessageService,
+    private subjectService: SubjectService
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +50,19 @@ export class DettaglioProdottoComponent implements OnInit {
 
     const provenienza = this.activatedRoute.snapshot.paramMap.get('from');
     this.routeFrom = provenienza;
+    this.getMsgForToast();
+  }
+
+  getMsgForToast() {
+    this.subjectService.getToastAddStock().subscribe({
+      next: (msg) => {
+        if (msg) {
+          this.show('info', 'aggiunta scorte', msg);
+          // se arriva il messaggio che lo stock è stato aggiornato richiamo l'endpoint per ottenere i dati del prodotto aggiornato.
+          this.getDetailProdottoDB();
+        }
+      },
+    });
   }
 
   public goBack() {
@@ -74,6 +91,10 @@ export class DettaglioProdottoComponent implements OnInit {
         },
       });
     }
+  }
+
+  closeModalAddStock(event) {
+    this.Modalvisible = event;
   }
 
   public isProdottoDisponibile() {
@@ -113,5 +134,15 @@ export class DettaglioProdottoComponent implements OnInit {
 
   showModale() {
     this.Modalvisible = true;
+  }
+
+  show(severity: string, summary: string, content: string) {
+    this.messageService.add({
+      severity: severity,
+      summary: summary,
+      detail: content,
+      key: 'toastAddStock',
+      life: 2000,
+    });
   }
 }

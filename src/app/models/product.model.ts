@@ -25,3 +25,8 @@ export interface IPostProduct {
   price: number;
   image_url: string;
 }
+
+export interface IAddStock {
+  id: number;
+  stock: number;
+}

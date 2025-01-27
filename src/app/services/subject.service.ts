@@ -11,8 +11,11 @@ export class SubjectService {
 
   public showModaleInsertProdotto = new BehaviorSubject<boolean | null>(null);
 
-  public ToastProdottoInserito = new BehaviorSubject<IToastContent>(null);
+  public ToastProdottoInserito = new BehaviorSubject<IToastContent | null>(
+    null
+  );
 
+  public ToastAddStockProdotto = new BehaviorSubject<string | null>(null);
   constructor() {}
 
   // metodi per maneggiare notificationLogout -- INIZIO
@@ -50,4 +53,16 @@ export class SubjectService {
     return this.ToastProdottoInserito.asObservable();
   }
   // subject per gestire toast di successo e fallimento inserimento nuovo prodotto -- FINE
+
+  // BEHAVIOUR SUBJECT PER MOSTRARE IL TOAST CON ESITO AGGIUNTA STOCK PRODOTTO -- INIZIO
+
+  public fillToastAddStockProdotto(message: string) {
+    this.ToastAddStockProdotto.next(message);
+  }
+
+  public getToastAddStock() {
+    return this.ToastAddStockProdotto.asObservable();
+  }
+
+  // BEHAVIOUR SUBJECT PER MOSTRARE IL TOAST CON ESITO AGGIUNTA STOCK PRODOTTO -- FINE
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PRODOTTI } from '../mocks/products.mock';
 import {
+  IAddStock,
   IPostProduct,
   IProduct,
   IProductResponse,
@@ -52,6 +53,13 @@ export class ProductService {
     return this.http.post<GENERAL_SUCCESS_MESSAGE>(
       `${environment.LOCAL_HOST}/product/insert`,
       prodotto
+    );
+  }
+
+  addScorteProdotto(data: IAddStock) {
+    return this.http.post(
+      `${environment.LOCAL_HOST}${environment.URL_ADD_STOCK_PRODUCT}`,
+      data
     );
   }
 }

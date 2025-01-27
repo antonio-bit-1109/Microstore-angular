@@ -33,6 +33,20 @@ export interface GENERAL_ERR {
   [key: string]: string;
 }
 
+export interface SUCCESS_ADD_STOCK {
+  prodDTO: {
+    id: Number;
+    name: string;
+    description: string;
+    prezzo: string;
+    category: string;
+    stock: string;
+    is_active: string;
+    image_url: string;
+  };
+  msg: string;
+}
+
 export interface GENERAL_SUCCESS_MESSAGE {
   message: string;
 }

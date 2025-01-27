@@ -7,4 +7,5 @@ export const environment = {
   URL_REGISTER_USER: '/users/register',
   URL_LOGIN_USER: '/auth/login',
   URL_INSERT_PRODUCT: '/product/insert',
+  URL_ADD_STOCK_PRODUCT: '/product/addStock',
 };
