@@ -31,6 +31,7 @@ export class DettaglioProdottoComponent implements OnInit {
 
   public prodotto: IProduct | undefined;
   public routeFrom: string | null = null;
+  Modalvisible: boolean = false;
   constructor(
     // private previousRouteService: PreviousRouteService,
     private router: Router,
@@ -108,5 +109,9 @@ export class DettaglioProdottoComponent implements OnInit {
 
   public isAdmin() {
     return this.authService.isLoggedInAndAdmin();
+  }
+
+  showModale() {
+    this.Modalvisible = true;
   }
 }

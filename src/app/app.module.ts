@@ -14,7 +14,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { PaginatorModule } from 'primeng/paginator';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { DialogModule } from 'primeng/dialog';
-
+import { MultiSelectModule } from 'primeng/multiselect';
 //componenti
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -35,6 +35,7 @@ import { VoleviEhComponent } from './components/shared/volevi-eh/volevi-eh.compo
 import { ModaleComponent } from './components/shared/modale/modale.component';
 import { InserisciNuovoProdottoComponent } from './components/inserisci-nuovo-prodotto/inserisci-nuovo-prodotto.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { AggiungiScorteProdottoComponent } from './components/shared/modale/innerModaleComponents/aggiungi-scorte-prodotto/aggiungi-scorte-prodotto.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     VoleviEhComponent,
     ModaleComponent,
     InserisciNuovoProdottoComponent,
+    AggiungiScorteProdottoComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,12 +67,14 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     ButtonModule,
     CarouselModule,
     HttpClientModule,
+    MultiSelectModule,
     FormsModule,
     ReactiveFormsModule,
     PasswordModule,
     DropdownModule,
     ToastModule,
     PaginatorModule,
+
     DialogModule,
     FloatLabelModule,
   ],

@@ -17,6 +17,7 @@ export class CarouselComponent {
   // private percorso = '../../assets/images/';
 
   public prodotti: IProduct[] | undefined;
+  private randomNum: number | undefined;
 
   constructor(
     private productService: ProductService,
@@ -25,9 +26,10 @@ export class CarouselComponent {
     this.productService
       .getAllProducts()
       .pipe(
-        map((prod) =>
-          prod.listaProdotti.slice(this.getRandomNum(), this.getRandomNum() + 4)
-        )
+        map((prod) => {
+          this.getRandomNum();
+          return prod.listaProdotti.slice(this.randomNum, this.randomNum + 6);
+        })
       )
       .subscribe({
         next: (prods: IProduct[]) => {
@@ -58,6 +60,6 @@ export class CarouselComponent {
   }
 
   private getRandomNum() {
-    return Math.floor(Math.random() * 5);
+    this.randomNum = Math.floor(Math.random() * 5);
   }
 }

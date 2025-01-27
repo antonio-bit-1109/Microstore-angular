@@ -28,7 +28,7 @@
               <strong>Prezzo:</strong> ${{ prodotto?.prezzo }}
             </p>
             <p class="card-text">
-              <strong>Quantità rimasta:</strong> {{ prodotto?.stock }} <button *ngIf="isAdmin()"
+              <strong>Quantità rimasta:</strong> {{ prodotto?.stock }} <button *ngIf="isAdmin()" (click)="showModale()"
                 class="btn Myprimary Mywhite altezza-button d-inline p-0 px-2 py-1 font-custom align-items-center">Aggiungi
                 scorte</button>
             </p>
@@ -48,7 +48,13 @@
         </div>
       </div>
     </div>
+
+    <p-dialog header="Edit Profile" [modal]="true" [(visible)]="Modalvisible" [style]="{ width: '30rem' }">
+      <app-aggiungi-scorte-prodotto></app-aggiungi-scorte-prodotto>
+    </p-dialog>
+
   </div>
+
 
   <ng-template #prodNonDisponibile>
     <div class="row greyLike">
