@@ -4,9 +4,10 @@
     <h5 class="card-title fs-3">{{ UpperFirstLetter(prodotto.name) }}</h5>
   </div>
   <div class="card-body position-relative">
-    <p class="card-text">
+    <p style="width: 85%;" class="card-text">
       {{ troncaDescrizione(prodotto.description, 100) }}
     </p>
+    <p>CATEGORIA: {{prodotto.category}}</p>
     <p class="fs-3">$ {{ prodotto.prezzo }}</p>
     <p>disponibilità magazzino: {{ prodotto.stock }} unità</p>
     <div class="d-flex gap-1">
