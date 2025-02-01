@@ -21,7 +21,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class HomeContainerComponent implements OnInit {
   public Quote1: IRandomQuoteJSON[] | undefined;
   public dataRegistrazioneUser: IDataRegistrazioneUtente | null = null;
-  @ViewChild('registrationModal') ModalDomElement: ElementRef | undefined;
+
   // inietto product service nella classe
   constructor(
     private randomQuoteService: RandomQuotesService,

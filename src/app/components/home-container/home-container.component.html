@@ -6,12 +6,8 @@
 <ng-template #registrationModal let-modal>
   <div class="modal-header">
     <h4 class="modal-title">Registrato con successo</h4>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="modal.dismiss('modale chiuso dalla x in alto.')"
-    ></button>
+    <button type="button" class="btn-close" aria-label="Close"
+      (click)="modal.dismiss('modale chiuso dalla x in alto.')"></button>
   </div>
   <div class="modal-body">
     <h4>
@@ -25,11 +21,7 @@
     </ul>
   </div>
   <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="modal.close('modale chiuso dal bottone')"
-    >
+    <button type="button" class="btn btn-secondary" (click)="modal.close('modale chiuso dal bottone')">
       Close
     </button>
   </div>

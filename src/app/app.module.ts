@@ -15,6 +15,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { DialogModule } from 'primeng/dialog';
 import { MultiSelectModule } from 'primeng/multiselect';
+
 //componenti
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -37,6 +38,7 @@ import { InserisciNuovoProdottoComponent } from './components/inserisci-nuovo-pr
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AggiungiScorteProdottoComponent } from './components/shared/modale/innerModaleComponents/aggiungi-scorte-prodotto/aggiungi-scorte-prodotto.component';
 import { UserComponent } from './components/user/user.component';
+import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
 
 @NgModule({
   declarations: [
@@ -59,9 +61,11 @@ import { UserComponent } from './components/user/user.component';
     InserisciNuovoProdottoComponent,
     AggiungiScorteProdottoComponent,
     UserComponent,
+    AdBannerComponent,
   ],
   imports: [
     BrowserModule,
+
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
