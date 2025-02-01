@@ -26,7 +26,6 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { ProdottiComponent } from './components/prodotti/prodotti.component';
 import { CardComponent } from './components/shared/card/card.component';
 import { GestioneOrdiniComponent } from './components/gestione-ordini/gestione-ordini.component';
-import { InfoComponent } from './components/shared/info/info.component';
 import { HomeContainerComponent } from './components/home-container/home-container.component';
 import { DettaglioProdottoComponent } from './components/prodotti/dettaglio-prodotto/dettaglio-prodotto.component';
 import { RegistrazioneComponent } from './components/registrazione/registrazione.component';
@@ -38,7 +37,7 @@ import { InserisciNuovoProdottoComponent } from './components/inserisci-nuovo-pr
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AggiungiScorteProdottoComponent } from './components/shared/modale/innerModaleComponents/aggiungi-scorte-prodotto/aggiungi-scorte-prodotto.component';
 import { UserComponent } from './components/user/user.component';
-import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
+import { GeneralModalComponent } from './components/general-modal/general-modal.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +50,7 @@ import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
     ProdottiComponent,
     CardComponent,
     GestioneOrdiniComponent,
-    InfoComponent,
+
     HomeContainerComponent,
     DettaglioProdottoComponent,
     RegistrazioneComponent,
@@ -61,7 +60,7 @@ import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
     InserisciNuovoProdottoComponent,
     AggiungiScorteProdottoComponent,
     UserComponent,
-    AdBannerComponent,
+    GeneralModalComponent,
   ],
   imports: [
     BrowserModule,

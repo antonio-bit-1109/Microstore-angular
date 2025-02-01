@@ -11,6 +11,10 @@ import { IRandomQuoteJSON } from '../../models/randomQuote.model';
 import { UserService } from '../../services/user.service';
 import { IDataRegistrazioneUtente } from '../../models/dataUtente.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { forkJoin, map, Observable } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { IProduct } from '../../models/product.model';
+import { ProductService } from '../../services/product.service';
 @Component({
   selector: 'app-home-container',
   standalone: false,
@@ -19,62 +23,72 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './home-container.component.scss',
 })
 export class HomeContainerComponent implements OnInit {
-  public Quote1: IRandomQuoteJSON[] | undefined;
+  public arrQuotesObservable: any[] = [];
   public dataRegistrazioneUser: IDataRegistrazioneUtente | null = null;
 
-  // inietto product service nella classe
+  public arrQuotesCarousel: IRandomQuoteJSON[] | undefined;
+
+  public visibleModal = false;
+
+  public prodottiCarousel: IProduct[] | undefined;
+
+  private randomNum: number | undefined;
   constructor(
     private randomQuoteService: RandomQuotesService,
     private userService: UserService,
-    private ngbModal: NgbModal
+    private ngbModal: NgbModal,
+    private productService: ProductService
   ) {}
 
   // dopo il costruttore
   // dopo la creazione del componente sul DOM.
   ngOnInit(): void {
-    this.randomQuoteService.getRandomQuote().subscribe({
-      next: (data: IRandomQuoteJSON[]) => {
-        this.Quote1 = data;
-        console.log('quotes random fetchate con successo', this.Quote1);
+    this.obtainArrQuotes();
+    this.getproductForCarousel();
+  }
+
+  private obtainArrQuotes() {
+    for (let i = 0; i < 5; i++) {
+      this.arrQuotesObservable.push(this.getQuote());
+    }
+
+    forkJoin(this.arrQuotesObservable).subscribe({
+      next: (quotes: IRandomQuoteJSON[]) => {
+        this.arrQuotesCarousel = quotes;
+        this.visibleModal = true;
+        console.log(this.arrQuotesCarousel);
       },
-      error: (err) => {
-        console.error(err);
+      error: (err: HttpErrorResponse) => {
+        console.error(err.error);
       },
     });
   }
 
-  // dopo che il template (html) del componente e dei suoi figlio è stato renderizzato dal browser.
-  // richiamo il servizio user pre prendre dati dal subject(in questo caso dal ReplaySubject)
-  // ngAfterViewInit(): void {
-  //   this.userService.DataRegistrazioneUtente.subscribe((dataRegistraz_User) => {
-  //     this.dataRegistrazioneUser = dataRegistraz_User;
-  //   });
+  getQuote() {
+    return this.randomQuoteService.getRandomQuote();
+  }
 
-  //   if (this.dataRegistrazioneUser !== null) {
-  //     this.openModal(this.ModalDomElement);
-  //   }
-  // }
+  private getRandomNum() {
+    this.randomNum = Math.floor(Math.random() * 5);
+  }
 
-  // metodo per aprire il modal.
-  // il content corrisponde al modale che voglio prendere in considerazione , cioè al suo nome
-  //questo nome lo trovo all inizio del modale dopo '#' <ng-template #registrationModal let-modal>
-  // public openModal(content: any) {
-  //   this.ngbModal
-  //     .open(content, {
-  //       centered: true,
-  //       ariaLabelledBy: 'apertura modale con dati registrazione',
-  //       size: 'md',
-  //       role: 'alertdialog',
-  //     })
-  //     .result.then((res) => {
-  //       // chiamato quando il modale viene chiuso con successo. (ovverro alla chiamata di modal.close())
-  //       console.log('modale chiuso con successo' + res);
-  //       this.userService.DataRegistrazioneUtente.next(null);
-  //     })
-  //     .catch((err) => {
-  //       // chiamato in caso il modale venga chiuso chiamato modal.dismiss()
-  //       console.error('errore durante la chiusura del modale.' + err);
-  //       this.userService.DataRegistrazioneUtente.next(null);
-  //     });
-  // }
+  public getproductForCarousel() {
+    this.productService
+      .getAllProducts()
+      .pipe(
+        map((prod) => {
+          this.getRandomNum();
+          return prod.listaProdotti.slice(this.randomNum, this.randomNum + 6);
+        })
+      )
+      .subscribe({
+        next: (prods: IProduct[]) => {
+          this.prodottiCarousel = prods;
+        },
+        // in caso di errore mostra nel carosello i prodotti mockati
+        error: (err) => {
+          console.error('errore durante la get dei prodotti per il carousel');
+        },
+      });
+  }
 }

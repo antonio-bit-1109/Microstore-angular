@@ -1,5 +1,5 @@
-<app-info [Content1]="Quote1"></app-info>
-<app-carousel></app-carousel>
+<!-- <app-info [Content1]="Quote1"></app-info> -->
+<app-carousel [prodottiInInput]="this.prodottiCarousel"></app-carousel>
 <!-- <app-info [Content1]="" [Content2]=""></app-info> -->
 
 <!-- MODALE DA APRIRE UNA VOLTA CHE LA REGISTRAZIONE è ANDATA A BUON FINE  -->
@@ -26,3 +26,6 @@
     </button>
   </div>
 </ng-template>
+
+<!-- modale generale da visualizzare ogni volta che si accede a home per far vedere delle ads finte -->
+<app-general-modal [visible]="this.visibleModal" [arrQuotes]="this.arrQuotesCarousel"></app-general-modal>

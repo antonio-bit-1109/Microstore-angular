@@ -8,8 +8,6 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class RandomQuotesService {
-  // private URLRandomQuotes = 'https://api.api-ninjas.com/v1/quotes';
-
   private http: HttpClient = inject(HttpClient);
 
   constructor() {}
