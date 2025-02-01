@@ -63,6 +63,4 @@ export class SubjectService {
   public getToastAddStock() {
     return this.ToastAddStockProdotto.asObservable();
   }
-
-  // BEHAVIOUR SUBJECT PER MOSTRARE IL TOAST CON ESITO AGGIUNTA STOCK PRODOTTO -- FINE
 }

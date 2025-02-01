@@ -1,4 +1,11 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { map, take } from 'rxjs';
 import { IProduct, IProductResponse } from '../../../models/product.model';
@@ -15,15 +22,24 @@ import { IRandomQuoteJSON } from '../../../models/randomQuote.model';
   styleUrl: './carousel.component.scss',
 })
 export class CarouselComponent {
-  // private percorso = '../../assets/images/';
-
   @Input() public prodottiInInput: IProduct[] | undefined;
 
   @Input() public quotesInInput: IRandomQuoteJSON[] | undefined;
 
+  @Output() showModal = new EventEmitter();
   constructor(
     private router: Router // private previousRouteService: PreviousRouteService
   ) {}
+
+  // quando quotesin input viene popolato notifico al modale padre di diventare visible
+  ngOnChanges(changes: SimpleChanges): void {
+    if (Array.isArray(changes['quotesInInput']?.currentValue)) {
+      console.log('sono qui dentro');
+      this.showModal.emit(true);
+    } else {
+      null;
+    }
+  }
 
   public getPercorso(prodotto: IProduct) {
     return prodotto.image_url;

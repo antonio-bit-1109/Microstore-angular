@@ -1,3 +1,3 @@
-<p-dialog header="Pubblicità Banner" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
-    <app-carousel [quotesInInput]="this.arrQuotes"></app-carousel>
+<p-dialog header="Pubblicità Banner" [modal]="true" [style]="{ width: '25rem' }" [visible]="this.visible">
+    <app-carousel (showModal)="this.getInputFromChild($event)" [quotesInInput]="this.arrQuotes"></app-carousel>
 </p-dialog>

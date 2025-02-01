@@ -5,6 +5,7 @@ import {
   viewChild,
   ViewChild,
   ElementRef,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { RandomQuotesService } from '../../services/random-quotes.service';
 import { IRandomQuoteJSON } from '../../models/randomQuote.model';
@@ -37,7 +38,8 @@ export class HomeContainerComponent implements OnInit {
     private randomQuoteService: RandomQuotesService,
     private userService: UserService,
     private ngbModal: NgbModal,
-    private productService: ProductService
+    private productService: ProductService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   // dopo il costruttore
@@ -56,6 +58,7 @@ export class HomeContainerComponent implements OnInit {
       next: (quotes: IRandomQuoteJSON[]) => {
         this.arrQuotesCarousel = quotes;
         this.visibleModal = true;
+        this.cdr.detectChanges();
         console.log(this.arrQuotesCarousel);
       },
       error: (err: HttpErrorResponse) => {

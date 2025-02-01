@@ -11,5 +11,10 @@ import { IRandomQuoteJSON } from '../../models/randomQuote.model';
 export class GeneralModalComponent {
   @Input() public arrQuotes: IRandomQuoteJSON[] | undefined;
 
-  @Input() visible: boolean = false;
+  @Input() public visible: boolean = false;
+
+  public getInputFromChild(event: boolean) {
+    console.log(event);
+    this.visible = event;
+  }
 }
