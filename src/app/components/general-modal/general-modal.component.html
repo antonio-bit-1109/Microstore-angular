@@ -1,3 +1,5 @@
-<p-dialog header="Pubblicità Banner" [modal]="true" [style]="{ width: '25rem' }" [visible]="this.visible">
-    <app-carousel (showModal)="this.getInputFromChild($event)" [quotesInInput]="this.arrQuotes"></app-carousel>
+<p-dialog closable="false" header="Pubblicità Banner" [modal]="true" [style]="{ width: '40rem' }"
+    [visible]="this.visible">
+    <app-carousel (notifyPadre)="this.getInputFromChild($event)"></app-carousel>
+    <button (click)="this.visible = false" class="btn btn-primary"> chiudi</button>
 </p-dialog>

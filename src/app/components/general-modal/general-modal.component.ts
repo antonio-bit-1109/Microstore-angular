@@ -9,7 +9,7 @@ import { IRandomQuoteJSON } from '../../models/randomQuote.model';
   styleUrl: './general-modal.component.scss',
 })
 export class GeneralModalComponent {
-  @Input() public arrQuotes: IRandomQuoteJSON[] | undefined;
+  // @Input() public arrQuotes: IRandomQuoteJSON[] | undefined;
 
   @Input() public visible: boolean = false;
 

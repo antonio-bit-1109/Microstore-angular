@@ -11,6 +11,8 @@ import { map, take } from 'rxjs';
 import { IProduct, IProductResponse } from '../../../models/product.model';
 import { Router } from '@angular/router';
 import { IRandomQuoteJSON } from '../../../models/randomQuote.model';
+import { SubjectService } from '../../../services/subject.service';
+import { HttpErrorResponse } from '@angular/common/http';
 // import { PreviousRouteService } from '../../../services/previous-route.service';
 // import { IImage } from '../../../models/images.model';
 
@@ -24,22 +26,36 @@ import { IRandomQuoteJSON } from '../../../models/randomQuote.model';
 export class CarouselComponent {
   @Input() public prodottiInInput: IProduct[] | undefined;
 
-  @Input() public quotesInInput: IRandomQuoteJSON[] | undefined;
+  @Output() public notifyPadre = new EventEmitter();
+  public Arrquotes: IRandomQuoteJSON[] | undefined;
+  public intervalCarousel = 2000;
 
   @Output() showModal = new EventEmitter();
-  constructor(
-    private router: Router // private previousRouteService: PreviousRouteService
-  ) {}
+  constructor(private router: Router, private subjectService: SubjectService) {
+    this.subjectService.getArrQuotesObservable().subscribe({
+      next: (arrQuotes: IRandomQuoteJSON[]) => {
+        console.log('arrayquotes arrivate nel carousel');
+        this.Arrquotes = arrQuotes;
+
+        if (Array.isArray(this.Arrquotes)) {
+          this.notifyPadre.emit(true);
+        }
+      },
+      error: (err: HttpErrorResponse) => {
+        console.error(err.error);
+      },
+    });
+  }
 
   // quando quotesin input viene popolato notifico al modale padre di diventare visible
-  ngOnChanges(changes: SimpleChanges): void {
-    if (Array.isArray(changes['quotesInInput']?.currentValue)) {
-      console.log('sono qui dentro');
-      this.showModal.emit(true);
-    } else {
-      null;
-    }
-  }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   if (Array.isArray(changes['quotesInInput']?.currentValue)) {
+  //     console.log('sono qui dentro');
+  //     this.showModal.emit(true);
+  //   } else {
+  //     null;
+  //   }
+  // }
 
   public getPercorso(prodotto: IProduct) {
     return prodotto.image_url;

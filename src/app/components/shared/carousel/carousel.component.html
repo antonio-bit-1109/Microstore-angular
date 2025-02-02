@@ -1,4 +1,4 @@
-<ngb-carousel>
+<ngb-carousel [interval]="this.intervalCarousel">
   <ng-container *ngIf="this.prodottiInInput">
     <ng-template ngbSlide *ngFor="let prodotto of this.prodottiInInput">
       <div class="picsum-img-wrapper">
@@ -11,14 +11,16 @@
       </div>
     </ng-template>
   </ng-container>
+</ngb-carousel>
 
-  <ng-container *ngIf="this.quotesInInput">
-    <ng-template *ngFor="let quote of this.quotesInInput">
+<ngb-carousel [interval]="this.intervalCarousel">
+  <ng-container *ngIf="this.Arrquotes">
+    <ng-template ngbSlide *ngFor="let quote of this.Arrquotes">
 
       <div class="card shadow-sm p-3 mb-4 bg-light rounded">
         <div class="card-body">
-          <h4 class="card-title fs-4">{{ quote?.quote }}</h4>
-          <h5 class="card-subtitle mb-2 text-muted fs-5 mt-3">{{ quote?.author }}.</h5>
+          <h4 class="card-title fs-4">{{ quote[0]?.quote }}</h4>
+          <h5 class="card-subtitle mb-2 text-muted fs-5 mt-3">{{ quote[0]?.author }}.</h5>
         </div>
       </div>
 

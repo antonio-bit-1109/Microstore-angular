@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { IToastContent } from '../models/toastContent.model';
+import { IRandomQuoteJSON } from '../models/randomQuote.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,11 @@ export class SubjectService {
   );
 
   public ToastAddStockProdotto = new BehaviorSubject<string | null>(null);
+
+  public subjectArrQuotes = new BehaviorSubject<null | IRandomQuoteJSON[]>(
+    null
+  );
+
   constructor() {}
 
   // metodi per maneggiare notificationLogout -- INIZIO
@@ -62,5 +68,13 @@ export class SubjectService {
 
   public getToastAddStock() {
     return this.ToastAddStockProdotto.asObservable();
+  }
+
+  public fillRandomArrQuotes(arrQuotes: IRandomQuoteJSON[]) {
+    this.subjectArrQuotes.next(arrQuotes);
+  }
+
+  public getArrQuotesObservable() {
+    return this.subjectArrQuotes.asObservable();
   }
 }

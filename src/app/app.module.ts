@@ -50,7 +50,6 @@ import { GeneralModalComponent } from './components/general-modal/general-modal.
     ProdottiComponent,
     CardComponent,
     GestioneOrdiniComponent,
-
     HomeContainerComponent,
     DettaglioProdottoComponent,
     RegistrazioneComponent,
@@ -64,7 +63,6 @@ import { GeneralModalComponent } from './components/general-modal/general-modal.
   ],
   imports: [
     BrowserModule,
-
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
@@ -79,7 +77,6 @@ import { GeneralModalComponent } from './components/general-modal/general-modal.
     DropdownModule,
     ToastModule,
     PaginatorModule,
-
     DialogModule,
     FloatLabelModule,
   ],

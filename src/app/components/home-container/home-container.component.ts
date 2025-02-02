@@ -16,6 +16,7 @@ import { forkJoin, map, Observable } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IProduct } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
+import { SubjectService } from '../../services/subject.service';
 @Component({
   selector: 'app-home-container',
   standalone: false,
@@ -27,7 +28,7 @@ export class HomeContainerComponent implements OnInit {
   public arrQuotesObservable: any[] = [];
   public dataRegistrazioneUser: IDataRegistrazioneUtente | null = null;
 
-  public arrQuotesCarousel: IRandomQuoteJSON[] | undefined;
+  // public arrQuotesCarousel: IRandomQuoteJSON[] | undefined;
 
   public visibleModal = false;
 
@@ -39,7 +40,8 @@ export class HomeContainerComponent implements OnInit {
     private userService: UserService,
     private ngbModal: NgbModal,
     private productService: ProductService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private subjectService: SubjectService
   ) {}
 
   // dopo il costruttore
@@ -56,10 +58,11 @@ export class HomeContainerComponent implements OnInit {
 
     forkJoin(this.arrQuotesObservable).subscribe({
       next: (quotes: IRandomQuoteJSON[]) => {
-        this.arrQuotesCarousel = quotes;
-        this.visibleModal = true;
-        this.cdr.detectChanges();
-        console.log(this.arrQuotesCarousel);
+        this.subjectService.fillRandomArrQuotes(quotes);
+        // this.arrQuotesCarousel = quotes;
+        // this.visibleModal = true;
+        // this.cdr.detectChanges();
+        // console.log(this.arrQuotesCarousel);
       },
       error: (err: HttpErrorResponse) => {
         console.error(err.error);
