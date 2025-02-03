@@ -11,9 +11,13 @@ export class NutritionInfoService {
   constructor() {}
 
   // post per chiedere valori nutrizionali di un cibo preso da input dall html
-  requestNutritionalInfo() {
+  requestNutritionalInfo(text: string) {
     const headers = new HttpHeaders({
       'X-Api-Key': environment.NinjasApiKey,
+    });
+
+    return this.http.get(`${environment.NinjaNutritionalInfoURL + text}`, {
+      headers,
     });
   }
 }

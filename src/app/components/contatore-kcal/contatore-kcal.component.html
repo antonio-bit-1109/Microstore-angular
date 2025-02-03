@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-6">
+            <div class="card shadow-sm p-3 mb-4 bg-light rounded my-4">
+                <h2>Calcolatore Valore Nutrizionali</h2>
+                <p class="m-0">Inserisci l'alimento di cui vorresti sapere i valori nutrizionali</p>
+                <input type="text" pInputText [(ngModel)]="query" class="my-2" />
+                <p-button class="d-block mt-3" (click)="sendData()" type="button" label="cerca"></p-button>
+                <p *ngIf="this.notValid" class="mt-2 error-msg"> Inserisci un alimento da cercare.</p>
+            </div>
+            <ng-container *ngIf="this.nutritionalData">
+                <ng-container *ngFor="let val of nutritionalData">
+                    <div class="output-nutriz-val card shadow-sm p-3 mb-4 bg-light rounded my-4">
+                        <h3> <strong>{{val.name | uppercase}}</strong></h3>
+
+                        <p class="m-0"> <strong>Carboidrati</strong> : <span
+                                class="fs-3">{{val.carbohydrates_total_g}}</span> g/100g</p>
+                        <p class="m-0"><strong>Colesterolo</strong>: <span class="fs-3">{{val.cholesterol_mg}} </span>
+                            mg/100g</p>
+
+
+                        <p class="m-0"> <strong>Grassi Saturi</strong> : <span class="fs-3">
+                                {{val.fat_saturated_g}}</span> g/100g</p>
+                        <p class="m-0"><strong>Grassi Totali</strong>: <span class="fs-3">{{val.fat_total_g}}</span>
+                            g/100g</p>
+
+                        <p class="m-0"> <strong>Fibre</strong> : <span class="fs-3">{{val.fiber_g}}</span> g/100g</p>
+                        <p class="m-0"><strong>Potassio</strong>: <span class="fs-3">{{val.potassium_mg}}</span> mg/100g
+                        </p>
+
+                        <p class="m-0"> <strong>Sodio</strong> : <span class="fs-3">{{val.sodium_mg}}</span> mg/100g</p>
+                        <p class="m-0"><strong>Zuccheri</strong>: <span class="fs-3">{{val.sugar_g}}</span> g/100g</p>
+
+                    </div>
+                </ng-container>
+            </ng-container>
+
+
+        </div>
+    </div>
+</div>

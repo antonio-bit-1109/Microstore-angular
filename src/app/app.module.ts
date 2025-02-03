@@ -38,6 +38,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AggiungiScorteProdottoComponent } from './components/shared/modale/innerModaleComponents/aggiungi-scorte-prodotto/aggiungi-scorte-prodotto.component';
 import { UserComponent } from './components/user/user.component';
 import { GeneralModalComponent } from './components/general-modal/general-modal.component';
+import { ContatoreKcalComponent } from './components/contatore-kcal/contatore-kcal.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { GeneralModalComponent } from './components/general-modal/general-modal.
     AggiungiScorteProdottoComponent,
     UserComponent,
     GeneralModalComponent,
+    ContatoreKcalComponent,
   ],
   imports: [
     BrowserModule,

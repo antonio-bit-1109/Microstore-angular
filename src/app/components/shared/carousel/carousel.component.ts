@@ -33,30 +33,31 @@ export class CarouselComponent {
   @Output() showModal = new EventEmitter();
 
   constructor(private router: Router, private subjectService: SubjectService) {
-    this.subjectService.getArrQuotesObservable().subscribe({
-      next: (arrQuotes: IRandomQuoteJSON[]) => {
-        console.log('arrayquotes arrivate nel carousel');
-        this.Arrquotes = arrQuotes;
+    // chiamo il servizio e aggiungo +1 al contatore che mi tiene traccia di quante volte sono passato per home. se il valore è 5 o multiplo di 5 allora emetto la notifica al padre per mostraer il banner. (in sostanza mostro il banner ads ogni 5 volte che carico il componente Home)
+    this.subjectService.addToVisibleADs();
 
-        if (Array.isArray(this.Arrquotes)) {
-          this.notifyPadre.emit(true);
-        }
-      },
-      error: (err: HttpErrorResponse) => {
-        console.error(err.error);
-      },
+    //prettier-ignore
+    if (!(this.subjectService.getValueVIsibleAds() % 5 === 0)) {
+
+      console.log('il counter per mostrare il banner pubblicitario non è modulo di 5 ');
+     console.log(this.subjectService.getValueVIsibleAds() , 'counter visibilità ads')
+    } else {
+
+      this.subjectService.getArrQuotesObservable().subscribe({
+        next: (arrQuotes: IRandomQuoteJSON[]) => {
+          console.log('arrayquotes arrivate nel carousel');
+          this.Arrquotes = arrQuotes;
+
+          if (Array.isArray(this.Arrquotes)) {
+            this.notifyPadre.emit(true);
+          }
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error(err.error);
+        },
     });
+    }
   }
-
-  // quando quotesin input viene popolato notifico al modale padre di diventare visible
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (Array.isArray(changes['quotesInInput']?.currentValue)) {
-  //     console.log('sono qui dentro');
-  //     this.showModal.emit(true);
-  //   } else {
-  //     null;
-  //   }
-  // }
 
   public getPercorso(prodotto: IProduct) {
     return prodotto.image_url;

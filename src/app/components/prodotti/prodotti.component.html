@@ -4,7 +4,7 @@
   <app-filtro-ricerca (EmettiValFiltro)="prendiValFiltro($event)"></app-filtro-ricerca>
   <div class="row">
 
-    <div class="col-sm-12 col-md-6 col-lg-4"
+    <div class="col-sm-10 col-md-6 col-lg-4 max-h-600"
       *ngFor="let prodotto of getAllProdottiDB() | slice: (page - 1) * size : page * size">
       <!-- contenuto card dei prodotti -->
       <div class="mt-7">
@@ -14,12 +14,15 @@
 
     <!-- row contenente il paginator per fare slice dei prodotti da front end  -->
     <!-- PAGINATOR -->
-    <div class="row">
-      <div class="card flex justify-content-center">
-        <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="size"
-          [totalRecords]="getAllProdottiDB()?.length" [rowsPerPageOptions]="[2,4,6]" />
+    <div class="mt-7">
+      <div class="row">
+        <div class="card flex justify-content-center">
+          <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="size"
+            [totalRecords]="getAllProdottiDB()?.length" [rowsPerPageOptions]="[2,4,6]" />
+        </div>
       </div>
     </div>
+
   </div>
 
   <app-modale></app-modale>

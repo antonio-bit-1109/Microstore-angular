@@ -22,6 +22,8 @@ export class SubjectService {
     null
   );
 
+  public adsVisibleEvery5Times = new BehaviorSubject<number>(0);
+
   constructor() {}
 
   // metodi per maneggiare notificationLogout -- INIZIO
@@ -76,5 +78,15 @@ export class SubjectService {
 
   public getArrQuotesObservable() {
     return this.subjectArrQuotes.asObservable();
+  }
+
+  // subject che gestisce la visibilità del banner ads ogni 5 volte che la home viene caricata
+
+  public addToVisibleADs() {
+    this.adsVisibleEvery5Times.next(this.getValueVIsibleAds() + 1);
+  }
+
+  public getValueVIsibleAds() {
+    return this.adsVisibleEvery5Times.value;
   }
 }

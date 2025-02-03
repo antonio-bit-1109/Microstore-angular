@@ -41,9 +41,15 @@
               }" class="tondino ms-2"></div>
             </div>
 
-            <button [disabled]="!isAvailable(prodotto?.is_active)[1]" class="btn btn-primary btn-block mt-3">
-              Aggiungi al carrello
-            </button>
+            <div class="d-flex gap-1">
+              <button [disabled]="!isAvailable(prodotto?.is_active)[1]" class="btn btn-primary btn-block mt-3">
+                Aggiungi al carrello
+              </button>
+              <button class="btn btn-danger btn-block mt-3">
+                Cancella Prodotto
+              </button>
+            </div>
+
           </div>
         </div>
       </div>

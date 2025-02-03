@@ -1,4 +1,4 @@
-export interface NutrionalObj {
+export interface INutrionalResp {
   name: string;
   calories: string;
   serving_size_g: string;
