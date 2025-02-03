@@ -29,7 +29,7 @@ export class CarouselComponent {
   @Output() public notifyPadre = new EventEmitter();
   public Arrquotes: IRandomQuoteJSON[] | undefined;
   public intervalCarousel = 2000;
-
+  @Input() public showQuotes: boolean | undefined;
   @Output() showModal = new EventEmitter();
   constructor(private router: Router, private subjectService: SubjectService) {
     this.subjectService.getArrQuotesObservable().subscribe({
