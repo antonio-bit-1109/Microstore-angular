@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -33,6 +33,7 @@ export class DettaglioProdottoComponent implements OnInit {
   public prodotto: IProduct | undefined;
   public routeFrom: string | null = null;
   Modalvisible: boolean = false;
+  public windowWidth: number | undefined;
 
   constructor(
     // private previousRouteService: PreviousRouteService,
@@ -40,7 +41,16 @@ export class DettaglioProdottoComponent implements OnInit {
     private authService: AuthService,
     private messageService: MessageService,
     private subjectService: SubjectService
-  ) {}
+  ) {
+    this.windowWidth = window.innerWidth;
+  }
+
+  //
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.windowWidth = window.innerWidth;
+    console.log('Larghezza finestra aggiornata:', this.windowWidth);
+  }
 
   ngOnInit(): void {
     this.getDetailProdottoDB();
@@ -144,5 +154,12 @@ export class DettaglioProdottoComponent implements OnInit {
       key: 'toastAddStock',
       life: 2000,
     });
+  }
+
+  public TestoNonVisible() {
+    if (this.windowWidth <= 767) {
+      return true;
+    }
+    return false;
   }
 }
