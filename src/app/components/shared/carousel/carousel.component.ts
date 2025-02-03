@@ -31,6 +31,7 @@ export class CarouselComponent {
   public intervalCarousel = 2000;
   @Input() public showQuotes: boolean | undefined;
   @Output() showModal = new EventEmitter();
+
   constructor(private router: Router, private subjectService: SubjectService) {
     this.subjectService.getArrQuotesObservable().subscribe({
       next: (arrQuotes: IRandomQuoteJSON[]) => {

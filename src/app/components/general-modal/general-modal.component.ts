@@ -13,6 +13,8 @@ export class GeneralModalComponent {
 
   @Input() public visible: boolean = false;
 
+  // @Input() showAds: number | undefined;
+
   public getInputFromChild(event: boolean) {
     console.log(event);
     this.visible = event;
