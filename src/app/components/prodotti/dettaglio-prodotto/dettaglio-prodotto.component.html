@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-  <ng-container *ngIf="this.prodotto?.is_active === 'false'">
+  <ng-container *ngIf="this.prodotto?.is_active === 'false' && this.isAdmin()">
     <div class="row">
       <div class="col-12">
         <p-button (click)="setProdottoAsAgainDisponibile()" label="Reimposta come prodotto disponibile">
@@ -61,9 +61,12 @@
               <button [disabled]="!isAvailable(prodotto?.is_active)[1]" class="btn btn-primary btn-block mt-3">
                 Aggiungi al carrello
               </button>
-              <button (click)="this.showModalDelete()" class="btn btn-danger btn-block mt-3">
-                Imposta come non disponibile
-              </button>
+              <ng-container *ngIf="this.isAdmin()">
+                <button (click)="this.showModalDelete()" class="btn btn-danger btn-block mt-3">
+                  Imposta come non disponibile
+                </button>
+              </ng-container>
+
             </div>
 
           </div>
