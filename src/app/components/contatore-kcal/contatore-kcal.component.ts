@@ -16,6 +16,7 @@ export class ContatoreKcalComponent {
 
   public query: string = '';
   public notValid = false;
+  public notFound = false;
 
   public nutritionalData: INutrionalResp[] | undefined;
 
@@ -23,6 +24,11 @@ export class ContatoreKcalComponent {
     if (this.query && this.query !== '') {
       this.nutrionalInfoService.requestNutritionalInfo(this.query).subscribe({
         next: (resp: INutrionalResp[]) => {
+          if (!resp.length) {
+            this.showNotFound();
+            return;
+          }
+
           this.nutritionalData = resp;
           console.log(this.nutritionalData);
         },
@@ -31,10 +37,21 @@ export class ContatoreKcalComponent {
         },
       });
     } else {
-      this.notValid = true;
-      setTimeout(() => {
-        this.notValid = false;
-      }, 3000);
+      this.showError();
     }
+  }
+
+  public showError() {
+    this.notValid = true;
+    setTimeout(() => {
+      this.notValid = false;
+    }, 3000);
+  }
+
+  public showNotFound() {
+    this.notFound = true;
+    setTimeout(() => {
+      this.notFound = false;
+    }, 3000);
   }
 }

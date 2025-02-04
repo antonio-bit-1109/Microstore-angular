@@ -1,13 +1,20 @@
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-6">
-            <div class="card shadow-sm p-3 mb-4 bg-light rounded my-4">
-                <h2>Calcolatore Valore Nutrizionali</h2>
-                <p class="m-0">Inserisci l'alimento di cui vorresti sapere i valori nutrizionali</p>
-                <input type="text" pInputText [(ngModel)]="query" class="my-2" />
-                <p-button class="d-block mt-3" (click)="sendData()" type="button" label="cerca"></p-button>
-                <p *ngIf="this.notValid" class="mt-2 error-msg"> Inserisci un alimento da cercare.</p>
+        <div class="col-sm-12 col-md-10 col-lg-6">
+            <div class="d-flex align-items-end h-100">
+                <div class="card shadow-sm p-3 mb-4 bg-light rounded my-4">
+                    <h2>Calcolatore Valore Nutrizionali</h2>
+                    <p class="m-0">Inserisci l'alimento di cui vorresti sapere i valori nutrizionali</p>
+                    <input type="text" pInputText [(ngModel)]="query" class="my-2" />
+                    <p-button class="d-block mt-3" (click)="sendData()" type="button" label="cerca"></p-button>
+                    <p *ngIf="this.notValid" class="mt-2 error-msg"> Inserisci un alimento da cercare.</p>
+                    <p *ngIf="this.notFound" class="mt-2 error-msg"> Alimento non trovato.</p>
+                </div>
             </div>
+
+
+        </div>
+        <div class="col-sm-12 col-md-10 col-lg-6">
             <ng-container *ngIf="this.nutritionalData">
                 <ng-container *ngFor="let val of nutritionalData">
                     <div class="output-nutriz-val card shadow-sm p-3 mb-4 bg-light rounded my-4">
@@ -34,8 +41,10 @@
                     </div>
                 </ng-container>
             </ng-container>
-
-
         </div>
+
+
+
+
     </div>
 </div>
