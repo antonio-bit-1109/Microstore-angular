@@ -26,37 +26,39 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class CarouselComponent {
   @Input() public prodottiInInput: IProduct[] | undefined;
 
-  @Output() public notifyPadre = new EventEmitter();
-  public Arrquotes: IRandomQuoteJSON[] | undefined;
+  // @Output() public notifyPadre = new EventEmitter();
+  @Input() public Arrquotes: IRandomQuoteJSON[] | undefined;
   public intervalCarousel = 2000;
   @Input() public showQuotes: boolean | undefined;
-  @Output() showModal = new EventEmitter();
+  // @Output() showModal = new EventEmitter();
 
-  constructor(private router: Router, private subjectService: SubjectService) {
+  constructor(
+    private router: Router // private subjectService: SubjectService
+  ) {
     // chiamo il servizio e aggiungo +1 al contatore che mi tiene traccia di quante volte sono passato per home. se il valore è 5 o multiplo di 5 allora emetto la notifica al padre per mostraer il banner. (in sostanza mostro il banner ads ogni 5 volte che carico il componente Home)
-    this.subjectService.addToVisibleADs();
+    // this.subjectService.addToVisibleADs();
 
     //prettier-ignore
-    if (!(this.subjectService.getValueVIsibleAds() % 5 === 0)) {
+    // if (!(this.subjectService.getValueVIsibleAds() % 5 === 0)) {
 
-      console.log('il counter per mostrare il banner pubblicitario non è modulo di 5 ');
-     console.log(this.subjectService.getValueVIsibleAds() , 'counter visibilità ads')
-    } else {
+    //   console.log('il counter per mostrare il banner pubblicitario non è modulo di 5 ');
+    //  console.log(this.subjectService.getValueVIsibleAds() , 'counter visibilità ads')
+    // } else {
 
-      this.subjectService.getArrQuotesObservable().subscribe({
-        next: (arrQuotes: IRandomQuoteJSON[]) => {
-          console.log('arrayquotes arrivate nel carousel');
-          this.Arrquotes = arrQuotes;
+    //   this.subjectService.getArrQuotesObservable().subscribe({
+    //     next: (arrQuotes: IRandomQuoteJSON[]) => {
+    //       console.log('arrayquotes arrivate nel carousel');
+    //       this.Arrquotes = arrQuotes;
 
-          if (Array.isArray(this.Arrquotes)) {
-            this.notifyPadre.emit(true);
-          }
-        },
-        error: (err: HttpErrorResponse) => {
-          console.error(err.error);
-        },
-    });
-    }
+    //       if (Array.isArray(this.Arrquotes)) {
+    //         this.notifyPadre.emit(true);
+    //       }
+    //     },
+    //     error: (err: HttpErrorResponse) => {
+    //       console.error(err.error);
+    //     },
+    // });
+    // }
   }
 
   public getPercorso(prodotto: IProduct) {

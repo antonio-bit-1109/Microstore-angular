@@ -39,6 +39,7 @@ import { AggiungiScorteProdottoComponent } from './components/shared/modale/inne
 import { UserComponent } from './components/user/user.component';
 import { GeneralModalComponent } from './components/general-modal/general-modal.component';
 import { ContatoreKcalComponent } from './components/contatore-kcal/contatore-kcal.component';
+import { CancellaProdottoComponent } from './components/cancella-prodotto/cancella-prodotto.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ContatoreKcalComponent } from './components/contatore-kcal/contatore-kc
     UserComponent,
     GeneralModalComponent,
     ContatoreKcalComponent,
+    CancellaProdottoComponent,
   ],
   imports: [
     BrowserModule,

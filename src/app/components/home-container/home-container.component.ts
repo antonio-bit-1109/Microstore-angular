@@ -28,13 +28,15 @@ export class HomeContainerComponent implements OnInit {
   public arrQuotesObservable: any[] = [];
   public dataRegistrazioneUser: IDataRegistrazioneUtente | null = null;
 
-  // public arrQuotesCarousel: IRandomQuoteJSON[] | undefined;
-
   public visibleModal = false;
 
   public prodottiCarousel: IProduct[] | undefined;
 
   private randomNum: number | undefined;
+  public visible: boolean | undefined;
+  public Arrquotes: IRandomQuoteJSON[] | undefined;
+  public visibilityModal: boolean | undefined;
+  public showQuotes = false;
   constructor(
     private randomQuoteService: RandomQuotesService,
     private userService: UserService,
@@ -49,6 +51,38 @@ export class HomeContainerComponent implements OnInit {
   ngOnInit(): void {
     this.obtainArrQuotes();
     this.getproductForCarousel();
+    // add 1 al contatore ogni volta che componente caricato, per mostrare ogni 5 il banner pubblicitario.
+    this.subjectService.addToVisibleADs();
+    this.getQuotesAds();
+  }
+
+  //fetch per ricavare l'array di quotes da mostrare come banner pubblicitario
+  private getQuotesAds() {
+    if (!(this.subjectService.getValueVIsibleAds() % 5 === 0)) {
+      console.log(
+        'il counter per mostrare il banner pubblicitario non è modulo di 5 '
+      );
+      console.log(
+        this.subjectService.getValueVIsibleAds(),
+        'counter visibilità ads'
+      );
+    } else {
+      this.subjectService.getArrQuotesObservable().subscribe({
+        next: (arrQuotes: IRandomQuoteJSON[]) => {
+          console.log('arrayquotes arrivate nel carousel');
+          this.Arrquotes = arrQuotes;
+
+          if (Array.isArray(this.Arrquotes)) {
+            console.log('mostra modale, sono dentro');
+            this.visibilityModal = true;
+            this.showQuotes = true;
+          }
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error(err.error);
+        },
+      });
+    }
   }
 
   private obtainArrQuotes() {
@@ -96,5 +130,14 @@ export class HomeContainerComponent implements OnInit {
           console.error('errore durante la get dei prodotti per il carousel');
         },
       });
+  }
+
+  public getInputFromChild(event: boolean) {
+    console.log(event);
+    this.visible = event;
+  }
+
+  public closeModal() {
+    this.visibilityModal = false;
   }
 }

@@ -28,4 +28,11 @@
 </ng-template>
 
 <!-- modale generale da visualizzare ogni volta che si accede a home per far vedere delle ads finte -->
-<app-general-modal [visible]="this.visibleModal"></app-general-modal>
+<!-- <app-general-modal [visible]="this.visibleModal">
+  <app-carousel [showQuotes]="true" (notifyPadre)="this.getInputFromChild($event)"></app-carousel>
+  <button (click)="this.visible = false" class="btn btn-primary"> chiudi</button>
+</app-general-modal> -->
+<app-general-modal [visible]="this.visibilityModal">
+  <app-carousel [showQuotes]="this.showQuotes" [Arrquotes]="this.Arrquotes"></app-carousel>
+  <button (click)="this.closeModal()" class="btn btn-primary"> chiudi</button>
+</app-general-modal>
