@@ -24,6 +24,8 @@ export class SubjectService {
 
   public adsVisibleEvery5Times = new BehaviorSubject<number>(0);
 
+  public reloadProdotto = new BehaviorSubject<boolean>(false);
+
   constructor() {}
 
   // metodi per maneggiare notificationLogout -- INIZIO
@@ -88,5 +90,15 @@ export class SubjectService {
 
   public getValueVIsibleAds() {
     return this.adsVisibleEvery5Times.value;
+  }
+
+  // metodi per notificare al componente dettaglio prodotto se ce bisogno di rieffettuare la fetch per ricaricare i cambiamenti e notare il prodotto non disponibile.
+
+  public DoIReloadProdotto(value: boolean) {
+    this.reloadProdotto.next(value);
+  }
+
+  public $GetReloadProdotto() {
+    return this.reloadProdotto.asObservable();
   }
 }

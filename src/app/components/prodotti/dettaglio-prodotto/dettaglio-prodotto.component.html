@@ -1,4 +1,15 @@
 <div class="container-fluid">
+
+  <ng-container *ngIf="this.prodotto?.is_active === 'false'">
+    <div class="row">
+      <div class="col-12">
+        <p-button label="Reimposta come prodotto disponibile">
+        </p-button>
+      </div>
+    </div>
+  </ng-container>
+
+
   <div class="row">
     <div class="col-12">
       <div class="mb-4">
@@ -50,8 +61,8 @@
               <button [disabled]="!isAvailable(prodotto?.is_active)[1]" class="btn btn-primary btn-block mt-3">
                 Aggiungi al carrello
               </button>
-              <button class="btn btn-danger btn-block mt-3">
-                Cancella Prodotto
+              <button (click)="this.showModalDelete()" class="btn btn-danger btn-block mt-3">
+                Imposta come non disponibile
               </button>
             </div>
 
@@ -69,9 +80,14 @@
         [idProdotto]="prodotto?.id"></app-aggiungi-scorte-prodotto>
     </p-dialog>
 
-
   </div>
 
+  <!-- MODALE GENERICO AL CUI INTERNO RENDERIZZO IL COMPONENTE PER CANCELLARE IL PRODOTTO -->
+  <app-general-modal [visible]="this.visibilityModalDelete">
+    <app-cancella-prodotto-soft (chiudiModaleDelete)="this.getVisibilityModalDelete($event)"
+      [nomeProdotto]="this.getNomeProdotto()" [idProdotto]="this.getIdProdotto()"></app-cancella-prodotto-soft>
+  </app-general-modal>
+  <!-- MODALE GENERICO AL CUI INTERNO RENDERIZZO IL COMPONENTE PER CANCELLARE IL PRODOTTO -->
 
   <ng-template #prodNonDisponibile>
     <div class="row greyLike">

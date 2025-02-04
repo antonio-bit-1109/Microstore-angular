@@ -1,0 +1,8 @@
+<form (ngSubmit)="onSubmit()">
+    <p>Sei sicuro di voler impostare il prodotto : <strong class="fs-4">{{this.nomeProdotto}}</strong> come non
+        disponibile ?</p>
+    <div class="d-flex gap-2">
+        <button class="btn btn-danger d-block" type="submit"> Imposta come non disponibile </button>
+        <button (click)="emitChiudiModale()" class="btn btn-primary"> chiudi</button>
+    </div>
+</form>

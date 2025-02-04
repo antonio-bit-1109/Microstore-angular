@@ -34,6 +34,7 @@ export class DettaglioProdottoComponent implements OnInit {
   public routeFrom: string | null = null;
   Modalvisible: boolean = false;
   public windowWidth: number | undefined;
+  public visibilityModalDelete: boolean | undefined;
 
   constructor(
     // private previousRouteService: PreviousRouteService,
@@ -62,9 +63,19 @@ export class DettaglioProdottoComponent implements OnInit {
     const provenienza = this.activatedRoute.snapshot.paramMap.get('from');
     this.routeFrom = provenienza;
     this.getMsgForToast();
+
+    this.subjectService.$GetReloadProdotto().subscribe({
+      next: (boolVal: boolean | null) => {
+        if (boolVal) {
+          this.getDetailProdottoDB();
+        } else {
+          null;
+        }
+      },
+    });
   }
 
-  getMsgForToast() {
+  public getMsgForToast() {
     this.subjectService.getToastAddStock().subscribe({
       next: (msg) => {
         if (msg) {
@@ -163,5 +174,21 @@ export class DettaglioProdottoComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  public showModalDelete() {
+    this.visibilityModalDelete = true;
+  }
+
+  public getIdProdotto() {
+    return this.prodotto ? this.prodotto.id : null;
+  }
+
+  public getNomeProdotto() {
+    return this.prodotto ? this.prodotto.name : null;
+  }
+
+  public getVisibilityModalDelete(event) {
+    this.visibilityModalDelete = event;
   }
 }

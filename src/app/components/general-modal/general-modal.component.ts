@@ -9,11 +9,5 @@ import { IRandomQuoteJSON } from '../../models/randomQuote.model';
   styleUrl: './general-modal.component.scss',
 })
 export class GeneralModalComponent {
-  // @Input() public arrQuotes: IRandomQuoteJSON[] | undefined;
   @Input() public visible: boolean = false;
-  // @Input() showAds: number | undefined;
-  // public getInputFromChild(event: boolean) {
-  //   console.log(event);
-  //   this.visible = event;
-  // }
 }

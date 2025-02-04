@@ -62,4 +62,10 @@ export class ProductService {
       data
     );
   }
+
+  deleteProdotto(idProdotto: number) {
+    return this.http.get(
+      `${environment.LOCAL_HOST + environment.URL_DELETE_PRODUCT}/${idProdotto}`
+    );
+  }
 }
