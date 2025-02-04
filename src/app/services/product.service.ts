@@ -63,9 +63,17 @@ export class ProductService {
     );
   }
 
-  deleteProdotto(idProdotto: number) {
+  // imposta il prodotto come non più disponibile
+  SoftdeleteProdotto(idProdotto: number) {
     return this.http.get(
       `${environment.LOCAL_HOST + environment.URL_DELETE_PRODUCT}/${idProdotto}`
+    );
+  }
+
+  // reimposta il prodotto come disponibile
+  resetProductToDisponibile(id: number) {
+    return this.http.get(
+      `${environment.LOCAL_HOST + environment.URL_REACTIVATE_PRODUCT}/${id}`
     );
   }
 }

@@ -31,7 +31,7 @@ export class CancellaProdottoComponent {
     console.log(this.idProdotto, 'id prodotto da eliminare');
     if (this.idProdotto) {
       // invia richiesta cancellazione prodotto
-      this.productService.deleteProdotto(this.idProdotto).subscribe({
+      this.productService.SoftdeleteProdotto(this.idProdotto).subscribe({
         next: (val) => {
           console.log(val);
           this.emitChiudiModale();

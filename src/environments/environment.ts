@@ -9,4 +9,5 @@ export const environment = {
   URL_INSERT_PRODUCT: '/product/insert',
   URL_ADD_STOCK_PRODUCT: '/product/addStock',
   URL_DELETE_PRODUCT: '/product/delete',
+  URL_REACTIVATE_PRODUCT: '/product/returnActive',
 };

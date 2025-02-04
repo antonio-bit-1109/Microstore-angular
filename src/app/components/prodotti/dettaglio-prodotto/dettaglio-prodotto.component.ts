@@ -10,6 +10,7 @@ import {
 import { AuthService } from '../../../services/auth.service';
 import { MessageService } from 'primeng/api';
 import { SubjectService } from '../../../services/subject.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 interface PageEvent {
   first: number;
@@ -190,5 +191,19 @@ export class DettaglioProdottoComponent implements OnInit {
 
   public getVisibilityModalDelete(event) {
     this.visibilityModalDelete = event;
+  }
+
+  public setProdottoAsAgainDisponibile() {
+    this.ProductService.resetProductToDisponibile(this.prodotto.id).subscribe({
+      next: (esito) => {
+        console.log(
+          'reimpostazione prodotto ad attivo effettuata con successo'
+        );
+        this.subjectService.DoIReloadProdotto(true);
+      },
+      error: (err: HttpErrorResponse) => {
+        console.error(err.error);
+      },
+    });
   }
 }

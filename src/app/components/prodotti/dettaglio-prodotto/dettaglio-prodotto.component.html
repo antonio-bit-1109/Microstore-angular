@@ -3,7 +3,7 @@
   <ng-container *ngIf="this.prodotto?.is_active === 'false'">
     <div class="row">
       <div class="col-12">
-        <p-button label="Reimposta come prodotto disponibile">
+        <p-button (click)="setProdottoAsAgainDisponibile()" label="Reimposta come prodotto disponibile">
         </p-button>
       </div>
     </div>
