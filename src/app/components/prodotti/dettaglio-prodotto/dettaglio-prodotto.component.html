@@ -10,7 +10,12 @@
   <div class="row-wrapper my-3 position-relative">
     <div class="border border-4 position-absolute w-100 h-100 text-center d-flex align-items-center"
       [ngClass]="{'d-none' : isProdottoDisponibile()}">
-      <p class="fw-bold stile_p w-100">Non disponibile</p>
+      <ng-container *ngIf="!this.TestoNonVisible() ; else mostraIcona">
+        <p class="fw-bold stile_p w-100">Non disponibile</p>
+      </ng-container>
+      <ng-template #mostraIcona>
+        <i class="pi pi-thumbs-down-fill fw-bold stile_p w-100 p-5"></i>
+      </ng-template>
     </div>
     <div *ngIf="prodotto?.is_active === 'true'; else prodNonDisponibile" class="row">
       <div class="col-md-8">

@@ -49,6 +49,7 @@ export class DettaglioProdottoComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
     this.windowWidth = window.innerWidth;
+    this.TestoNonVisible();
     console.log('Larghezza finestra aggiornata:', this.windowWidth);
   }
 
@@ -158,6 +159,7 @@ export class DettaglioProdottoComponent implements OnInit {
 
   public TestoNonVisible() {
     if (this.windowWidth <= 767) {
+      console.log('sto dentro la funzione ');
       return true;
     }
     return false;
