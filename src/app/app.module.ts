@@ -15,6 +15,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { DialogModule } from 'primeng/dialog';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 //componenti
 import { AppComponent } from './app.component';
@@ -42,6 +43,7 @@ import { ContatoreKcalComponent } from './components/contatore-kcal/contatore-kc
 import { CancellaProdottoComponent } from './components/cancella-prodotto-soft/cancella-prodotto-soft.component';
 import { MessageService } from 'primeng/api';
 import { ModaleFeatureCarrelloComponent } from './modale-feature-carrello/modale-feature-carrello.component';
+import { CarrelliComponent } from './components/carrelli/carrelli.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,7 @@ import { ModaleFeatureCarrelloComponent } from './modale-feature-carrello/modale
     ContatoreKcalComponent,
     CancellaProdottoComponent,
     ModaleFeatureCarrelloComponent,
+    CarrelliComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +79,7 @@ import { ModaleFeatureCarrelloComponent } from './modale-feature-carrello/modale
     DividerModule,
     ButtonModule,
     CarouselModule,
+    ScrollPanelModule,
     HttpClientModule,
     MultiSelectModule,
     FormsModule,

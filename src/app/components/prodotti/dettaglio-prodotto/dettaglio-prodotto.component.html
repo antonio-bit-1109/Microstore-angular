@@ -58,7 +58,8 @@
             </div>
 
             <div class="d-flex gap-1">
-              <button [disabled]="!isAvailable(prodotto?.is_active)[1]" class="btn btn-primary btn-block mt-3">
+              <button *ngIf="this.IsStockMoreThanZero()" (click)="aggiungiAlCarrello(this.prodotto)"
+                [disabled]="!isAvailable(prodotto?.is_active)[1]" class="btn btn-primary btn-block mt-3">
                 Aggiungi al carrello
               </button>
               <ng-container *ngIf="this.isAdmin()">

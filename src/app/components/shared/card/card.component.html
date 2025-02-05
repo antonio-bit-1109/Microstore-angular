@@ -14,7 +14,9 @@
       <button (click)="redirectToDetailCard()" class="btn Myprimary Mywhite">
         Vedi dettagli
       </button>
-      <button (click)="aggiungiAlCarrello(this.prodotto)" class="btn btn-success">Aggiungi al carrello</button>
+      <button *ngIf="this.IsStockMoreThanZero()" (click)="aggiungiAlCarrello(this.prodotto)"
+        class="btn btn-success">Aggiungi
+        al carrello</button>
     </div>
     <div [ngStyle]="{
         border: '2px solid ' + isAvailable(prodotto.is_active)[2],

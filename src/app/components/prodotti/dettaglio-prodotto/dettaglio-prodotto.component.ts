@@ -13,6 +13,7 @@ import { SubjectService } from '../../../services/subject.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastService } from '../../../services/toast.service';
 import { IToastContent } from '../../../models/toastContent.model';
+import { CartService } from '../../../services/cart.service';
 
 interface PageEvent {
   first: number;
@@ -44,7 +45,8 @@ export class DettaglioProdottoComponent implements OnInit {
     private authService: AuthService,
     // private messageService: MessageService,
     private subjectService: SubjectService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private cartService: CartService
   ) {
     this.windowWidth = window.innerWidth;
 
@@ -217,5 +219,13 @@ export class DettaglioProdottoComponent implements OnInit {
         console.error(err.error);
       },
     });
+  }
+
+  public IsStockMoreThanZero() {
+    return parseInt(this.prodotto.stock) > 0;
+  }
+
+  public aggiungiAlCarrello(prodotto: IProduct) {
+    this.cartService.aggiungiProdottoAlCArrello(prodotto);
   }
 }

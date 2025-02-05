@@ -79,6 +79,10 @@ export class CardComponent {
     );
   }
 
+  public IsStockMoreThanZero() {
+    return parseInt(this.prodotto.stock) > 0;
+  }
+
   public aggiungiAlCarrello(prodotto: IProduct) {
     this.cartService.aggiungiProdottoAlCArrello(prodotto);
   }
