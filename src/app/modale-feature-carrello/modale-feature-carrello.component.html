@@ -1,9 +1,39 @@
-<div *ngIf=" this.showTemplate" class="custom-feature text-center bounce-in-top">
+<div *ngIf=" this.showTemplate" class="custom-feature text-center bounce-in-top overflow-y-scroll">
     <p>Aggiunta Prodotti al carrello corrente.</p>
     <div class="d-flex gap-2 justify-content-center">
-        <p-button label="conferma carrello" severity="success">
+        <p-button (click)="creaCarrello()" label="conferma carrello" severity="success">
         </p-button>
-        <p-button label="annulla" severity="danger"></p-button>
+        <p-button (click)="svuotaCarrello()" label="annulla" severity="danger"></p-button>
     </div>
+
+
+    <!-- prodotti che sono stati aggiunti al carrello -->
+    <ng-container *ngIf="this.carrello.listaProdotti.length">
+        <ng-container *ngFor="let prodotto of this.carrello.listaProdotti">
+            <div>
+                <div class="card my-2 focused-style">
+                    <div class="card-body">
+                        <i (click)="rimuoviProdottoSelezionato(prodotto)" class="pi pi-trash mx-2 pointer"
+                            style="font-size: 2rem;color: rgb(230, 27, 27)"></i>
+
+                        <div class="d-flex gap-2">
+                            <div>
+                                <h3> ID PRODOTTO: {{prodotto.idProd}}</h3>
+                            </div>
+                            <div>
+                                <p> PREZZO UNITARIO: {{prodotto.prezzoUnitario}}</p>
+                            </div>
+                            <div>
+                                <p> QUANTITà: {{prodotto.quantity}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+
+
 
 </div>

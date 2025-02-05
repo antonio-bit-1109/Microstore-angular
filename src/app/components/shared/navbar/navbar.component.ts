@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,11 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   titolo = 'MicroStore';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private cartService: CartService
+  ) {}
 
   public logout() {
     this.authService.logout();
@@ -24,5 +29,9 @@ export class NavbarComponent {
 
   public goToProfile() {
     this.router.navigateByUrl('/home/profilo');
+  }
+
+  public getItemInCart_Length() {
+    return this.cartService.getItemsInCart_Length();
   }
 }

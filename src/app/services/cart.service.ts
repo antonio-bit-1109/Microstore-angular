@@ -26,10 +26,18 @@ export class CartService {
     }
   }
 
-  public rollBackCarrello() {}
+  public svuotaCarrello() {
+    this.cart.listaProdotti = [];
+    console.log('carrello svuotato.');
+    this.isStartedAddProdottiCarrello.next(false);
+  }
 
   // tramite il metodo aggiungi al carrello aggiungo il prodotto al carrello da inviare al server
   public aggiungiProdottoAlCArrello(prodotto: IProduct) {
+    if (!prodotto.is_active) {
+      return;
+    }
+
     this.isStartedAddProdottiCarrello.next(true);
 
     const prodottoDaInserire = this.cart.listaProdotti.find(
@@ -41,17 +49,36 @@ export class CartService {
     } else {
       this.cart.listaProdotti.push({
         idProd: prodotto.id,
-        prezzoUnitario: parseInt(prodotto.prezzo),
+        prezzoUnitario: parseFloat(prodotto.prezzo),
         quantity: 1,
       });
     }
+
+    console.log(this.cart);
   }
 
-  public createNewCart_sendServer(dataCart: ICreateCart) {
-    return this.httpClient.post(`${environment.URL_CREATE_CART}`, dataCart);
+  public createNewCart_sendServer() {
+    return this.httpClient.post(
+      `${environment.LOCAL_HOST + environment.URL_CREATE_CART}`,
+      this.cart
+    );
   }
 
   public $getNotificaStartAggiuntaProdottiCarrello() {
     return this.isStartedAddProdottiCarrello.asObservable();
+  }
+
+  public getItemsInCart_Length() {
+    return this.cart.listaProdotti.length;
+  }
+
+  public getCarrello() {
+    return this.cart ? this.cart : null;
+  }
+
+  public eliminaDalCarrelloProdottoSelezionato(prodotto: IListaProd) {
+    this.cart.listaProdotti = this.cart.listaProdotti.filter(
+      (prod) => prod.idProd !== prodotto.idProd
+    );
   }
 }

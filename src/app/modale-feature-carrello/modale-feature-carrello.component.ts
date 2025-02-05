@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartService } from '../services/cart.service';
+import { ICreateCart, IListaProd } from '../models/cart.model';
 
 @Component({
   selector: 'app-modale-feature-carrello',
@@ -10,6 +11,7 @@ import { CartService } from '../services/cart.service';
 })
 export class ModaleFeatureCarrelloComponent {
   public showTemplate: boolean = false;
+  public carrello: ICreateCart | undefined;
 
   constructor(private cartService: CartService) {
     this.cartService.$getNotificaStartAggiuntaProdottiCarrello().subscribe({
@@ -17,5 +19,25 @@ export class ModaleFeatureCarrelloComponent {
         notifica ? (this.showTemplate = true) : (this.showTemplate = false);
       },
     });
+
+    // prendo i prodotti dentro la variabile carrello per mostrare i prodotti che sto inserendo all interno del carrello
+    this.carrello = cartService.getCarrello();
+  }
+
+  public svuotaCarrello() {
+    this.cartService.svuotaCarrello();
+  }
+
+  public creaCarrello() {
+    this.cartService.createNewCart_sendServer().subscribe({
+      next: (val) => {},
+      error: (err) => {
+        console.log('errore');
+      },
+    });
+  }
+
+  public rimuoviProdottoSelezionato(prodotto: IListaProd) {
+    this.cartService.eliminaDalCarrelloProdottoSelezionato(prodotto);
   }
 }
