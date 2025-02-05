@@ -15,7 +15,6 @@ import { PaginatorModule } from 'primeng/paginator';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { DialogModule } from 'primeng/dialog';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 //componenti
 import { AppComponent } from './app.component';
@@ -79,7 +78,6 @@ import { CarrelliComponent } from './components/carrelli/carrelli.component';
     DividerModule,
     ButtonModule,
     CarouselModule,
-    ScrollPanelModule,
     HttpClientModule,
     MultiSelectModule,
     FormsModule,
