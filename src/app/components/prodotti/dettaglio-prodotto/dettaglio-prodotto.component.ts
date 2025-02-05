@@ -11,6 +11,8 @@ import { AuthService } from '../../../services/auth.service';
 import { MessageService } from 'primeng/api';
 import { SubjectService } from '../../../services/subject.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastService } from '../../../services/toast.service';
+import { IToastContent } from '../../../models/toastContent.model';
 
 interface PageEvent {
   first: number;
@@ -25,7 +27,6 @@ interface PageEvent {
 
   templateUrl: './dettaglio-prodotto.component.html',
   styleUrl: './dettaglio-prodotto.component.scss',
-  providers: [MessageService],
 })
 export class DettaglioProdottoComponent implements OnInit {
   private ProductService = inject(ProductService);
@@ -41,13 +42,28 @@ export class DettaglioProdottoComponent implements OnInit {
     // private previousRouteService: PreviousRouteService,
     private router: Router,
     private authService: AuthService,
-    private messageService: MessageService,
-    private subjectService: SubjectService
+    // private messageService: MessageService,
+    private subjectService: SubjectService,
+    private toastService: ToastService
   ) {
     this.windowWidth = window.innerWidth;
+
+    // se al componente arriva un observable da questo punto significa che ho effettuato una modifica
+    // alla  disponibilità del prodotto e emetto un toast comunicando questa azione.
+    this.subjectService.$getDataToastSoftDelete().subscribe({
+      next: (dataInnerToast: IToastContent) => {
+        if (dataInnerToast) {
+          this.toastService.show(
+            dataInnerToast.key,
+            dataInnerToast.severity,
+            dataInnerToast.summary,
+            dataInnerToast.detail
+          );
+        }
+      },
+    });
   }
 
-  //
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
     this.windowWidth = window.innerWidth;
@@ -80,7 +96,7 @@ export class DettaglioProdottoComponent implements OnInit {
     this.subjectService.getToastAddStock().subscribe({
       next: (msg) => {
         if (msg) {
-          this.show('info', 'aggiunta scorte', msg);
+          this.toastService.show('toast', 'info', 'aggiunta scorte', msg);
           // se arriva il messaggio che lo stock è stato aggiornato richiamo l'endpoint per ottenere i dati del prodotto aggiornato.
           this.getDetailProdottoDB();
         }
@@ -159,16 +175,6 @@ export class DettaglioProdottoComponent implements OnInit {
     this.Modalvisible = true;
   }
 
-  show(severity: string, summary: string, content: string) {
-    this.messageService.add({
-      severity: severity,
-      summary: summary,
-      detail: content,
-      key: 'toastAddStock',
-      life: 2000,
-    });
-  }
-
   public TestoNonVisible() {
     if (this.windowWidth <= 767) {
       console.log('sto dentro la funzione ');
@@ -200,6 +206,12 @@ export class DettaglioProdottoComponent implements OnInit {
           'reimpostazione prodotto ad attivo effettuata con successo'
         );
         this.subjectService.DoIReloadProdotto(true);
+        this.toastService.show(
+          'toast',
+          'info',
+          'visibilità prodotto',
+          'prodotto reimpostato come disponibile'
+        );
       },
       error: (err: HttpErrorResponse) => {
         console.error(err.error);

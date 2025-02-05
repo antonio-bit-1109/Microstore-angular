@@ -25,6 +25,7 @@ export class SubjectService {
   public adsVisibleEvery5Times = new BehaviorSubject<number>(0);
 
   public reloadProdotto = new BehaviorSubject<boolean>(false);
+  public ToastSoftDelete = new BehaviorSubject<IToastContent | null>(null);
 
   constructor() {}
 
@@ -100,5 +101,13 @@ export class SubjectService {
 
   public $GetReloadProdotto() {
     return this.reloadProdotto.asObservable();
+  }
+
+  public fillToastSoftDelete(dataToast: IToastContent) {
+    this.ToastSoftDelete.next(dataToast);
+  }
+
+  public $getDataToastSoftDelete() {
+    return this.ToastSoftDelete.asObservable();
   }
 }

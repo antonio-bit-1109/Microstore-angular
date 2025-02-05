@@ -40,6 +40,7 @@ import { UserComponent } from './components/user/user.component';
 import { GeneralModalComponent } from './components/general-modal/general-modal.component';
 import { ContatoreKcalComponent } from './components/contatore-kcal/contatore-kcal.component';
 import { CancellaProdottoComponent } from './components/cancella-prodotto-soft/cancella-prodotto-soft.component';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { CancellaProdottoComponent } from './components/cancella-prodotto-soft/c
       useClass: TokenInterceptor,
       multi: true,
     },
+    MessageService,
   ],
   bootstrap: [AppComponent],
 })
