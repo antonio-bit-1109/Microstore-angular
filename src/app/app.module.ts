@@ -41,6 +41,7 @@ import { GeneralModalComponent } from './components/general-modal/general-modal.
 import { ContatoreKcalComponent } from './components/contatore-kcal/contatore-kcal.component';
 import { CancellaProdottoComponent } from './components/cancella-prodotto-soft/cancella-prodotto-soft.component';
 import { MessageService } from 'primeng/api';
+import { ModaleFeatureCarrelloComponent } from './modale-feature-carrello/modale-feature-carrello.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { MessageService } from 'primeng/api';
     GeneralModalComponent,
     ContatoreKcalComponent,
     CancellaProdottoComponent,
+    ModaleFeatureCarrelloComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { IProduct } from '../../../models/product.model';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+import { TOKEN_PAYLOAD } from '../../../models/ResponsesServer';
+import { ICreateCart, IListaProd } from '../../../models/cart.model';
+import { CartService } from '../../../services/cart.service';
 // import { PreviousRouteService } from '../../../services/previous-route.service';
 
 @Component({
@@ -24,7 +28,9 @@ export class CardComponent {
     'https://media.istockphoto.com/id/1396814518/it/vettoriale/immagine-in-arrivo-nessuna-foto-nessuna-immagine-in-miniatura-disponibile-illustrazione.jpg?s=2048x2048&w=is&k=20&c=JrtawqzdBNu2u9zZvkP10KLBozTxsaXPl0BxjuaUtMY=';
 
   constructor(
-    private router: Router // private previousRouteSerivice: PreviousRouteService
+    private router: Router, // private previousRouteSerivice: PreviousRouteService
+    private authService: AuthService,
+    private cartService: CartService
   ) {}
 
   // metodi utili
@@ -71,5 +77,9 @@ export class CardComponent {
     this.router.navigateByUrl(
       `/home/dettaglioProdotto/${this.prodotto.id}/fromProduct`
     );
+  }
+
+  public aggiungiAlCarrello(prodotto: IProduct) {
+    this.cartService.aggiungiProdottoAlCArrello(prodotto);
   }
 }

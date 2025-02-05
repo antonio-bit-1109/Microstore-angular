@@ -1,0 +1,73 @@
+.custom-feature {
+  width: 40%;
+  z-index: 9999;
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  background-color: white;
+  border: 2px solid black;
+  padding: 1rem;
+  border-radius: 30px;
+}
+
+/* Media query per schermi piccoli */
+@media (max-width: 600px) {
+  .custom-feature {
+    width: 90%;
+  }
+}
+
+/* Media query per schermi medi */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .custom-feature {
+    width: 70%;
+  }
+}
+
+/* Media query per schermi grandi */
+@media (min-width: 1025px) {
+  .custom-feature {
+    width: 40%;
+  }
+}
+
+.bounce-in-top {
+  animation: bounce-in-top 1.1s both;
+}
+
+@keyframes bounce-in-top {
+  0% {
+    transform: translateY(-500px);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    transform: translateY(-65px);
+    animation-timing-function: ease-in;
+  }
+  72% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  81% {
+    transform: translateY(-28px);
+    animation-timing-function: ease-in;
+  }
+  90% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  95% {
+    transform: translateY(-8px);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+}

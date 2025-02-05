@@ -10,4 +10,5 @@ export const environment = {
   URL_ADD_STOCK_PRODUCT: '/product/addStock',
   URL_DELETE_PRODUCT: '/product/delete',
   URL_REACTIVATE_PRODUCT: '/product/returnActive',
+  URL_CREATE_CART: '/cart/create-new',
 };
