@@ -22,6 +22,7 @@ export class enterCarrelloCorrenteGuard implements CanActivate {
         message: 'carrello vuoto. Senza prodotti non puoi accedere alla pagina',
         severity: 'info',
       });
+      this.subjectService.fillToastCreazioneCarrello(false, null);
       return false;
     }
   }
