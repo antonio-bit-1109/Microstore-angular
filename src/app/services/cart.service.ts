@@ -51,6 +51,8 @@ export class CartService {
         idProd: prodotto.id,
         prezzoUnitario: parseFloat(prodotto.prezzo),
         quantity: 1,
+        nomeProdotto: prodotto.name,
+        img: prodotto.image_url,
       });
     }
 

@@ -7,4 +7,6 @@ export interface IListaProd {
   idProd: number;
   quantity: number;
   prezzoUnitario: number;
+  nomeProdotto: string;
+  img: string;
 }
