@@ -3,6 +3,7 @@ import { CartService } from '../services/cart.service';
 import { ICreateCart, IListaProd } from '../models/cart.model';
 import { ToastService } from '../services/toast.service';
 import { SubjectService } from '../services/subject.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-modale-feature-carrello',
@@ -43,8 +44,13 @@ export class ModaleFeatureCarrelloComponent {
         this.subjectService.fillToastCreazioneCarrello(true, msg);
         this.svuotaCarrello();
       },
-      error: (err) => {
-        console.log('errore');
+      error: (err: HttpErrorResponse) => {
+        console.log(err.error);
+        this.showTemplate = false;
+        this.subjectService.fillToastCreazioneCarrello(true, {
+          message: 'il carrello non può essere vuoto.',
+          severity: 'info',
+        });
       },
     });
   }

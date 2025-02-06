@@ -1,7 +1,42 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div>mostra carrello corrente</div>
+            <ng-container *ngIf="this.carrello; else noProdottiCarrello">
+
+                <ng-container *ngFor="let prodotto of this.carrello.listaProdotti">
+                    <div class="card my-2 focused-style">
+                        <div class="card-body">
+                            <i (click)="rimuoviProdottoSelezionato(prodotto)" class="pi pi-trash mx-2 pointer"
+                                style="font-size: 2rem;color: rgb(230, 27, 27)"></i>
+
+                            <div class="d-flex gap-2 flex-wrap">
+                                <div class="wrapper">
+                                    <div>
+                                        <h3> {{prodotto.nomeProdotto}}</h3>
+                                    </div>
+                                    <div>
+                                        <p> PREZZO UNITARIO: {{prodotto.prezzoUnitario}}</p>
+                                    </div>
+                                    <div>
+                                        <p> QUANTITà: {{prodotto.quantity}}</p>
+                                    </div>
+                                </div>
+
+
+                                <img class="dimensione-img mx-auto" [src]="this.getImage(prodotto)" alt="">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+
+            <ng-template #noProdottiCarrello>
+                <div class="mt-7">
+                    <p>Nessun prodotto presente nel carrello.</p>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>
