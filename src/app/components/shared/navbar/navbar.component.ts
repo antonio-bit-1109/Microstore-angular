@@ -54,7 +54,19 @@ export class NavbarComponent {
     this.router.navigateByUrl('/home/carrello-corrente');
   }
 
+  public goToGestioneCarrelli() {
+    this.router.navigateByUrl('/home/gestione-carrelli');
+  }
+
   public areWeInProdottiComponent() {
     return this.router.url === '/home/prodotti';
+  }
+
+  public areWeInCarrelloCorrenteComponent() {
+    return this.router.url === '/home/carrello-corrente';
+  }
+
+  public areWeInGestioneCarrelliComponent() {
+    return this.router.url === '/home/gestione-carrelli';
   }
 }
