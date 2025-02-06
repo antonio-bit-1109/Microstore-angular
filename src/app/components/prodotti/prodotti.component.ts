@@ -6,10 +6,11 @@ import {
   SimpleChanges,
   DoCheck,
   Input,
+  OnDestroy,
 } from '@angular/core';
 import { IProduct, IProductResponse } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
-import { map } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import { SubjectService } from '../../services/subject.service';
 import { IToastContent } from '../../models/toastContent.model';
 import { MessageService } from 'primeng/api';
@@ -24,7 +25,7 @@ import { ToastService } from '../../services/toast.service';
   styleUrl: './prodotti.component.scss',
   // providers: [MessageService],
 })
-export class ProdottiComponent implements OnInit, DoCheck {
+export class ProdottiComponent implements OnInit, DoCheck, OnDestroy {
   private AllProdottiMock: IProduct[] | undefined;
   private AllProdottiDB: IProductResponse | undefined | IProduct[];
 
@@ -35,6 +36,10 @@ export class ProdottiComponent implements OnInit, DoCheck {
   @Input() valFiltro: string = '';
   previusValFiltro = '';
   dataToast: null | IToastContent = null;
+
+  // array di tutte le sottoscrizioni che avvengon nel componente
+  // ALL DESTROY DEL COMPONENTE DEVONO ESSERE CHIUSE PER EVITARE SOTTOSCRIZIONI MULTIPLE
+  subscriptions: Subscription[] = [];
 
   // INIETTARE IL SERVIZIO NELLA CLASSE
   // 1- costruttore utilizzato solo per iniettare dipendenze
@@ -51,19 +56,24 @@ export class ProdottiComponent implements OnInit, DoCheck {
   //
   ngOnInit(): void {
     // carica nella prop i prodotti mockati
-    this.productService.getAllProducts_mock().subscribe({
-      next: (prodotti: IProduct[]) => {
-        this.AllProdottiMock = prodotti;
-        console.log('prodotti Mock caricati', this.AllProdottiMock);
-      },
+    const subMockProdotti = this.productService
+      .getAllProducts_mock()
+      .subscribe({
+        next: (prodotti: IProduct[]) => {
+          this.AllProdottiMock = prodotti;
+          console.log('prodotti Mock caricati', this.AllProdottiMock);
+        },
 
-      error: (err) => {
-        console.error(err);
-      },
-    });
+        error: (err) => {
+          console.error(err);
+        },
+      });
+
+    // pusho nell array delle sottoscrizioni tutte le subscription in modo da fare unsubscribe all on destroy del componente
+    this.subscriptions.push(subMockProdotti);
 
     // carica nella prop i prodotti provenienti dall API
-    this.productService.getAllProducts().subscribe({
+    const subProdotti = this.productService.getAllProducts().subscribe({
       next: (prodotti: IProductResponse) => {
         this.AllProdottiDB = prodotti;
         console.log('prodotti DAL DB caricati', this.AllProdottiDB);
@@ -74,22 +84,28 @@ export class ProdottiComponent implements OnInit, DoCheck {
       },
     });
 
+    this.subscriptions.push(subProdotti);
+
     this.subscribeToSubjectService();
-    this.subjectService.$getDataToastCarrelloCreato().subscribe({
-      next: (
-        dataToast: [boolean, { message: string; severity?: string }] | null
-      ) => {
-        console.log(dataToast);
-        if (dataToast[0] && dataToast[1] && dataToast[1].message) {
-          this.toastService.show(
-            'toast',
-            dataToast[1].severity ? 'info' : 'success',
-            'creazione carrello',
-            dataToast[1].message
-          );
-        }
-      },
-    });
+    const subToastCarrelloCreato = this.subjectService
+      .$getDataToastCarrelloCreato()
+      .subscribe({
+        next: (
+          dataToast: [boolean, { message: string; severity?: string }] | null
+        ) => {
+          console.log(dataToast);
+          if (dataToast[0] && dataToast[1] && dataToast[1].message) {
+            this.toastService.show(
+              'toast',
+              dataToast[1].severity ? 'info' : 'success',
+              'creazione carrello',
+              dataToast[1].message
+            );
+          }
+        },
+      });
+
+    this.subscriptions.push(subToastCarrelloCreato);
   }
 
   // ho un valore di default all interno del componente.
@@ -100,6 +116,10 @@ export class ProdottiComponent implements OnInit, DoCheck {
       this.reDoFetchProdottiCheap(this.valFiltro);
       this.previusValFiltro = this.valFiltro;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   private reDoFetchProdottiCheap(valFiltro: string) {
@@ -180,7 +200,7 @@ export class ProdottiComponent implements OnInit, DoCheck {
   }
 
   private subscribeToSubjectService() {
-    this.subjectService.getContentToast().subscribe({
+    const subToastContent = this.subjectService.getContentToast().subscribe({
       next: (val: IToastContent) => {
         if (val) {
           console.log('sono qui');
@@ -195,15 +215,7 @@ export class ProdottiComponent implements OnInit, DoCheck {
         }
       },
     });
-  }
 
-  // show(severity: string, summary: string, content: string) {
-  //   this.messageService.add({
-  //     severity: severity,
-  //     summary: summary,
-  //     detail: content,
-  //     key: 'toast',
-  //     life: 2000,
-  //   });
-  // }
+    this.subscriptions.push(subToastContent);
+  }
 }

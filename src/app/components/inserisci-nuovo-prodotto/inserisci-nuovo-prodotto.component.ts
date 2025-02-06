@@ -88,6 +88,7 @@ export class InserisciNuovoProdottoComponent {
 
   public closeModal() {
     this.subjectService.unShowModale();
+    this.form.reset();
   }
 
   public isFormValid() {
