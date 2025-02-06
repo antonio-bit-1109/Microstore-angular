@@ -3,11 +3,6 @@ import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
 
-interface SelectItem {
-  label: string;
-  value: string;
-}
-
 @Component({
   selector: 'app-navbar',
   standalone: false,
@@ -68,5 +63,9 @@ export class NavbarComponent {
 
   public areWeInGestioneCarrelliComponent() {
     return this.router.url === '/home/gestione-carrelli';
+  }
+
+  public isCartEmpty() {
+    return this.cartService.getItemsInCart_Length() === 0;
   }
 }

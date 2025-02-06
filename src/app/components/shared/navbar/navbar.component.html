@@ -31,7 +31,9 @@
             </button>
 
             <ul class="dropdown-menu">
-              <li (click)="goToCarrelloCorrente()"><a class="dropdown-item pointer">Carrello Corrente</a></li>
+              <li (click)="goToCarrelloCorrente()"><a class="dropdown-item"
+                  [ngClass]="{ 'disabled': isCartEmpty() }">Carrello
+                  Corrente</a></li>
               <li><a (click)="goToGestioneCarrelli()" class="dropdown-item pointer">Gestione Carrelli</a></li>
 
             </ul>
