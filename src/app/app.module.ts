@@ -42,7 +42,8 @@ import { ContatoreKcalComponent } from './components/contatore-kcal/contatore-kc
 import { CancellaProdottoComponent } from './components/cancella-prodotto-soft/cancella-prodotto-soft.component';
 import { MessageService } from 'primeng/api';
 import { ModaleFeatureCarrelloComponent } from './modale-feature-carrello/modale-feature-carrello.component';
-import { CarrelliComponent } from './components/carrelli/carrelli.component';
+import { CarrelloCorrenteComponent } from './components/carrello-corrente/carrello-corrente.component';
+import { GestioneCarrelliComponent } from './components/gestione-carrelli/gestione-carrelli.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { CarrelliComponent } from './components/carrelli/carrelli.component';
     ContatoreKcalComponent,
     CancellaProdottoComponent,
     ModaleFeatureCarrelloComponent,
-    CarrelliComponent,
+    CarrelloCorrenteComponent,
+    GestioneCarrelliComponent,
   ],
   imports: [
     BrowserModule,

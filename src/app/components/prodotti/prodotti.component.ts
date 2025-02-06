@@ -76,12 +76,14 @@ export class ProdottiComponent implements OnInit, DoCheck {
 
     this.subscribeToSubjectService();
     this.subjectService.$getDataToastCarrelloCreato().subscribe({
-      next: (dataToast: [boolean, { message: string }] | null) => {
+      next: (
+        dataToast: [boolean, { message: string; severity?: string }] | null
+      ) => {
         console.log(dataToast);
-        if (dataToast[0] && dataToast[1].message) {
+        if (dataToast[0] && dataToast[1] && dataToast[1].message) {
           this.toastService.show(
             'toast',
-            'success',
+            dataToast[1].severity ? 'info' : 'success',
             'creazione carrello',
             dataToast[1].message
           );

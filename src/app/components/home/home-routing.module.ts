@@ -7,6 +7,9 @@ import { HomeContainerComponent } from '../home-container/home-container.compone
 import { DettaglioProdottoComponent } from '../prodotti/dettaglio-prodotto/dettaglio-prodotto.component';
 import { RegistrazioneComponent } from '../registrazione/registrazione.component';
 import { UserComponent } from '../user/user.component';
+import { CarrelloCorrenteComponent } from '../carrello-corrente/carrello-corrente.component';
+import { enterCarrelloCorrenteGuard } from '../../guards/enter-carrello-corrente.guard';
+import { GestioneCarrelliComponent } from '../gestione-carrelli/gestione-carrelli.component';
 
 const routes: Routes = [
   {
@@ -21,6 +24,12 @@ const routes: Routes = [
       },
       { path: 'gestioneOrdini', component: GestioneOrdiniComponent },
       { path: 'profilo', component: UserComponent },
+      {
+        path: 'carrello-corrente',
+        component: CarrelloCorrenteComponent,
+        canActivate: [enterCarrelloCorrenteGuard],
+      },
+      { path: 'gestione-carrelli', component: GestioneCarrelliComponent },
       { path: '**', redirectTo: '' },
     ],
   },

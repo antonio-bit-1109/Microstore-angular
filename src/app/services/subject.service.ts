@@ -27,9 +27,8 @@ export class SubjectService {
   public reloadProdotto = new BehaviorSubject<boolean>(false);
   public ToastSoftDelete = new BehaviorSubject<IToastContent | null>(null);
 
-  public ToastCarrelloCreato = new BehaviorSubject<
-    [boolean, { message: string }] | null
-  >(null);
+  //prettier-ignore
+  public ToastCarrelloCreato = new BehaviorSubject< [boolean, { message: string; severity?: string }] | null  >(null);
 
   constructor() {}
 
@@ -118,7 +117,7 @@ export class SubjectService {
   // toast per notificare al componente prodotti che il carrello è stato creato con successo
   public fillToastCreazioneCarrello(
     val: boolean,
-    message: { message: string }
+    message: { message: string; severity?: string }
   ) {
     this.ToastCarrelloCreato.next([val, message]);
   }
