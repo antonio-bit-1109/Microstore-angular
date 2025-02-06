@@ -27,6 +27,10 @@ export class SubjectService {
   public reloadProdotto = new BehaviorSubject<boolean>(false);
   public ToastSoftDelete = new BehaviorSubject<IToastContent | null>(null);
 
+  public ToastCarrelloCreato = new BehaviorSubject<
+    [boolean, { message: string }] | null
+  >(null);
+
   constructor() {}
 
   // metodi per maneggiare notificationLogout -- INIZIO
@@ -109,5 +113,17 @@ export class SubjectService {
 
   public $getDataToastSoftDelete() {
     return this.ToastSoftDelete.asObservable();
+  }
+
+  // toast per notificare al componente prodotti che il carrello è stato creato con successo
+  public fillToastCreazioneCarrello(
+    val: boolean,
+    message: { message: string }
+  ) {
+    this.ToastCarrelloCreato.next([val, message]);
+  }
+
+  public $getDataToastCarrelloCreato() {
+    return this.ToastCarrelloCreato.asObservable();
   }
 }

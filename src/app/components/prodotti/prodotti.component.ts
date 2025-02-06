@@ -14,6 +14,7 @@ import { SubjectService } from '../../services/subject.service';
 import { IToastContent } from '../../models/toastContent.model';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-prodotti',
@@ -21,7 +22,7 @@ import { ActivatedRoute } from '@angular/router';
 
   templateUrl: './prodotti.component.html',
   styleUrl: './prodotti.component.scss',
-  providers: [MessageService],
+  // providers: [MessageService],
 })
 export class ProdottiComponent implements OnInit, DoCheck {
   private AllProdottiMock: IProduct[] | undefined;
@@ -42,7 +43,8 @@ export class ProdottiComponent implements OnInit, DoCheck {
   constructor(
     private productService: ProductService,
     private subjectService: SubjectService,
-    private messageService: MessageService
+    // private messageService: MessageService,
+    private toastService: ToastService
   ) {}
 
   // utilizzo i cicli di vita del componente per logiche più complesse come
@@ -73,6 +75,19 @@ export class ProdottiComponent implements OnInit, DoCheck {
     });
 
     this.subscribeToSubjectService();
+    this.subjectService.$getDataToastCarrelloCreato().subscribe({
+      next: (dataToast: [boolean, { message: string }] | null) => {
+        console.log(dataToast);
+        if (dataToast[0] && dataToast[1].message) {
+          this.toastService.show(
+            'toast',
+            'success',
+            'creazione carrello',
+            dataToast[1].message
+          );
+        }
+      },
+    });
   }
 
   // ho un valore di default all interno del componente.
@@ -166,7 +181,13 @@ export class ProdottiComponent implements OnInit, DoCheck {
     this.subjectService.getContentToast().subscribe({
       next: (val: IToastContent) => {
         if (val) {
-          this.show(val.severity, val.summary, val.detail);
+          console.log('sono qui');
+          this.toastService.show(
+            'toast',
+            val.severity,
+            val.summary,
+            val.detail
+          );
         } else {
           null;
         }
@@ -174,13 +195,13 @@ export class ProdottiComponent implements OnInit, DoCheck {
     });
   }
 
-  show(severity: string, summary: string, content: string) {
-    this.messageService.add({
-      severity: severity,
-      summary: summary,
-      detail: content,
-      key: 'esitoInsertProdotto',
-      life: 2000,
-    });
-  }
+  // show(severity: string, summary: string, content: string) {
+  //   this.messageService.add({
+  //     severity: severity,
+  //     summary: summary,
+  //     detail: content,
+  //     key: 'toast',
+  //     life: 2000,
+  //   });
+  // }
 }

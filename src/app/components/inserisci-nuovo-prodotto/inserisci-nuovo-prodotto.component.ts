@@ -69,7 +69,7 @@ export class InserisciNuovoProdottoComponent {
             key: 'toast',
             life: 2000,
             severity: 'error',
-            summary: 'Errore Inserimento Prodotto',
+            summary: 'Errore Inserimento Prodotto. CONTATTARE ASSISTENZA',
           };
 
           this.subjectService.fillToastProdottoInserito(toastContent);
