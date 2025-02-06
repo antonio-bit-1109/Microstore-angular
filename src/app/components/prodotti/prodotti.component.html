@@ -2,7 +2,7 @@
   <p-toast key="toast" />
   <!-- filtro per il filtraggio dei prodotti -->
   <app-filtro-ricerca (EmettiValFiltro)="prendiValFiltro($event)"></app-filtro-ricerca>
-  <div class="row">
+  <div class="row justify-content-center">
 
     <div class="col-sm-10 col-md-6 col-lg-4 max-h-600"
       *ngFor="let prodotto of getAllProdottiDB() | slice: (page - 1) * size : page * size">

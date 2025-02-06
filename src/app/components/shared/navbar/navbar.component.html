@@ -22,18 +22,21 @@
 
 
         <!-- dropdown menu bootstrap -->
-        <div class="dropdown-center position-relative">
-          <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <div class="my-badge">{{this.getItemInCart_Length()}}</div>
-            <i class="pi pi-shopping-cart nav-link color" style=" font-size: 2rem"></i>
-          </button>
+        <ng-container *ngIf="areWeInProdottiComponent()">
+          <div class="dropdown-center position-relative">
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="my-badge">{{this.getItemInCart_Length()}}</div>
+              <i class="pi pi-shopping-cart nav-link color" style=" font-size: 2rem"></i>
+            </button>
 
-          <ul class="dropdown-menu">
-            <li (click)="goToCarrelloCorrente()"><a class="dropdown-item pointer">Carrello Corrente</a></li>
-            <li><a class="dropdown-item pointer">Gestione Carrelli</a></li>
+            <ul class="dropdown-menu">
+              <li (click)="goToCarrelloCorrente()"><a class="dropdown-item pointer">Carrello Corrente</a></li>
+              <li><a class="dropdown-item pointer">Gestione Carrelli</a></li>
 
-          </ul>
-        </div>
+            </ul>
+          </div>
+        </ng-container>
+
 
         <!-- icona cart -->
         <!-- <div class="nav-item pointer mx-2 position-relative">

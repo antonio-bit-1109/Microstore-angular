@@ -53,4 +53,8 @@ export class NavbarComponent {
   public goToCarrelloCorrente() {
     this.router.navigateByUrl('/home/carrello-corrente');
   }
+
+  public areWeInProdottiComponent() {
+    return this.router.url === '/home/prodotti';
+  }
 }
