@@ -15,7 +15,9 @@ export class enterCarrelloCorrenteGuard implements CanActivate {
   canActivate(): boolean {
     if (this.cartService.getItemsInCart_Length() > 0) {
       return true;
+      //
     } else {
+      //
       this.subjectService.fillToastCreazioneCarrello(true, {
         message: 'carrello vuoto. Senza prodotti non puoi accedere alla pagina',
         severity: 'info',
