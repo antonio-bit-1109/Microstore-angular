@@ -13,6 +13,8 @@ import { IProduct } from '../models/product.model';
 export class CartService {
   private cart: ICreateCart = { idUser: null, listaProdotti: [] };
   private isStartedAddProdottiCarrello = new BehaviorSubject<boolean>(false);
+
+  private idUtente;
   constructor(
     private httpClient: HttpClient,
     private authService: AuthService
@@ -22,6 +24,7 @@ export class CartService {
 
     if (token && this.cart) {
       const idUtente = token?.jti;
+      this.idUtente = idUtente;
       this.cart.idUser = parseInt(idUtente);
     }
   }
@@ -81,6 +84,15 @@ export class CartService {
   public eliminaDalCarrelloProdottoSelezionato(prodotto: IListaProd) {
     this.cart.listaProdotti = this.cart.listaProdotti.filter(
       (prod) => prod.idProd !== prodotto.idProd
+    );
+  }
+
+  // for the selected user take all the available carts saved into DB
+  public getAllCartUser() {
+    return this.httpClient.get(
+      `${environment.LOCAL_HOST + environment.URL_GET_ALL_CART}/${
+        this.idUtente
+      }`
     );
   }
 }

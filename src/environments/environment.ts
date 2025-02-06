@@ -11,4 +11,5 @@ export const environment = {
   URL_DELETE_PRODUCT: '/product/delete',
   URL_REACTIVATE_PRODUCT: '/product/returnActive',
   URL_CREATE_CART: '/cart/create-new',
+  URL_GET_ALL_CART: '/cart/get-all',
 };
